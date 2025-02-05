@@ -14,6 +14,6 @@ export class UsuarioService {
   constructor(private http: HttpClient) { }
 
   autenticaUsuario(loginRequest: LoginRequest) : Observable<LoginResponse> {
-    return this.http.post<LoginResponse>(`${this.API_URL}/auth/login`, loginRequest);
+    return this.http.post<LoginResponse>(`${this.API_URL}/usuarios/auth/login`, loginRequest);
   }
 }
