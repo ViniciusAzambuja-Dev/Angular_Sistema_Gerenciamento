@@ -1,6 +1,6 @@
 <div class="home-container">
   <div class="form-container">
-    <form>
+    <form [formGroup]="loginForm" (ngSubmit)="submitLoginForm()">
       <div class="title-container">
         <h1>Login</h1>
         <h2>Preencha todos os campos</h2>
@@ -14,7 +14,7 @@
       </div>
 
       <div class="button-container">
-        <button type="submit">Login</button>
+        <button type="submit" [disabled]="!this.loginForm.valid">Login</button>
       </div>
     </form>
   </div>
