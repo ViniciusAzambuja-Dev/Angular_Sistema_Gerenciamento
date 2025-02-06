@@ -1,21 +1,28 @@
 <div class="home-container">
   <div class="form-container">
+    <span class="title-container"><h1>Faça seu Login</h1></span>
+
     <form [formGroup]="loginForm" (ngSubmit)="submitLoginForm()">
-      <div class="title-container">
-        <h1>Login</h1>
-        <h2>Preencha todos os campos</h2>
-      </div>
       <div class="input-container">
-        <input type="text" pInputText placeholder="Email" formControlName="email">
+        <span class="input-title">E-mail</span>
+        <input type="text" pInputText placeholder="funcionario@gmail.com" formControlName="email">
       </div>
 
       <div class="input-container">
-        <input type="password" pInputText placeholder="Senha" formControlName="senha">
+        <span class="input-title">Senha</span>
+        <input type="password" pInputText placeholder="Digite sua senha" formControlName="senha">
       </div>
 
       <div class="button-container">
-        <button type="submit" [disabled]="!this.loginForm.valid">Login</button>
+        <button type="submit" [disabled]="!this.loginForm.valid">Entrar</button>
       </div>
     </form>
+    <span class="create-account">Deseja criar uma nova conta? <span>Crie Agora</span></span>
+  </div>
+
+  <div class="image-container">
+    <div class="image">
+      <img src="../../../assets/img/Sign in-rafiki.png" alt="login">
+    </div>
   </div>
 </div>
