@@ -1,6 +1,7 @@
 import { Component, OnDestroy } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
+import { MessageService } from 'primeng/api';
 import { Subject } from 'rxjs';
 
 import { LoginRequest } from '../../models/interfaces/usuario/auth/LoginRequest';
@@ -16,13 +17,14 @@ export class HomeComponent implements OnDestroy{
 
   loginForm = this.formBuilder.group({
     email: ['', Validators.required],
-    senha: ['', Validators.required],
+    senha: ['', [Validators.required, Validators.maxLength(15)]],
   });
 
   constructor(
     private formBuilder: FormBuilder,
     private usuarioService: UsuarioService,
-    private cookieService: CookieService) {
+    private cookieService: CookieService,
+    private messageService : MessageService) {
   }
 
 
@@ -33,11 +35,24 @@ export class HomeComponent implements OnDestroy{
           next: (response) => {
             if(response) {
               this.cookieService.set('USUARIO_INFO', response?.token);
-
               this.loginForm.reset();
+
+              this.messageService.add({
+                severity: 'success',
+                summary: 'Sucesso',
+                detail: `Login efetuado com sucesso!`,
+                life: 2000,
+              });
             }
           },
-          error: (err) => console.log(err),
+          error: (err) => {
+            this.messageService.add({
+              severity: 'error',
+              summary: 'Erro',
+              detail: `Email ou senha incorretos`,
+              life: 2000,
+            });
+          },
         });
     }
   }
