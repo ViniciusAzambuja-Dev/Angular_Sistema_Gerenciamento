@@ -1,6 +1,5 @@
 .home-container {
   min-height: 100vh;
-  text-align: center;
 }
 
 h1 {
@@ -44,10 +43,12 @@ form, .input-container input, .button-container button {
 }
 .input-container input {
   height: 100%;
+  padding-left: 28px;
   outline: none;
 }
-.bx, .input-container input {
-  padding-left: 8px;
+.bx{
+  position: absolute;
+  left: 8px;
 }
 
 .input-title{
@@ -74,10 +75,10 @@ form, .input-container input, .button-container button {
   font-weight: bold;
 }
 
-.create-account{
+.change-form{
   margin-top: 50px;
 }
-.create-account span{
+.change-form span{
   color: var(--home-image-background);
   cursor: pointer;
 }
@@ -99,3 +100,35 @@ form, .input-container input, .button-container button {
   object-fit: cover;
 }
 
+p-dropdown {
+  width: 100%;
+  height: 100%;
+}
+:host ::ng-deep .p-dropdown {
+  height: 100%;
+
+  .p-dropdown-label {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding-left: 8px;
+  }
+
+  .p-dropdown-trigger {
+    height: 100%;
+  }
+
+  .p-dropdown-items-wrapper{
+    border-radius: 6px;
+    box-shadow: 0 4px 8px 0 var(--shadow-first-color),
+    0 6px 20px 0 var(--shadow-second-color);
+  }
+  .p-dropdown-item {
+    color: var(--home-dropdown-color);
+    background-color: var(--background-color);
+    padding-left: 8px;
+  }
+  .p-dropdown-item:hover {
+    background-color: var(--home-dropdown-hover);
+  }
+}

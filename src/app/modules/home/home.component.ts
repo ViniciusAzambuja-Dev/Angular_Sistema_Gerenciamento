@@ -14,10 +14,23 @@ import { UsuarioService } from './../../services/usuario/usuario.service';
 })
 export class HomeComponent implements OnDestroy{
   private destroy$ = new Subject<void>();
+  public isLogin = true;
 
-  loginForm = this.formBuilder.group({
+  public profiles = [
+    { name: 'ADMIN' },
+    { name: 'USUARIO' }
+  ];
+
+  public loginForm = this.formBuilder.group({
     email: ['', Validators.required],
     senha: ['', [Validators.required, Validators.maxLength(15)]],
+  });
+
+  public signupForm = this.formBuilder.group({
+    nome: ['', [Validators.required, Validators.maxLength(50)]],
+    email: ['', Validators.required],
+    senha: ['', [Validators.required, Validators.maxLength(15)]],
+    perfil: ['', Validators.required],
   });
 
   constructor(
