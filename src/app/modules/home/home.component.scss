@@ -27,7 +27,7 @@ h1 {
 form {
   margin-top: 50px;
 }
-form, .input-container input[pInputText], .button-container button {
+form, .input-container input, .button-container button {
   width: 100%;
 }
 
@@ -42,9 +42,12 @@ form, .input-container input[pInputText], .button-container button {
   border-radius: 6px;
   position: relative;
 }
-.input-container input[pInputText] {
-  background-color: transparent;
+.input-container input {
   height: 100%;
+  outline: none;
+}
+.bx, .input-container input {
+  padding-left: 8px;
 }
 
 .input-title{
@@ -54,7 +57,7 @@ form, .input-container input[pInputText], .button-container button {
   background-color: var(--background-color);
   font-weight: bold;
 }
-.input-title, .input-container input[pInputText]::placeholder, .create-account {
+.input-title, .input-container input::placeholder, .create-account {
   font-size: 14px;
 }
 

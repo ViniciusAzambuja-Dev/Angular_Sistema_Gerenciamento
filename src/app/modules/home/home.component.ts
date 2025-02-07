@@ -41,7 +41,7 @@ export class HomeComponent implements OnDestroy{
                 severity: 'success',
                 summary: 'Sucesso',
                 detail: `Login efetuado com sucesso!`,
-                life: 2000,
+                life: 2500,
               });
             }
           },
@@ -50,10 +50,18 @@ export class HomeComponent implements OnDestroy{
               severity: 'error',
               summary: 'Erro',
               detail: `Email ou senha incorretos`,
-              life: 2000,
+              life: 2500,
             });
           },
         });
+    }
+    else {
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Erro - Verifique se:',
+        detail: `Os campos estão preenchidos. Senha possui até 15 caracteres.`,
+        life: 2500,
+      });
     }
   }
 

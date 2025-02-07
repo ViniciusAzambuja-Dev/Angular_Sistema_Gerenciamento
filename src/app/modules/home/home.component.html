@@ -5,16 +5,18 @@
     <form [formGroup]="loginForm" (ngSubmit)="submitLoginForm()">
       <div class="input-container">
         <span class="input-title">E-mail</span>
-        <input type="text" pInputText placeholder="funcionario@gmail.com" formControlName="email">
+        <i class='bx bx-envelope'></i>
+        <input type="text" placeholder="funcionario@gmail.com" formControlName="email">
       </div>
 
       <div class="input-container">
         <span class="input-title">Senha</span>
-        <input type="password" pInputText placeholder="Digite sua senha" formControlName="senha">
+        <i class='bx bxs-lock-alt'></i>
+        <input type="password" placeholder="Digite sua senha" formControlName="senha">
       </div>
 
       <div class="button-container">
-        <button type="submit" [disabled]="!this.loginForm.valid">Entrar</button>
+        <button type="submit" >Entrar</button>
       </div>
     </form>
     <span class="create-account">Deseja criar uma nova conta? <span>Crie Agora</span></span>
