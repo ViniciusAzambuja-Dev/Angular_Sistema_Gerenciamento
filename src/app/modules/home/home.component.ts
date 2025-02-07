@@ -5,6 +5,7 @@ import { MessageService } from 'primeng/api';
 import { Subject } from 'rxjs';
 
 import { LoginRequest } from '../../models/interfaces/usuario/auth/LoginRequest';
+import { SignUpRequest } from '../../models/interfaces/usuario/signUp/SignUpRequest';
 import { UsuarioService } from './../../services/usuario/usuario.service';
 
 @Component({
@@ -73,6 +74,40 @@ export class HomeComponent implements OnDestroy{
         severity: 'error',
         summary: 'Erro - Verifique se:',
         detail: `Os campos estão preenchidos. Senha possui até 15 caracteres.`,
+        life: 2500,
+      });
+    }
+  }
+
+  submitSignUpForm(): void {
+    if(this.signupForm.value && this.signupForm.valid) {
+      this.usuarioService.signupUser(this.signupForm.value as SignUpRequest)
+      .subscribe({
+        next: () => {
+            this.signupForm.reset();
+
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Sucesso',
+              detail: `Usuário cadastrado com sucesso`,
+              life: 2500,
+            });
+        },
+        error: (err) => {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Erro',
+            detail: `Erro ao cadastrar usuário`,
+            life: 2500,
+          });
+        },
+      });
+    }
+    else {
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Erro - Verifique se:',
+        detail: `Os campos estão preenchidos corretamente `,
         life: 2500,
       });
     }

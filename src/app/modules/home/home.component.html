@@ -30,7 +30,7 @@
   <div class="form-container" *ngIf="!isLogin">
     <span class="title-container"><h1>Cadastrar Usuário</h1></span>
 
-    <form [formGroup]="signupForm">
+    <form [formGroup]="signupForm" (ngSubmit)="submitSignUpForm()">
       <div class="input-container">
         <span class="input-title">Nome</span>
         <i class='bx bx-envelope'></i>
@@ -54,6 +54,7 @@
           styleClass="flex"
           [options]="profiles"
           optionLabel="name"
+          optionValue="name"
           placeholder="Perfil"
           formControlName="perfil"/>
       </div>
