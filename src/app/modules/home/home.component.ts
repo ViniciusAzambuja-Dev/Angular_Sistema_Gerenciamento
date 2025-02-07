@@ -2,7 +2,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import { MessageService } from 'primeng/api';
-import { Subject } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 
 import { LoginRequest } from '../../models/interfaces/usuario/auth/LoginRequest';
 import { SignUpRequest } from '../../models/interfaces/usuario/signUp/SignUpRequest';
@@ -45,6 +45,9 @@ export class HomeComponent implements OnDestroy{
   submitLoginForm(): void {
     if(this.loginForm.value && this.loginForm.valid) {
       this.usuarioService.autenticaUsuario(this.loginForm.value as LoginRequest)
+        .pipe (
+          takeUntil(this.destroy$)
+        )
         .subscribe({
           next: (response) => {
             if(response) {
@@ -82,6 +85,9 @@ export class HomeComponent implements OnDestroy{
   submitSignUpForm(): void {
     if(this.signupForm.value && this.signupForm.valid) {
       this.usuarioService.signupUser(this.signupForm.value as SignUpRequest)
+      .pipe (
+        takeUntil(this.destroy$)
+      )
       .subscribe({
         next: () => {
             this.signupForm.reset();
