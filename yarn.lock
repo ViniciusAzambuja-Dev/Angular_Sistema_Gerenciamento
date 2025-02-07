@@ -5194,11 +5194,6 @@ primeflex@^3.3.1:
   resolved "https://registry.yarnpkg.com/primeflex/-/primeflex-3.3.1.tgz#361dddf6eb5db50d733e4cddd4b6e376a3d7bd68"
   integrity sha512-zaOq3YvcOYytbAmKv3zYc+0VNS9Wg5d37dfxZnveKBFPr7vEIwfV5ydrpiouTft8MVW6qNjfkaQphHSnvgQbpQ==
 
-primeicons@^7.0.0:
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/primeicons/-/primeicons-7.0.0.tgz#6b25c3fdcb29bb745a3035bdc1ed5902f4a419cf"
-  integrity sha512-jK3Et9UzwzTsd6tzl2RmwrVY/b8raJ3QZLzoDACj+oTJ0oX7L9Hy+XnVwgo4QVKlKpnP/Ur13SXV/pVh4LzaDw==
-
 primeng@^17.18.15:
   version "17.18.15"
   resolved "https://registry.yarnpkg.com/primeng/-/primeng-17.18.15.tgz#073a3ebc2336727aa784bcf81c9dcad8639ac328"
@@ -5804,11 +5799,11 @@ sigstore@^2.2.0:
     "@angular/platform-browser" "^17.3.0"
     "@angular/platform-browser-dynamic" "^17.3.0"
     "@angular/router" "^17.3.0"
+    ngx-cookie-service "^19.1.0"
     primeflex "^3.3.1"
-    primeicons "^7.0.0"
     primeng "^17.18.15"
     rxjs "~7.8.0"
-    sistema-gerenciamento "file:../../../../../AppData/Local/Yarn/Cache/v6/npm-sistema-gerenciamento-0.0.0-ba390266-2f1d-44ba-a9f6-7be247c804af-1738787250306/node_modules/sistema-gerenciamento"
+    sistema-gerenciamento "file:../../../../../AppData/Local/Yarn/Cache/v6/npm-sistema-gerenciamento-0.0.0-f292ca4a-ee67-4c2b-9cf8-f2ea78dd30cc-1738927675188/node_modules/sistema-gerenciamento"
     tslib "^2.3.0"
     zone.js "~0.14.3"
 
