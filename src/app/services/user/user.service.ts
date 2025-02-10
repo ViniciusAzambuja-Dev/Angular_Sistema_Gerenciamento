@@ -4,14 +4,14 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { environment } from '../../../environments/enviroment';
-import { LoginRequest } from '../../models/interfaces/usuario/auth/LoginRequest';
-import { LoginResponse } from '../../models/interfaces/usuario/auth/LoginResponse';
-import { SignUpRequest } from '../../models/interfaces/usuario/signUp/SignUpRequest';
+import { LoginRequest } from '../../models/interfaces/user/auth/LoginRequest';
+import { LoginResponse } from '../../models/interfaces/user/auth/LoginResponse';
+import { SignUpRequest } from '../../models/interfaces/user/signUp/SignUpRequest';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UsuarioService {
+export class UserService {
   private API_URL = environment.API_URL;
   private JWT_TOKEN = this.cookie.get('USUARIO_INFO');
   private httpOptions = {
@@ -23,7 +23,7 @@ export class UsuarioService {
 
   constructor(private http: HttpClient, private cookie: CookieService) { }
 
-  autenticaUsuario(loginRequest: LoginRequest) : Observable<LoginResponse> {
+  authUser(loginRequest: LoginRequest) : Observable<LoginResponse> {
     return this.http.post<LoginResponse>(`${this.API_URL}/usuarios/auth/login`, loginRequest);
   }
 
