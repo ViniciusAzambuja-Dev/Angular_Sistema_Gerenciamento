@@ -7,6 +7,7 @@ import { Subject, takeUntil } from 'rxjs';
 import { LoginRequest } from '../../models/interfaces/user/auth/LoginRequest';
 import { SignUpRequest } from '../../models/interfaces/user/signUp/SignUpRequest';
 import { UserService } from '../../services/user/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -38,7 +39,8 @@ export class HomeComponent implements OnDestroy{
     private formBuilder: FormBuilder,
     private userService: UserService,
     private cookieService: CookieService,
-    private messageService : MessageService) {
+    private messageService : MessageService,
+    private router: Router) {
   }
 
 
@@ -53,6 +55,7 @@ export class HomeComponent implements OnDestroy{
             if(response) {
               this.cookieService.set('USUARIO_INFO', response?.token);
               this.loginForm.reset();
+              this.router.navigate(['/dashboard']);
 
               this.messageService.add({
                 severity: 'success',
