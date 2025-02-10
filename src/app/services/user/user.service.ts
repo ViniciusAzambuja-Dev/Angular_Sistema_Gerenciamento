@@ -34,4 +34,10 @@ export class UserService {
       this.httpOptions
     );
   }
+
+  isLoggedIn(): boolean {
+    const JWT_TOKEN = this.cookie.get('USUARIO_INFO');
+
+    return JWT_TOKEN ? true : false;
+  }
 }
