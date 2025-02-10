@@ -9,6 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './modules/home/home.component';
 import { PrimeNgModule } from './modules/prime-ng/prime-ng.module';
+import { SharedModule } from './modules/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,7 @@ import { PrimeNgModule } from './modules/prime-ng/prime-ng.module';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    PrimeNgModule
+    SharedModule
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]

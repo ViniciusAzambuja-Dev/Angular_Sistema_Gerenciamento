@@ -6,6 +6,7 @@ import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { DropdownModule } from 'primeng/dropdown';
 import { TooltipModule } from 'primeng/tooltip';
+import { SidebarModule } from 'primeng/sidebar';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { TooltipModule } from 'primeng/tooltip';
     ToastModule,
     DropdownModule,
     TooltipModule,
+    SidebarModule
   ],
   exports: [
     CommonModule,
@@ -24,7 +26,8 @@ import { TooltipModule } from 'primeng/tooltip';
     ButtonModule,
     ToastModule,
     DropdownModule,
-    TooltipModule
+    TooltipModule,
+    SidebarModule
   ],
   providers: [MessageService]
 })

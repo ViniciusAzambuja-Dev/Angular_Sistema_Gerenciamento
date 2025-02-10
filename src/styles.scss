@@ -11,6 +11,8 @@
   --shadow-first-color: rgba(0,0,0,0.2);
   --shadow-second-color: rgba(0,0,0,0.19);
   --home-tooltip-color: rgb(105, 139, 231);
+  --sidebar-logo-border: rgb(216, 216, 216);
+  --sidebar-second-background: rgb(245, 245, 245);
 }
 
 *{
@@ -24,6 +26,14 @@
 body {
   background-color: var(--background-color);
   color: var(--text-primary-color);
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
 }
 
 .p-toast-message{

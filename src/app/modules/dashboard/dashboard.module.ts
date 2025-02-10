@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { DashboardHomeComponent } from './page/dashboard-home/dashboard-home.component';
 import { RouterModule } from '@angular/router';
 import { DASHBOARD_ROUTES } from './dashboard.routing';
-
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -12,7 +12,8 @@ import { DASHBOARD_ROUTES } from './dashboard.routing';
   ],
   imports: [
     CommonModule,
-    RouterModule.forChild(DASHBOARD_ROUTES)
+    RouterModule.forChild(DASHBOARD_ROUTES),
+    SharedModule,
   ]
 })
 export class DashboardModule { }

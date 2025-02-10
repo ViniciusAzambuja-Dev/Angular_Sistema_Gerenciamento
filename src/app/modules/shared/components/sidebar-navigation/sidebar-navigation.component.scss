@@ -1,0 +1,71 @@
+@keyframes toRight {
+    0% {
+      left: -100px;
+      opacity: 0;
+    }
+    100% {
+      left: 0;
+      opacity: 1;
+    }
+}
+
+ul {
+  width: 100%;
+}
+li {
+  padding: 10px;
+}
+li:hover {
+  background-color: var(--sidebar-second-background);
+  cursor: pointer;
+}
+li a {
+  color: var(--text-primary-color);
+}
+li i {
+  margin-right: 10px;
+}
+
+.invisible-container{
+  width: 300px;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  z-index: -1;
+}
+
+:host ::ng-deep .sidebar p-button .p-button:hover,
+.invisible-container:hover + ::ng-deep .sidebar p-button .p-button {
+  animation: toRight 0.5s forwards;
+}
+:host ::ng-deep .sidebar p-button .p-button {
+  padding: 10px;
+  border-radius: 50%;
+  background-color: var(--home-image-background);
+  margin-top: 10px;
+  margin-left: 10px;
+  position: absolute;
+  left: -100px;
+}
+
+:host ::ng-deep .p-button .p-button-icon {
+  font-size: 25px;
+}
+
+:host ::ng-deep .p-sidebar-header {
+  justify-content: end;
+}
+
+.logo, :host ::ng-deep .p-sidebar-header{
+  background-color: var(--sidebar-second-background)
+}
+.logo{
+  padding-left: 10px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--sidebar-logo-border);
+}
+
+.list-bottom{
+  position: absolute;
+  bottom: 20px;
+}
