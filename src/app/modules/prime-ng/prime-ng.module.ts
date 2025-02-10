@@ -5,6 +5,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { DropdownModule } from 'primeng/dropdown';
+import { TooltipModule } from 'primeng/tooltip';
 
 
 @NgModule({
@@ -15,13 +16,15 @@ import { DropdownModule } from 'primeng/dropdown';
     ButtonModule,
     ToastModule,
     DropdownModule,
+    TooltipModule,
   ],
   exports: [
     CommonModule,
     InputTextModule,
     ButtonModule,
     ToastModule,
-    DropdownModule
+    DropdownModule,
+    TooltipModule
   ],
   providers: [MessageService]
 })

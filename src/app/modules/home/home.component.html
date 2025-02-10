@@ -34,19 +34,19 @@
       <div class="input-container">
         <span class="input-title">Nome</span>
         <i class='bx bx-envelope'></i>
-        <input type="text" pInputText placeholder="Nome (max: 50)" formControlName="nome">
+        <input type="text" pInputText placeholder="Digite o nome do usuário" pTooltip="Nome - max(50) *"  tooltipStyleClass="ml-2 custom-tooltip" formControlName="nome">
       </div>
 
       <div class="input-container">
         <span class="input-title">E-mail</span>
         <i class='bx bx-envelope'></i>
-        <input type="text" pInputText placeholder="funcionario@gmail.com" formControlName="email">
+        <input type="text" pInputText placeholder="Digite o email do usuário" pTooltip="Ex: usuario@gmail.com *"  tooltipStyleClass="ml-2 custom-tooltip" formControlName="email">
       </div>
 
       <div class="input-container">
         <span class="input-title">Senha</span>
         <i class='bx bxs-lock-alt'></i>
-        <input type="password" pInputText placeholder="Senha (max: 15)" formControlName="senha">
+        <input type="password" pInputText pTooltip="Senha - max(15) *" tooltipStyleClass="ml-2 custom-tooltip"  placeholder="Digite a senha do usuário" formControlName="senha">
       </div>
 
       <div class="input-container dropdown">
