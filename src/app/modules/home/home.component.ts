@@ -24,7 +24,7 @@ export class HomeComponent implements OnDestroy{
 
   public loginForm = this.formBuilder.group({
     email: ['', Validators.required],
-    senha: ['', [Validators.required, Validators.maxLength(15)]],
+    senha: ['', Validators.required]
   });
 
   public signupForm = this.formBuilder.group({
@@ -75,8 +75,8 @@ export class HomeComponent implements OnDestroy{
     else {
       this.messageService.add({
         severity: 'error',
-        summary: 'Erro - Verifique se:',
-        detail: `Os campos estão preenchidos. Senha possui até 15 caracteres.`,
+        summary: 'Erro:',
+        detail: `Os campos não podem estar vazios`,
         life: 2500,
       });
     }
