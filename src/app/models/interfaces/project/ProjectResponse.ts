@@ -6,7 +6,7 @@ export interface ProjectResponse {
   data_fim: string,
   status: string,
   prioridade: string,
-  user: {
+  usuario: {
     id: number,
     nome: string,
     perfil: string,

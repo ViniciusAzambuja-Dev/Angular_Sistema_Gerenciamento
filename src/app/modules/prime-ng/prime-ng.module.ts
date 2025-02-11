@@ -8,6 +8,7 @@ import { MessageService } from 'primeng/api';
 import { DropdownModule } from 'primeng/dropdown';
 import { TooltipModule } from 'primeng/tooltip';
 import { SidebarModule } from 'primeng/sidebar';
+import { CardModule } from 'primeng/card';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { SidebarModule } from 'primeng/sidebar';
     DropdownModule,
     TooltipModule,
     SidebarModule,
-    TableModule
+    TableModule,
+    CardModule,
   ],
   exports: [
     CommonModule,
@@ -30,7 +32,8 @@ import { SidebarModule } from 'primeng/sidebar';
     DropdownModule,
     TooltipModule,
     SidebarModule,
-    TableModule
+    TableModule,
+    CardModule
   ],
   providers: [MessageService]
 })

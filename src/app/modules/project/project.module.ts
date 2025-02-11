@@ -4,12 +4,14 @@ import { SharedModule } from '../shared/shared.module';
 import { ProjectHomeComponent } from './page/project-home/project-home.component';
 import { RouterModule } from '@angular/router';
 import { PROJECTS_ROUTES } from './project.routing';
+import { ProjectTableComponent } from './components/project-table/project-table.component';
 
 
 
 @NgModule({
   declarations: [
-    ProjectHomeComponent
+    ProjectHomeComponent,
+    ProjectTableComponent
   ],
   imports: [
     CommonModule,
