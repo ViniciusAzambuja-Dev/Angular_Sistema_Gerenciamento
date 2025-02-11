@@ -5,15 +5,15 @@
   <p-sidebar [(visible)]="sidebarVisible">
     <div class="logo">LogoTest</div>
     <ul>
-      <li><a href="#"><i class='bx bx-home'></i>Dashboard</a></li>
-      <li><a href="#"><i class='bx bx-bar-chart-alt'></i>Projetos</a></li>
-      <li><a href="#"><i class='bx bx-task'></i>Atividades</a></li>
-      <li><a href="#"><i class='bx bxs-report'></i>Relatórios</a></li>
-      <li><a href="#"><i class='bx bxs-user-detail'></i>Usuários</a></li>
+      <li><a routerLink="/dashboard"><i class='bx bx-home'></i>Dashboard</a></li>
+      <li><a routerLink="/projetos"><i class='bx bx-bar-chart-alt'></i>Projetos</a></li>
+      <li><a routerLink="/atividades"><i class='bx bx-task'></i>Atividades</a></li>
+      <li><a routerLink="/relatórios"><i class='bx bxs-report'></i>Relatórios</a></li>
+      <li><a routerLink="/usuarios"><i class='bx bxs-user-detail'></i>Usuários</a></li>
     </ul>
     <ul class="list-bottom">
-      <li><a href="#"><i class='bx bx-user-circle'></i>Conta</a></li>
-      <li><a href="#"><i class='bx bx-log-out'></i>Sair</a></li>
+      <li><span><i class='bx bx-user-circle'></i>Conta</span></li>
+      <li><span id="logOutSpan" (click)="handleLogOut()"><i class='bx bx-log-out'></i>Sair</span></li>
     </ul>
   </p-sidebar>
   <p-button (onClick)="sidebarVisible = true" icon="bx bx-right-arrow-alt" />

@@ -19,11 +19,14 @@ li:hover {
   background-color: var(--sidebar-second-background);
   cursor: pointer;
 }
-li a {
+li a, li span {
   color: var(--text-primary-color);
 }
 li i {
   margin-right: 10px;
+}
+#logOutSpan {
+  color: var(--logout-color);
 }
 
 .invisible-container{
