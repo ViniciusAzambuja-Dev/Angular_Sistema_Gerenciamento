@@ -5,6 +5,7 @@ import { PrimeNgModule } from '../prime-ng/prime-ng.module';
 import { CookieService } from 'ngx-cookie-service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -12,13 +13,15 @@ import { HttpClientModule } from '@angular/common/http';
   declarations: [SidebarNavigationComponent],
   imports: [
     CommonModule,
-    PrimeNgModule
+    PrimeNgModule,
+    RouterModule,
   ],
   exports: [
     SidebarNavigationComponent,
     PrimeNgModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule
   ],
   providers: [CookieService]
 })
