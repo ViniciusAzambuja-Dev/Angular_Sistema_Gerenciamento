@@ -1,3 +1,22 @@
 .card-container {
   padding: 100px 50px;
 }
+
+:host ::ng-deep {
+  .p-card-body,
+  .p-card-title {
+    padding: 20px;
+  }
+
+  .p-sortable-column, td {
+    padding: 16px;
+  }
+
+  .p-paginator {
+    padding: 8px 16px;
+  }
+
+  .p-icon-wrapper {
+    margin-left: 8px;
+  }
+}
