@@ -1,3 +1,4 @@
+import { TableModule } from 'primeng/table';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
@@ -18,7 +19,8 @@ import { SidebarModule } from 'primeng/sidebar';
     ToastModule,
     DropdownModule,
     TooltipModule,
-    SidebarModule
+    SidebarModule,
+    TableModule
   ],
   exports: [
     CommonModule,
@@ -27,7 +29,8 @@ import { SidebarModule } from 'primeng/sidebar';
     ToastModule,
     DropdownModule,
     TooltipModule,
-    SidebarModule
+    SidebarModule,
+    TableModule
   ],
   providers: [MessageService]
 })

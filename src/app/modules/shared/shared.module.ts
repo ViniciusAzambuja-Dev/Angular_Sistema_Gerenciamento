@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { SidebarNavigationComponent } from './components/sidebar-navigation/sidebar-navigation.component';
 import { PrimeNgModule } from '../prime-ng/prime-ng.module';
 import { CookieService } from 'ngx-cookie-service';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -14,7 +16,9 @@ import { CookieService } from 'ngx-cookie-service';
   ],
   exports: [
     SidebarNavigationComponent,
-    PrimeNgModule
+    PrimeNgModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [CookieService]
 })

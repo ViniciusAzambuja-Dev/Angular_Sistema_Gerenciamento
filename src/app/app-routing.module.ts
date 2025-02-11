@@ -21,6 +21,13 @@ const routes: Routes = [
       ),
     canActivate: [AuthGuardService]
   },
+  {
+    path: 'project',
+    loadChildren: () => import('./modules/project/project.module').then(
+      (module) => module.ProjectModule
+    ),
+    canActivate: [AuthGuardService],
+  },
 ];
 
 @NgModule({
