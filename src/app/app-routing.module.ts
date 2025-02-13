@@ -28,6 +28,13 @@ const routes: Routes = [
     ),
     canActivate: [AuthGuardService],
   },
+  {
+    path: 'activity',
+    loadChildren: () => import('./modules/activity/activity.module').then(
+      (module) => module.ActivityModule
+    ),
+    canActivate: [AuthGuardService],
+  },
 ];
 
 @NgModule({
