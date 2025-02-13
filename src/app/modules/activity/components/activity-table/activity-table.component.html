@@ -12,10 +12,12 @@
     dataKey="id"
     showCurrentPageReport="true"
     currentPageReportTemplate="Mostrando {first} de {last} de {totalRecords} atividades"
+    (onRowExpand)="getHour($event.data.id)"
     >
 
     <ng-template pTemplate="header">
       <tr>
+        <th></th>
         <th pSortableColumn="id">
           <div class="flex justify-content-between align-items-center">
             <div class="flex justify-content-between align-items-center">
@@ -158,8 +160,19 @@
       </tr>
     </ng-template>
 
-    <ng-template pTemplate="body" let-activity>
+    <ng-template pTemplate="body" let-activity let-expanded="expanded">
       <tr>
+        <td>
+          <p-button
+            type="button"
+            pTooltip="Horas lançadas"
+            tooltipPosition="right"
+            [pRowToggler]="activity"
+            [text]="true"
+            [rounded]="true"
+            [plain]="true"
+            [icon]="expanded ? 'bx bx-chevron-down' : 'bx bx-chevron-right'" />
+        </td>
         <td> {{ activity?.id }} </td>
         <td> {{ activity?.nome }} </td>
         <td [pTooltip]="activity?.descricao" tooltipPosition="top"> {{ activity?.descricao }} </td>
@@ -170,6 +183,154 @@
       </tr>
     </ng-template>
 
+    <ng-template pTemplate="rowexpansion" let-activity>
+      <tr>
+        <td colspan="10" id="table-expanded">
+          <p-table
+            [value]="activity.horasLancadas"
+            dataKey="id"
+            [scrollable]="true"
+            scrollHeight="290px"
+            [rowHover]="true"
+            [tableStyle]="{'min-width': '75rem'}"
+            >
+            <ng-template pTemplate="header">
+              <tr>
+                <th pSortableColumn="activity.horasLancadas.id">
+                  <div class="flex justify-content-between align-items-center">
+                    <div class="flex justify-content-between align-items-center">
+                      Id
+                    </div>
+                    <div class="flex justify-content-between align-items-center">
+                      <p-sortIcon field="activity.horasLancadas.id"></p-sortIcon>
+                      <p-columnFilter
+                        type="text"
+                        field="activity.horasLancadas.id"
+                        display="menu"
+                        matchMode="contains"
+                        [showMatchModes]="false"
+                        [showOperator]="false"
+                        [showAddButton]="false"
+                      ></p-columnFilter>
+                    </div>
+                  </div>
+                </th>
+                <th pSortableColumn="activity.horasLancadas.descricao">
+                  <div class="flex justify-content-between align-items-center">
+                    <div class="flex justify-content-between align-items-center">
+                      Descrição
+                    </div>
+                    <div class="flex justify-content-between align-items-center">
+                      <p-sortIcon field="activity.horasLancadas.descricao"></p-sortIcon>
+                      <p-columnFilter
+                        type="text"
+                        field="activity.horasLancadas.descricao"
+                        display="menu"
+                        matchMode="contains"
+                        [showMatchModes]="false"
+                        [showOperator]="false"
+                        [showAddButton]="false"
+                      ></p-columnFilter>
+                    </div>
+                  </div>
+                </th>
+                <th pSortableColumn="activity.horasLancadas.data_inicio">
+                  <div class="flex justify-content-between align-items-center">
+                    <div class="flex justify-content-between align-items-center">
+                      Inicio
+                    </div>
+                    <div class="flex justify-content-between align-items-center">
+                      <p-sortIcon field="activity.horasLancadas.data_inicio"></p-sortIcon>
+                      <p-columnFilter
+                        type="text"
+                        field="activity.horasLancadas.data_inicio"
+                        display="menu"
+                        matchMode="contains"
+                        [showMatchModes]="false"
+                        [showOperator]="false"
+                        [showAddButton]="false"
+                      ></p-columnFilter>
+                    </div>
+                  </div>
+                </th>
+                <th pSortableColumn="activity.horasLancadas.data_fim">
+                  <div class="flex justify-content-between align-items-center">
+                    <div class="flex justify-content-between align-items-center">
+                      Fim
+                    </div>
+                    <div class="flex justify-content-between align-items-center">
+                      <p-sortIcon field="activity.horasLancadas.data_fim"></p-sortIcon>
+                      <p-columnFilter
+                        type="text"
+                        field="activity.horasLancadas.data_fim"
+                        display="menu"
+                        matchMode="contains"
+                        [showMatchModes]="false"
+                        [showOperator]="false"
+                        [showAddButton]="false"
+                      ></p-columnFilter>
+                    </div>
+                  </div>
+                </th>
+                <th pSortableColumn="activity.horasLancadas.nomeUsuario">
+                  <div class="flex justify-content-between align-items-center">
+                    <div class="flex justify-content-between align-items-center">
+                      Responsável
+                    </div>
+                    <div class="flex justify-content-between align-items-center">
+                      <p-sortIcon field="activity.horasLancadas.nomeUsuario"></p-sortIcon>
+                      <p-columnFilter
+                        type="text"
+                        field="activity.horasLancadas.nomeUsuario"
+                        display="menu"
+                        matchMode="contains"
+                        [showMatchModes]="false"
+                        [showOperator]="false"
+                        [showAddButton]="false"
+                      ></p-columnFilter>
+                    </div>
+                  </div>
+                </th>
+                <th pSortableColumn="activity.horasLancadas.nomeAtividade">
+                  <div class="flex justify-content-between align-items-center">
+                    <div class="flex justify-content-between align-items-center">
+                      Atividade
+                    </div>
+                    <div class="flex justify-content-between align-items-center">
+                      <p-sortIcon field="activity.horasLancadas.nomeAtividade"></p-sortIcon>
+                      <p-columnFilter
+                        type="text"
+                        field="activity.horasLancadas.nomeAtividade"
+                        display="menu"
+                        matchMode="contains"
+                        [showMatchModes]="false"
+                        [showOperator]="false"
+                        [showAddButton]="false"
+                      ></p-columnFilter>
+                    </div>
+                  </div>
+                </th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-hour>
+                <tr>
+                    <td>{{ hour?.id }}</td>
+                    <td [pTooltip]="hour?.descricao" tooltipPosition="top">{{ hour?.descricao }}</td>
+                    <td>{{ hour?.data_inicio }}</td>
+                    <td>{{ hour?.data_fim }}</td>
+                    <td>{{ hour?.nomeUsuario }}</td>
+                    <td>{{ hour?.nomeAtividade }}</td>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="emptymessage">
+                <tr>
+                    <td colspan="8">Nenhuma hora lançada encontrada</td>
+                </tr>
+            </ng-template>
+          </p-table>
+        </td>
+      </tr>
+    </ng-template>
     </p-table>
   </p-card>
 </div>

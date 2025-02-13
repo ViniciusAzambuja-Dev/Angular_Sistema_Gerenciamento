@@ -46,6 +46,23 @@ export class ActivityHomeComponent implements OnInit, OnDestroy {
     });
   }
 
+  handleGetHour(activityId: number): void {
+    this.activityService.getHourByActivity(activityId)
+    .pipe(takeUntil(this.destroy$))
+    .subscribe({
+      next: (response) => {
+        if(response) {
+          const activityIndex = this.activitiesDatas.findIndex(activity => activity.id === activityId)
+
+          this.activitiesDatas[activityIndex] = {
+            ...this.activitiesDatas[activityIndex],
+            horasLancadas: response
+          }
+        }
+      },
+    });
+  }
+
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();

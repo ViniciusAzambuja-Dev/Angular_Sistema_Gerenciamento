@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { Observable } from 'rxjs';
 import { ActivityResponse } from '../../models/interfaces/activity/ActivityResponse';
+import { HourResponse } from '../../models/interfaces/hour/HourResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -25,5 +26,12 @@ export class ActivityService {
         `${this.API_URL}/atividades/listar`,
         this.httpOptions
       );
+  }
+
+  getHourByActivity(activityId: number): Observable<Array<HourResponse>> {
+    return this.http.get<Array<HourResponse>>(
+      `${this.API_URL}/atividades/${activityId}/horas`,
+      this.httpOptions
+    );
   }
 }
