@@ -46,6 +46,23 @@ export class ProjectHomeComponent implements OnInit, OnDestroy{
     });
   }
 
+  handleGetActivity(projectId: number): void {
+    this.projectService.getActivityByProject(projectId)
+    .pipe(takeUntil(this.destroy$))
+    .subscribe({
+      next: (response) => {
+        if(response) {
+          const projectIndex = this.projectsDatas.findIndex(project => project.id === projectId)
+
+          this.projectsDatas[projectIndex] = {
+            ...this.projectsDatas[projectIndex],
+            atividades: response
+          }
+        }
+      },
+    });
+  }
+
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();

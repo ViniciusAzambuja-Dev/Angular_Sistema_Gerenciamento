@@ -1,3 +1,5 @@
+import { ActivityResponse } from "../activity/ActivityResponse";
+
 export interface ProjectResponse {
   id: number,
   nome: string,
@@ -6,9 +8,6 @@ export interface ProjectResponse {
   data_fim: string,
   status: string,
   prioridade: string,
-  usuario: {
-    id: number,
-    nome: string,
-    perfil: string,
-  }
+  nomeUsuario: string
+  atividades?: ActivityResponse[];
 }

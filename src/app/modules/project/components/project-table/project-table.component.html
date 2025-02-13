@@ -4,7 +4,7 @@
     >
     <p-table
     [value]="projects"
-    [rows]="10"
+    [rows]="5"
     [paginator]="true"
     [tableStyle]="{'min-width': '75rem'}"
     [(selection)]="projectSelected"
@@ -12,10 +12,12 @@
     dataKey="id"
     showCurrentPageReport="true"
     currentPageReportTemplate="Mostrando {first} de {last} de {totalRecords} projetos"
+    (onRowExpand)="getActivity($event.data.id)"
     >
 
     <ng-template pTemplate="header">
       <tr>
+        <th></th>
         <th pSortableColumn="id">
           <div class="flex justify-content-between align-items-center">
             <div class="flex justify-content-between align-items-center">
@@ -156,16 +158,16 @@
           </div>
         </th>
 
-        <th pSortableColumn="usuario.nome">
+        <th pSortableColumn="nomeUsuario">
           <div class="flex justify-content-between align-items-center">
             <div class="flex justify-content-between align-items-center">
               Responsável
             </div>
             <div class="flex justify-content-between align-items-center">
-              <p-sortIcon field="prioridade"></p-sortIcon>
+              <p-sortIcon field="nomeUsuario"></p-sortIcon>
               <p-columnFilter
                 type="text"
-                field="usuario.nome"
+                field="nomeUsuario"
                 display="menu"
                 matchMode="contains"
                 [showMatchModes]="false"
@@ -176,12 +178,23 @@
           </div>
         </th>
 
-       
+
       </tr>
     </ng-template>
 
-    <ng-template pTemplate="body" let-project>
+    <ng-template pTemplate="body" let-project let-expanded="expanded">
       <tr>
+        <td>
+          <p-button
+            type="button"
+            pTooltip="Visualizar atividades"
+            tooltipPosition="right"
+            [pRowToggler]="project"
+            [text]="true"
+            [rounded]="true"
+            [plain]="true"
+            [icon]="expanded ? 'bx bx-chevron-down' : 'bx bx-chevron-right'" />
+        </td>
         <td> {{ project?.id }} </td>
         <td> {{ project?.nome }} </td>
         <td [pTooltip]="project?.descricao" tooltipPosition="top"> {{ project?.descricao }} </td>
@@ -189,10 +202,178 @@
         <td> {{ project?.data_fim }} </td>
         <td> {{ project?.status }} </td>
         <td> {{ project?.prioridade }} </td>
-        <td> {{ project?.usuario.nome }} </td>
+        <td> {{ project?.nomeUsuario }} </td>
       </tr>
     </ng-template>
-
+    
+        <ng-template pTemplate="rowexpansion" let-project>
+          <tr>
+            <td colspan="10" id="table-expanded">
+              <p-table
+                [value]="project.atividades"
+                dataKey="id"
+                [scrollable]="true"
+                scrollHeight="290px"
+                [rowHover]="true"
+                [tableStyle]="{'min-width': '75rem'}"
+                >
+                <ng-template pTemplate="header">
+                  <tr>
+                    <th pSortableColumn="project.atividades.id">
+                      <div class="flex justify-content-between align-items-center">
+                        <div class="flex justify-content-between align-items-center">
+                          Id
+                        </div>
+                        <div class="flex justify-content-between align-items-center">
+                          <p-sortIcon field="project.atividades.id"></p-sortIcon>
+                          <p-columnFilter
+                            type="text"
+                            field="project.atividades.id"
+                            display="menu"
+                            matchMode="contains"
+                            [showMatchModes]="false"
+                            [showOperator]="false"
+                            [showAddButton]="false"
+                          ></p-columnFilter>
+                        </div>
+                      </div>
+                    </th>
+                    <th pSortableColumn="project.atividades.nome">
+                      <div class="flex justify-content-between align-items-center">
+                        <div class="flex justify-content-between align-items-center">
+                          Nome
+                        </div>
+                        <div class="flex justify-content-between align-items-center">
+                          <p-sortIcon field="project.atividades.nome"></p-sortIcon>
+                          <p-columnFilter
+                            type="text"
+                            field="project.atividades.nome"
+                            display="menu"
+                            matchMode="contains"
+                            [showMatchModes]="false"
+                            [showOperator]="false"
+                            [showAddButton]="false"
+                          ></p-columnFilter>
+                        </div>
+                      </div>
+                    </th>
+                    <th pSortableColumn="project.atividades.descricao">
+                      <div class="flex justify-content-between align-items-center">
+                        <div class="flex justify-content-between align-items-center">
+                          Descrição
+                        </div>
+                        <div class="flex justify-content-between align-items-center">
+                          <p-sortIcon field="project.atividades.descricao"></p-sortIcon>
+                          <p-columnFilter
+                            type="text"
+                            field="project.atividades.descricao"
+                            display="menu"
+                            matchMode="contains"
+                            [showMatchModes]="false"
+                            [showOperator]="false"
+                            [showAddButton]="false"
+                          ></p-columnFilter>
+                        </div>
+                      </div>
+                    </th>
+                    <th pSortableColumn="project.atividades.data_inicio">
+                      <div class="flex justify-content-between align-items-center">
+                        <div class="flex justify-content-between align-items-center">
+                          Inicio
+                        </div>
+                        <div class="flex justify-content-between align-items-center">
+                          <p-sortIcon field="project.atividades.data_inicio"></p-sortIcon>
+                          <p-columnFilter
+                            type="text"
+                            field="project.atividades.data_inicio"
+                            display="menu"
+                            matchMode="contains"
+                            [showMatchModes]="false"
+                            [showOperator]="false"
+                            [showAddButton]="false"
+                          ></p-columnFilter>
+                        </div>
+                      </div>
+                    </th>
+                    <th pSortableColumn="project.atividades.data_fim">
+                      <div class="flex justify-content-between align-items-center">
+                        <div class="flex justify-content-between align-items-center">
+                          Fim
+                        </div>
+                        <div class="flex justify-content-between align-items-center">
+                          <p-sortIcon field="project.atividades.data_fim"></p-sortIcon>
+                          <p-columnFilter
+                            type="text"
+                            field="project.atividades.data_fim"
+                            display="menu"
+                            matchMode="contains"
+                            [showMatchModes]="false"
+                            [showOperator]="false"
+                            [showAddButton]="false"
+                          ></p-columnFilter>
+                        </div>
+                      </div>
+                    </th>
+                    <th pSortableColumn="project.atividades.status">
+                      <div class="flex justify-content-between align-items-center">
+                        <div class="flex justify-content-between align-items-center">
+                          Status
+                        </div>
+                        <div class="flex justify-content-between align-items-center">
+                          <p-sortIcon field="project.atividades.status"></p-sortIcon>
+                          <p-columnFilter
+                            type="text"
+                            field="project.atividades.status"
+                            display="menu"
+                            matchMode="contains"
+                            [showMatchModes]="false"
+                            [showOperator]="false"
+                            [showAddButton]="false"
+                          ></p-columnFilter>
+                        </div>
+                      </div>
+                    </th>
+                    <th pSortableColumn="project.atividades.nomeUsuario">
+                      <div class="flex justify-content-between align-items-center">
+                        <div class="flex justify-content-between align-items-center">
+                          Responsável
+                        </div>
+                        <div class="flex justify-content-between align-items-center">
+                          <p-sortIcon field="project.atividades.nomeUsuario"></p-sortIcon>
+                          <p-columnFilter
+                            type="text"
+                            field="project.atividades.nomeUsuario"
+                            display="menu"
+                            matchMode="contains"
+                            [showMatchModes]="false"
+                            [showOperator]="false"
+                            [showAddButton]="false"
+                          ></p-columnFilter>
+                        </div>
+                      </div>
+                    </th>
+                  </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-activity>
+                    <tr>
+                        <td>{{ activity?.id }}</td>
+                        <td>{{ activity?.nome }}</td>
+                        <td [pTooltip]="activity?.descricao" tooltipPosition="top">{{ activity?.descricao }}</td>
+                        <td>{{ activity?.data_inicio }}</td>
+                        <td>{{ activity?.data_fim }}</td>
+                        <td>{{ activity?.status }}</td>
+                        <td>{{ activity?.nomeUsuario }}</td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="emptymessage">
+                    <tr>
+                        <td colspan="10">Nenhuma atividade encontrada</td>
+                    </tr>
+                </ng-template>
+              </p-table>
+            </td>
+          </tr>
+      </ng-template>
     </p-table>
   </p-card>
 </div>

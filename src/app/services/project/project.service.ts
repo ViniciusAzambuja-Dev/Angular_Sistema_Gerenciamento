@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { Observable } from 'rxjs';
 import { ProjectResponse } from '../../models/interfaces/project/ProjectResponse';
+import { ActivityResponse } from '../../models/interfaces/activity/ActivityResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,13 @@ export class ProjectService {
   getAllProjects(): Observable<Array<ProjectResponse>> {
     return this.http.get<Array<ProjectResponse>>(
       `${this.API_URL}/projetos/listar`,
+      this.httpOptions
+    );
+  }
+
+  getActivityByProject(projectId: number): Observable<Array<ActivityResponse>> {
+    return this.http.get<Array<ActivityResponse>>(
+      `${this.API_URL}/projetos/${projectId}/atividades`,
       this.httpOptions
     );
   }

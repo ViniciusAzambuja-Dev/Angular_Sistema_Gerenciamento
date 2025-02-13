@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ProjectResponse } from '../../../../models/interfaces/project/ProjectResponse';
 
 @Component({
@@ -8,6 +8,11 @@ import { ProjectResponse } from '../../../../models/interfaces/project/ProjectRe
 })
 export class ProjectTableComponent {
   @Input() projects: Array<ProjectResponse> = [];
+  @Output() projectExpanded = new EventEmitter<number>();
 
   public projectSelected!: ProjectResponse;
+
+  getActivity(projectId: number) {
+    this.projectExpanded.emit(projectId)
+  }
 }
