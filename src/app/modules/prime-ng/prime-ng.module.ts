@@ -9,7 +9,8 @@ import { DropdownModule } from 'primeng/dropdown';
 import { TooltipModule } from 'primeng/tooltip';
 import { SidebarModule } from 'primeng/sidebar';
 import { CardModule } from 'primeng/card';
-
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { InputMaskModule } from 'primeng/inputmask';
 
 @NgModule({
   declarations: [],
@@ -23,6 +24,8 @@ import { CardModule } from 'primeng/card';
     SidebarModule,
     TableModule,
     CardModule,
+    InputTextareaModule,
+    InputMaskModule,
   ],
   exports: [
     CommonModule,
@@ -33,7 +36,9 @@ import { CardModule } from 'primeng/card';
     TooltipModule,
     SidebarModule,
     TableModule,
-    CardModule
+    CardModule,
+    InputTextareaModule,
+    InputMaskModule,
   ],
   providers: [MessageService]
 })

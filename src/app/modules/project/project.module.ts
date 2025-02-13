@@ -5,13 +5,15 @@ import { ProjectHomeComponent } from './page/project-home/project-home.component
 import { RouterModule } from '@angular/router';
 import { PROJECTS_ROUTES } from './project.routing';
 import { ProjectTableComponent } from './components/project-table/project-table.component';
+import { ProjectFormComponent } from './components/project-form/project-form.component';
 
 
 
 @NgModule({
   declarations: [
     ProjectHomeComponent,
-    ProjectTableComponent
+    ProjectTableComponent,
+    ProjectFormComponent
   ],
   imports: [
     CommonModule,
