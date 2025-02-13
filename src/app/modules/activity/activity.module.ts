@@ -4,11 +4,13 @@ import { ActivityHomeComponent } from './page/activity-home/activity-home.compon
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import { ACTIVITIES_ROUTES } from './activity.routing';
+import { ActivityTableComponent } from './components/activity-table/activity-table.component';
 
 
 @NgModule({
   declarations: [
-    ActivityHomeComponent
+    ActivityHomeComponent,
+    ActivityTableComponent
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,175 @@
+<div class="card-container">
+  <p-card
+    header="Atividades"
+    >
+    <p-table
+    [value]="activities"
+    [rows]="10"
+    [paginator]="true"
+    [tableStyle]="{'min-width': '75rem'}"
+    [(selection)]="activitySelected"
+    [rowHover]="true"
+    dataKey="id"
+    showCurrentPageReport="true"
+    currentPageReportTemplate="Mostrando {first} de {last} de {totalRecords} atividades"
+    >
+
+    <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="id">
+          <div class="flex justify-content-between align-items-center">
+            <div class="flex justify-content-between align-items-center">
+              Id
+            </div>
+            <div class="flex justify-content-between align-items-center">
+              <p-sortIcon field="id"></p-sortIcon>
+              <p-columnFilter
+                type="text"
+                field="id"
+                display="menu"
+                matchMode="contains"
+                [showMatchModes]="false"
+                [showOperator]="false"
+                [showAddButton]="false"
+              ></p-columnFilter>
+            </div>
+          </div>
+        </th>
+
+        <th pSortableColumn="nome">
+          <div class="flex justify-content-between align-items-center">
+            <div class="flex justify-content-between align-items-center">
+              Nome
+            </div>
+            <div class="flex justify-content-between align-items-center">
+              <p-sortIcon field="nome"></p-sortIcon>
+              <p-columnFilter
+                type="text"
+                field="nome"
+                display="menu"
+                matchMode="contains"
+                [showMatchModes]="false"
+                [showOperator]="false"
+                [showAddButton]="false"
+              ></p-columnFilter>
+            </div>
+          </div>
+        </th>
+
+        <th pSortableColumn="descricao">
+          <div class="flex justify-content-between align-items-center">
+            <div class="flex justify-content-between align-items-center">
+              Descrição
+            </div>
+            <div class="flex justify-content-between align-items-center">
+              <p-sortIcon field="descricao"></p-sortIcon>
+              <p-columnFilter
+                type="text"
+                field="descricao"
+                display="menu"
+                matchMode="contains"
+                [showMatchModes]="false"
+                [showOperator]="false"
+                [showAddButton]="false"
+              ></p-columnFilter>
+            </div>
+          </div>
+        </th>
+
+        <th pSortableColumn="data_inicio">
+          <div class="flex justify-content-between align-items-center">
+            <div class="flex justify-content-between align-items-center">
+              Inicio
+            </div>
+            <div class="flex justify-content-between align-items-center">
+              <p-sortIcon field="data_inicio"></p-sortIcon>
+              <p-columnFilter
+                type="text"
+                field="data_inicio"
+                display="menu"
+                matchMode="contains"
+                [showMatchModes]="false"
+                [showOperator]="false"
+                [showAddButton]="false"
+              ></p-columnFilter>
+            </div>
+          </div>
+        </th>
+
+        <th pSortableColumn="data_fim">
+          <div class="flex justify-content-between align-items-center">
+            <div class="flex justify-content-between align-items-center">
+              Fim
+            </div>
+            <div class="flex justify-content-between align-items-center">
+              <p-sortIcon field="data_fim"></p-sortIcon>
+              <p-columnFilter
+                type="text"
+                field="data_fim"
+                display="menu"
+                matchMode="contains"
+                [showMatchModes]="false"
+                [showOperator]="false"
+                [showAddButton]="false"
+              ></p-columnFilter>
+            </div>
+          </div>
+        </th>
+
+        <th pSortableColumn="status">
+          <div class="flex justify-content-between align-items-center">
+            <div class="flex justify-content-between align-items-center">
+              Status
+            </div>
+            <div class="flex justify-content-between align-items-center">
+              <p-sortIcon field="status"></p-sortIcon>
+              <p-columnFilter
+                type="text"
+                field="status"
+                display="menu"
+                matchMode="contains"
+                [showMatchModes]="false"
+                [showOperator]="false"
+                [showAddButton]="false"
+              ></p-columnFilter>
+            </div>
+          </div>
+        </th>
+
+        <th pSortableColumn="nomeUsuario">
+          <div class="flex justify-content-between align-items-center">
+            <div class="flex justify-content-between align-items-center">
+              Responsável
+            </div>
+            <div class="flex justify-content-between align-items-center">
+              <p-sortIcon field="nomeUsuario"></p-sortIcon>
+              <p-columnFilter
+                type="text"
+                field="nomeUsuario"
+                display="menu"
+                matchMode="contains"
+                [showMatchModes]="false"
+                [showOperator]="false"
+                [showAddButton]="false"
+              ></p-columnFilter>
+            </div>
+          </div>
+        </th>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-activity>
+      <tr>
+        <td> {{ activity?.id }} </td>
+        <td> {{ activity?.nome }} </td>
+        <td [pTooltip]="activity?.descricao" tooltipPosition="top"> {{ activity?.descricao }} </td>
+        <td> {{ activity?.data_inicio }} </td>
+        <td> {{ activity?.data_fim }} </td>
+        <td> {{ activity?.status }} </td>
+        <td> {{ activity?.nomeUsuario }} </td>
+      </tr>
+    </ng-template>
+
+    </p-table>
+  </p-card>
+</div>
