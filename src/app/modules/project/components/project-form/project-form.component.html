@@ -1,8 +1,29 @@
 <div class="form-container">
   <p-card>
     <form [formGroup]="addProjectForm" (ngSubmit)="submitProjectForm()">
+      <div class="flex">
+        <div class="input-container custom-input">
+          <input pInputText pTooltip="(max: 50 caracteres)" placeholder="Nome" formControlName="nome">
+        </div>
+
+        <div class="input-container custom-input">
+          <p-dropdown
+            styleClass="flex"
+            [options]="usersDatas"
+            optionLabel="nome"
+            optionValue="id"
+            placeholder="Responsável"
+            formControlName="usuarioId"/>
+        </div>
+      </div>
       <div class="input-container">
-        <input pInputText placeholder="Nome" formControlName="nome">
+        <p-autoComplete
+          [suggestions]="filterDatas"
+          (completeMethod)="searchUsers($event)"
+          field="nome"
+          placeholder="Integrantes"
+          [multiple]="true"
+          formControlName="integrantesIds"/>
       </div>
       <div class="flex">
         <div class="input-container custom-input">
@@ -10,17 +31,6 @@
         </div>
         <div class="input-container custom-input">
           <p-inputMask mask="99/99/9999" placeholder="DD/MM/YYYY" formControlName="data_fim"></p-inputMask>
-        </div>
-      </div>
-      <div class="flex">
-        <div class="input-container custom-input">
-          <p-dropdown
-            styleClass="flex"
-              [options]=""
-              optionLabel="name"
-              optionValue="name"
-              placeholder="Usuário"
-              formControlName="usuarioId"/>
         </div>
         <div class="input-container custom-input">
           <p-dropdown
@@ -46,6 +56,7 @@
           rows="5"
           cols="40"
           pInputTextarea
+          pTooltip="(max: 200 caracteres)"
           placeholder="Descrição"
           [autoResize]="true"
           formControlName="descricao">

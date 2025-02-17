@@ -11,6 +11,7 @@ import { SidebarModule } from 'primeng/sidebar';
 import { CardModule } from 'primeng/card';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { InputMaskModule } from 'primeng/inputmask';
+import { AutoCompleteModule } from 'primeng/autocomplete';
 
 @NgModule({
   declarations: [],
@@ -26,6 +27,7 @@ import { InputMaskModule } from 'primeng/inputmask';
     CardModule,
     InputTextareaModule,
     InputMaskModule,
+    AutoCompleteModule,
   ],
   exports: [
     CommonModule,
@@ -39,6 +41,7 @@ import { InputMaskModule } from 'primeng/inputmask';
     CardModule,
     InputTextareaModule,
     InputMaskModule,
+    AutoCompleteModule,
   ],
   providers: [MessageService]
 })

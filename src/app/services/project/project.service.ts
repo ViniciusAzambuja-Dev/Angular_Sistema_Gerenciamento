@@ -5,6 +5,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { Observable } from 'rxjs';
 import { ProjectResponse } from '../../models/interfaces/project/ProjectResponse';
 import { ActivityResponse } from '../../models/interfaces/activity/ActivityResponse';
+import { ProjectRequest } from '../../models/interfaces/project/ProjectRequest';
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +32,14 @@ export class ProjectService {
   getActivityByProject(projectId: number): Observable<Array<ActivityResponse>> {
     return this.http.get<Array<ActivityResponse>>(
       `${this.API_URL}/projetos/${projectId}/atividades`,
+      this.httpOptions
+    );
+  }
+
+  createProject(projectRequest: ProjectRequest): Observable<void> {
+    return this.http.post<void>(
+      `${this.API_URL}/projetos/registrar`,
+      projectRequest,
       this.httpOptions
     );
   }

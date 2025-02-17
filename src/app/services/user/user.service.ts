@@ -7,6 +7,7 @@ import { environment } from '../../../environments/enviroment';
 import { LoginRequest } from '../../models/interfaces/user/auth/LoginRequest';
 import { LoginResponse } from '../../models/interfaces/user/auth/LoginResponse';
 import { SignUpRequest } from '../../models/interfaces/user/signUp/SignUpRequest';
+import { UserResponse } from '../../models/interfaces/user/UserResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -39,5 +40,12 @@ export class UserService {
     const JWT_TOKEN = this.cookie.get('USUARIO_INFO');
 
     return JWT_TOKEN ? true : false;
+  }
+
+  getAllUsers(): Observable<Array<UserResponse>> {
+    return this.http.get<Array<UserResponse>>(
+      `${this.API_URL}/usuarios/listar`,
+      this.httpOptions
+    )
   }
 }
