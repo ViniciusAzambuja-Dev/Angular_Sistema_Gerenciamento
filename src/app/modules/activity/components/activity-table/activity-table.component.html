@@ -18,26 +18,6 @@
     <ng-template pTemplate="header">
       <tr>
         <th></th>
-        <th pSortableColumn="id">
-          <div class="flex justify-content-between align-items-center">
-            <div class="flex justify-content-between align-items-center">
-              Id
-            </div>
-            <div class="flex justify-content-between align-items-center">
-              <p-sortIcon field="id"></p-sortIcon>
-              <p-columnFilter
-                type="text"
-                field="id"
-                display="menu"
-                matchMode="contains"
-                [showMatchModes]="false"
-                [showOperator]="false"
-                [showAddButton]="false"
-              ></p-columnFilter>
-            </div>
-          </div>
-        </th>
-
         <th pSortableColumn="nome">
           <div class="flex justify-content-between align-items-center">
             <div class="flex justify-content-between align-items-center">
@@ -173,7 +153,6 @@
             [plain]="true"
             [icon]="expanded ? 'bx bx-chevron-down' : 'bx bx-chevron-right'" />
         </td>
-        <td> {{ activity?.id }} </td>
         <td> {{ activity?.nome }} </td>
         <td [pTooltip]="activity?.descricao" tooltipPosition="top"> {{ activity?.descricao }} </td>
         <td> {{ activity?.data_inicio }} </td>
@@ -196,25 +175,6 @@
             >
             <ng-template pTemplate="header">
               <tr>
-                <th pSortableColumn="activity.horasLancadas.id">
-                  <div class="flex justify-content-between align-items-center">
-                    <div class="flex justify-content-between align-items-center">
-                      Id
-                    </div>
-                    <div class="flex justify-content-between align-items-center">
-                      <p-sortIcon field="activity.horasLancadas.id"></p-sortIcon>
-                      <p-columnFilter
-                        type="text"
-                        field="activity.horasLancadas.id"
-                        display="menu"
-                        matchMode="contains"
-                        [showMatchModes]="false"
-                        [showOperator]="false"
-                        [showAddButton]="false"
-                      ></p-columnFilter>
-                    </div>
-                  </div>
-                </th>
                 <th pSortableColumn="activity.horasLancadas.descricao">
                   <div class="flex justify-content-between align-items-center">
                     <div class="flex justify-content-between align-items-center">
@@ -314,7 +274,6 @@
             </ng-template>
             <ng-template pTemplate="body" let-hour>
                 <tr>
-                    <td>{{ hour?.id }}</td>
                     <td [pTooltip]="hour?.descricao" tooltipPosition="top">{{ hour?.descricao }}</td>
                     <td>{{ hour?.data_inicio }}</td>
                     <td>{{ hour?.data_fim }}</td>
