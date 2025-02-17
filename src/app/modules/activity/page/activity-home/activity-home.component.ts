@@ -4,6 +4,9 @@ import { ActivityResponse } from '../../../../models/interfaces/activity/Activit
 import { ActivityService } from '../../../../services/activity/activity.service';
 import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { EventAction } from '../../../../models/interfaces/events/EventAction';
+import { ActivityFormComponent } from '../../components/activity-form/activity-form.component';
 
 @Component({
   selector: 'app-activity-home',
@@ -12,9 +15,11 @@ import { Router } from '@angular/router';
 })
 export class ActivityHomeComponent implements OnInit, OnDestroy {
   private destroy$: Subject<void> = new Subject;
+  private ref!: DynamicDialogRef;
   public activitiesDatas: Array<ActivityResponse> = [];
 
   constructor(
+    private dialogService: DialogService,
     private activityService: ActivityService,
     private messageService: MessageService,
     private router: Router
@@ -61,6 +66,26 @@ export class ActivityHomeComponent implements OnInit, OnDestroy {
         }
       },
     });
+  }
+
+  handleActivityAction(event: EventAction) : void {
+    if(event) {
+      this.ref = this.dialogService.open(ActivityFormComponent, {
+        header: event?.action,
+        width: '70%',
+        contentStyle: { overflow: 'auto'},
+        baseZIndex: 10000,
+        maximizable: true,
+        data: {
+          event: event
+        },
+      });
+      this.ref.onClose
+        .pipe(takeUntil(this.destroy$))
+        .subscribe({
+          next: () => this.getActivityDatas(),
+        });
+    }
   }
 
   ngOnDestroy(): void {

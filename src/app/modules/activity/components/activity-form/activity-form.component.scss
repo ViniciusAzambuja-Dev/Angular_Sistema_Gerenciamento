@@ -1,5 +1,5 @@
 .form-container {
-  width: 60%;
+  width: 100%;
   margin: 30px auto;
 }
 
@@ -35,10 +35,6 @@ input, textarea{
 }
 
 :host ::ng-deep {
-  .p-card {
-    padding: 20px 10px;
-  }
-
   .p-inputmask, .p-autocomplete, .p-autocomplete-multiple-container {
     width: 100%;
   }

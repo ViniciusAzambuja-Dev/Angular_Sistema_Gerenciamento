@@ -1,3 +1,2 @@
 <app-sidebar-navigation></app-sidebar-navigation>
-<app-activity-form></app-activity-form>
-<app-activity-table [activities]="activitiesDatas" (activityExpanded)="handleGetHour($event)"></app-activity-table>
+<app-activity-table [activities]="activitiesDatas" (activityExpanded)="handleGetHour($event)" (activityEvent)="handleActivityAction($event)"></app-activity-table>

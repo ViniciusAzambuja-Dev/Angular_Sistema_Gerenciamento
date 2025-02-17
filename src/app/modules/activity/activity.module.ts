@@ -6,6 +6,7 @@ import { SharedModule } from '../shared/shared.module';
 import { ACTIVITIES_ROUTES } from './activity.routing';
 import { ActivityTableComponent } from './components/activity-table/activity-table.component';
 import { ActivityFormComponent } from './components/activity-form/activity-form.component';
+import { DialogService } from 'primeng/dynamicdialog';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { ActivityFormComponent } from './components/activity-form/activity-form.
     CommonModule,
     RouterModule.forChild(ACTIVITIES_ROUTES),
     SharedModule,
-  ]
+  ],
+  providers: [DialogService]
 })
 export class ActivityModule { }
