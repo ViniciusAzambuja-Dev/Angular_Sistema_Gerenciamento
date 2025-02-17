@@ -6,6 +6,8 @@ import { UserService } from '../../../../services/user/user.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { UserResponse } from '../../../../models/interfaces/user/UserResponse';
 import { ProjectResponse } from '../../../../models/interfaces/project/ProjectResponse';
+import { ActivityRequest } from '../../../../models/interfaces/activity/ActivityRequest';
+import { ActivityService } from '../../../../services/activity/activity.service';
 import { AutoCompleteCompleteEvent } from 'primeng/autocomplete';
 
 @Component({
@@ -38,6 +40,7 @@ export class ActivityFormComponent implements OnInit, OnDestroy {
   })
 
   constructor(
+    private activityService: ActivityService,
     private messageService: MessageService,
     private projectService: ProjectService,
     private userService: UserService,
@@ -80,7 +83,53 @@ export class ActivityFormComponent implements OnInit, OnDestroy {
     });
   }
 
-  submitActivityForm() {}
+  submitActivityForm() {
+    if(this.addActivityForm?.value && this.addActivityForm?.valid) {
+      const integrantesIds = this.addActivityForm.value.integrantesIds?.map(user => user.id);
+
+      const activityRequest: ActivityRequest = {
+        nome: this.addActivityForm.value.nome as string,
+        descricao: this.addActivityForm.value.descricao as string || '',
+        data_inicio: this.addActivityForm.value.data_inicio as string,
+        data_fim: this.addActivityForm.value.data_fim as string,
+        status: this.addActivityForm.value.status as string,
+        projetoId: Number(this.addActivityForm.value.projetoId),
+        usuarioId: Number(this.addActivityForm.value.usuarioId),
+        integrantesIds: integrantesIds as number[]
+      }
+
+      this.activityService.createActivity(activityRequest)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: () => {
+          this.addActivityForm.reset();
+
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Sucesso',
+            detail: `Atividade cadastrada com sucesso`,
+            life: 2500,
+          });
+        },
+        error: (err) => {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Erro',
+            detail: `Erro ao criar atividade`,
+            life: 2500,
+          });
+        },
+      });
+    }
+    else {
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Erro',
+        detail: `Campos inválidos`,
+        life: 2500,
+      });
+    }
+  }
 
 
   ngOnDestroy(): void {

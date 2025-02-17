@@ -5,6 +5,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { Observable } from 'rxjs';
 import { ActivityResponse } from '../../models/interfaces/activity/ActivityResponse';
 import { HourResponse } from '../../models/interfaces/hour/HourResponse';
+import { ActivityRequest } from '../../models/interfaces/activity/ActivityRequest';
 
 @Injectable({
   providedIn: 'root'
@@ -34,4 +35,12 @@ export class ActivityService {
       this.httpOptions
     );
   }
+
+  createActivity(activityRequest: ActivityRequest): Observable<void> {
+      return this.http.post<void>(
+        `${this.API_URL}/atividades/registrar`,
+        activityRequest,
+        this.httpOptions
+      );
+    }
 }
