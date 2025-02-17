@@ -6,6 +6,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './modules/home/home.component';
 import { SharedModule } from './modules/shared/shared.module';
+import { MessageService } from 'primeng/api';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,7 @@ import { SharedModule } from './modules/shared/shared.module';
     BrowserAnimationsModule,
     SharedModule
   ],
-  providers: [],
+  providers: [MessageService, CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { ToastModule } from 'primeng/toast';
-import { MessageService } from 'primeng/api';
 import { DropdownModule } from 'primeng/dropdown';
 import { TooltipModule } from 'primeng/tooltip';
 import { SidebarModule } from 'primeng/sidebar';
@@ -43,6 +42,6 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
     InputMaskModule,
     AutoCompleteModule,
   ],
-  providers: [MessageService]
+  providers: []
 })
 export class PrimeNgModule { }
