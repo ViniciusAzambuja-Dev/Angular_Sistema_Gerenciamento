@@ -5,12 +5,14 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import { ACTIVITIES_ROUTES } from './activity.routing';
 import { ActivityTableComponent } from './components/activity-table/activity-table.component';
+import { ActivityFormComponent } from './components/activity-form/activity-form.component';
 
 
 @NgModule({
   declarations: [
     ActivityHomeComponent,
-    ActivityTableComponent
+    ActivityTableComponent,
+    ActivityFormComponent
   ],
   imports: [
     CommonModule,
