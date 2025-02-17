@@ -11,6 +11,7 @@ import { CardModule } from 'primeng/card';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { InputMaskModule } from 'primeng/inputmask';
 import { AutoCompleteModule } from 'primeng/autocomplete';
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
 
 @NgModule({
   declarations: [],
@@ -41,6 +42,7 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
     InputTextareaModule,
     InputMaskModule,
     AutoCompleteModule,
+    DynamicDialogModule
   ],
   providers: []
 })

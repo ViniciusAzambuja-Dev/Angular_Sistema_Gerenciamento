@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { PROJECTS_ROUTES } from './project.routing';
 import { ProjectTableComponent } from './components/project-table/project-table.component';
 import { ProjectFormComponent } from './components/project-form/project-form.component';
+import { DialogService } from 'primeng/dynamicdialog';
 
 
 
@@ -19,6 +20,7 @@ import { ProjectFormComponent } from './components/project-form/project-form.com
     CommonModule,
     RouterModule.forChild(PROJECTS_ROUTES),
     SharedModule,
-  ]
+  ],
+  providers: [DialogService]
 })
 export class ProjectModule { }

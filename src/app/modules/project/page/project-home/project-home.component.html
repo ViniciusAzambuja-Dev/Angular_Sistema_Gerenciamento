@@ -1,4 +1,3 @@
 <app-sidebar-navigation></app-sidebar-navigation>
-<app-project-form></app-project-form>
 
-<app-project-table [projects]="projectsDatas" (projectExpanded)="handleGetActivity($event)"></app-project-table>
+<app-project-table [projects]="projectsDatas" (projectExpanded)="handleGetActivity($event)" (projectEvent)="handleProjectAction($event)"></app-project-table>

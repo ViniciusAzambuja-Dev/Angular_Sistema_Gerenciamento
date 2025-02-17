@@ -1,9 +1,12 @@
+import { EventAction } from './../../../../models/interfaces/events/EventAction';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
 import { ProjectService } from '../../../../services/project/project.service';
 import { MessageService } from 'primeng/api';
 import { ProjectResponse } from '../../../../models/interfaces/project/ProjectResponse';
 import { Router } from '@angular/router';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { ProjectFormComponent } from '../../components/project-form/project-form.component';
 
 @Component({
   selector: 'app-project-home',
@@ -12,11 +15,13 @@ import { Router } from '@angular/router';
 })
 export class ProjectHomeComponent implements OnInit, OnDestroy{
   private destroy$: Subject<void> = new Subject;
+  private ref!: DynamicDialogRef;
   public projectsDatas: Array<ProjectResponse> = [];
 
   constructor(
     private projectService: ProjectService,
     private messageService: MessageService,
+    private dialogService: DialogService,
     private router: Router
   ) {}
 
@@ -61,6 +66,26 @@ export class ProjectHomeComponent implements OnInit, OnDestroy{
         }
       },
     });
+  }
+
+  handleProjectAction(event: EventAction) : void {
+    if(event) {
+      this.ref = this.dialogService.open(ProjectFormComponent, {
+        header: event?.action,
+        width: '70%',
+        contentStyle: { overflow: 'auto'},
+        baseZIndex: 10000,
+        maximizable: true,
+        data: {
+          event: event
+        },
+      });
+      this.ref.onClose
+        .pipe(takeUntil(this.destroy$))
+        .subscribe({
+          next: () => this.getProjectDatas(),
+        });
+    }
   }
 
   ngOnDestroy(): void {
