@@ -141,9 +141,9 @@
           <div>
             <p-button
               styleClass="p-button-info"
-              icon=""
+              icon="bx bx-plus"
               label="Adicionar"
-              pTooltip="Adicionar produto"
+              pTooltip="Adicionar atividade"
               tooltipPosition="top"
               (onClick)="handleActivityEvent(addActivityEvent)"
             ></p-button>
@@ -171,6 +171,27 @@
         <td> {{ activity?.data_fim }} </td>
         <td> {{ activity?.status }} </td>
         <td> {{ activity?.nomeUsuario }} </td>
+        <td>
+          <div class="flex justify-content-center gap-3 align-content-center align-items-center">
+            <button
+              pButton
+              pRipple
+              icon="bx bx-pencil"
+              class="p-button-rounded p-button-warning"
+              pTooltip="Editar Atividade"
+              tooltipPosition="top"
+              ></button>
+              <button
+              pButton
+              pRipple
+              icon="bx bxs-trash"
+              class="p-button-rounded p-button-danger"
+              pTooltip="Remover Atividade"
+              tooltipPosition="top"
+              (click)="handleDeleteActivity(activity?.id, activity?.nome)"
+            ></button>
+          </div>
+        </td>
       </tr>
     </ng-template>
 

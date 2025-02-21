@@ -43,4 +43,11 @@ export class ActivityService {
         this.httpOptions
       );
     }
+
+    deleteActivity(activityId: number): Observable<void> {
+      return this.http.delete<void>(
+        `${this.API_URL}/atividades/deletar/${activityId}`,
+        this.httpOptions
+      )
+    }
 }

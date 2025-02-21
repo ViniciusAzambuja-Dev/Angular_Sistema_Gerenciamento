@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ActivityResponse } from '../../../../models/interfaces/activity/ActivityResponse';
 import { EventAction } from '../../../../models/interfaces/events/EventAction';
 import { ActivityEvent } from '../../../../models/enums/activity/ActivityEvent';
+import { DeleteAction } from '../../../../models/interfaces/events/DeleteAction';
 
 @Component({
   selector: 'app-activity-table',
@@ -11,6 +12,7 @@ import { ActivityEvent } from '../../../../models/enums/activity/ActivityEvent';
 export class ActivityTableComponent {
   @Input() activities: Array<ActivityResponse> = [];
   @Output() activityExpanded = new EventEmitter<number>();
+  @Output() deleteActivityEvent = new EventEmitter<DeleteAction>
   @Output() activityEvent = new EventEmitter<EventAction>();
 
   public activitySelected!: ActivityResponse;
@@ -25,6 +27,13 @@ export class ActivityTableComponent {
     if(action && action !== "") {
       const activityEventData = id && id !== "" ? {action, id} : {action};
       this.activityEvent.emit(activityEventData);
+    }
+  }
+
+  handleDeleteActivity(id: number, name: string) {
+    if(id && name !== '') {
+      const activityEventData = {id, name};
+      this.deleteActivityEvent.emit(activityEventData);
     }
   }
 }

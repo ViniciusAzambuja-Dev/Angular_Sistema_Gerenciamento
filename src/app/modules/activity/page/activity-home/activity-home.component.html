@@ -1,2 +1,8 @@
 <app-sidebar-navigation></app-sidebar-navigation>
-<app-activity-table [activities]="activitiesDatas" (activityExpanded)="handleGetHour($event)" (activityEvent)="handleActivityAction($event)"></app-activity-table>
+<app-activity-table
+  [activities]="activitiesDatas"
+  (activityExpanded)="handleGetHour($event)"
+  (activityEvent)="handleActivityAction($event)"
+  (deleteActivityEvent)="handleDeleteActivityAction($event)"
+></app-activity-table>
+<p-confirmDialog [style]="{ width: '50vw' }"></p-confirmDialog>
