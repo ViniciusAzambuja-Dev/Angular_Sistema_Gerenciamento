@@ -56,7 +56,7 @@ export class ProjectFormComponent implements OnInit, OnDestroy{
     data_fim: ['', Validators.required],
     status: ['', Validators.required],
     prioridade: ['', Validators.required],
-    usuarioId: ['', Validators.required],
+    usuarioId: [0, Validators.required],
     integrantesIds: [[] as UserResponse[], Validators.required]
   })
 
@@ -67,8 +67,8 @@ export class ProjectFormComponent implements OnInit, OnDestroy{
     data_fim: ['', Validators.required],
     status: ['', Validators.required],
     prioridade: ['', Validators.required],
-    projetoId: ['', Validators.required],
-    usuarioId: ['', Validators.required],
+    projetoId: [0, Validators.required],
+    usuarioId: [0, Validators.required],
   });
 
   public addProjectAction = ProjectEvent.ADD_PROJECT_EVENT;
@@ -214,14 +214,15 @@ export class ProjectFormComponent implements OnInit, OnDestroy{
           (element) => element.nome === this.projectSelectedDatas.nomeUsuario
         );
 
-        this.editProjectForm.patchValue({
+        this.editProjectForm.setValue({
           nome: this.projectSelectedDatas?.nome,
           descricao: this.projectSelectedDatas?.descricao,
           data_inicio: this.projectSelectedDatas?.data_inicio,
           data_fim: this.projectSelectedDatas?.data_fim,
           status: this.projectSelectedDatas?.status,
           prioridade: this.projectSelectedDatas?.prioridade,
-          projetoId: this.projectSelectedDatas?.id.toString(),
+          projetoId: this.projectSelectedDatas?.id,
+          usuarioId: userSelected?.id || null
         });
       }
     }

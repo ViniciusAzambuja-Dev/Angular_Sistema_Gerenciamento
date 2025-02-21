@@ -34,8 +34,8 @@ export class ActivityFormComponent implements OnInit, OnDestroy {
     data_inicio: ['', Validators.required],
     data_fim: ['', Validators.required],
     status: ['', Validators.required],
-    projetoId: ['', Validators.required],
-    usuarioId: ['', Validators.required],
+    projetoId: [0, Validators.required],
+    usuarioId: [0, Validators.required],
     integrantesIds: [[] as UserResponse[], Validators.required]
   })
 
