@@ -19,9 +19,9 @@ export class ProjectTableComponent {
   public addProjectEvent = ProjectEvent.ADD_PROJECT_EVENT;
   public editProjectEvent = ProjectEvent.EDIT_PROJECT_EVENT;
 
-  handleProjectEvent(action: string, id?: string): void {
+  handleProjectEvent(action: string, id?: number): void {
     if(action && action !== '') {
-      const projectEventData = id && id !== "" ? {action, id} : {action};
+      const projectEventData = id ? {action, id} : {action};
       this.projectEvent.emit(projectEventData);
     }
   }

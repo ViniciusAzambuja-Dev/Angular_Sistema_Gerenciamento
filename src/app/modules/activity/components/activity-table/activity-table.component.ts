@@ -23,9 +23,9 @@ export class ActivityTableComponent {
     this.activityExpanded.emit(activityId)
   }
 
-  handleActivityEvent(action: string, id?: string): void {
+  handleActivityEvent(action: string, id?: number): void {
     if(action && action !== "") {
-      const activityEventData = id && id !== "" ? {action, id} : {action};
+      const activityEventData = id ? {action, id} : {action};
       this.activityEvent.emit(activityEventData);
     }
   }
