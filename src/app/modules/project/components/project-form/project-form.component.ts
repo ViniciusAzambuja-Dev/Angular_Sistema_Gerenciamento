@@ -7,6 +7,11 @@ import { UserResponse } from '../../../../models/interfaces/user/UserResponse';
 import { UserService } from '../../../../services/user/user.service';
 import { ProjectRequest } from '../../../../models/interfaces/project/ProjectRequest';
 import { AutoCompleteCompleteEvent } from 'primeng/autocomplete';
+import { DynamicDialogConfig } from 'primeng/dynamicdialog';
+import { EventAction } from '../../../../models/interfaces/events/EventAction';
+import { ProjectResponse } from '../../../../models/interfaces/project/ProjectResponse';
+import { ProjectEvent } from '../../../../models/enums/project/ProjectEvent';
+import { ProjectUpdate } from '../../../../models/interfaces/project/ProjectUpdate';
 
 @Component({
   selector: 'app-project-form',
@@ -17,12 +22,18 @@ export class ProjectFormComponent implements OnInit, OnDestroy{
   private destroy$: Subject<void> = new Subject();
   public usersDatas: Array<UserResponse> = [];
   public filterDatas: Array<UserResponse> = [];
+  public projectAction!: {
+    event: EventAction;
+    projectsDatas: Array<ProjectResponse>;
+  }
+  public projectSelectedDatas!: ProjectResponse;
 
   constructor(
     private projectService: ProjectService,
     private formBuilder: FormBuilder,
     private messageService: MessageService,
-    private userService: UserService
+    private userService: UserService,
+    private ref: DynamicDialogConfig
   ) {}
 
   public priorities = [
@@ -49,7 +60,23 @@ export class ProjectFormComponent implements OnInit, OnDestroy{
     integrantesIds: [[] as UserResponse[], Validators.required]
   })
 
+  public editProjectForm = this.formBuilder.group({
+    nome: ['', [Validators.required, Validators.maxLength(50)]],
+    descricao: ['', Validators.maxLength(200)],
+    data_inicio: ['', Validators.required],
+    data_fim: ['', Validators.required],
+    status: ['', Validators.required],
+    prioridade: ['', Validators.required],
+    projetoId: ['', Validators.required],
+    usuarioId: ['', Validators.required],
+  });
+
+  public addProjectAction = ProjectEvent.ADD_PROJECT_EVENT;
+  public editProjectAction = ProjectEvent.EDIT_PROJECT_EVENT;
+
   ngOnInit(): void {
+    this.projectAction = this.ref.data;
+
     this.getAllUsers();
   }
 
@@ -67,6 +94,10 @@ export class ProjectFormComponent implements OnInit, OnDestroy{
       next: (response) => {
         if(response.length > 0) {
           this.usersDatas = response;
+
+          if(this.projectAction?.event?.action === this.editProjectAction && this.projectAction?.projectsDatas) {
+            this.getProjectSelectedDatas(Number(this.projectAction?.event?.id))
+          }
         }
       },
     });
@@ -117,6 +148,82 @@ export class ProjectFormComponent implements OnInit, OnDestroy{
         detail: `Campos inválidos`,
         life: 2500,
       });
+    }
+  }
+
+  submitEditProject(): void {
+    if(this.editProjectForm.value && this.editProjectForm.valid &&
+      this.projectAction.event.id
+    ) {
+      const requestEditProject : ProjectUpdate = {
+        nome: this.editProjectForm.value.nome as string,
+        descricao: this.editProjectForm.value.descricao as string || '',
+        data_inicio: this.editProjectForm.value.data_inicio as string,
+        data_fim: this.editProjectForm.value.data_fim as string,
+        status: this.editProjectForm.value.status as string,
+        prioridade: this.editProjectForm.value.prioridade as string,
+        projetoId: Number(this.editProjectForm.value.projetoId),
+        usuarioId: Number(this.editProjectForm.value.usuarioId)
+      };
+
+      this.projectService
+      .editProject(requestEditProject)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: () => {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Sucesso',
+            detail: `Projeto editado com sucesso`,
+            life: 2500,
+          });
+          this.editProjectForm.reset();
+        },
+        error: (err) => {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Erro',
+            detail: `Erro ao editar projeto`,
+            life: 2500,
+          });
+        }
+      });
+    }
+    else {
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Erro',
+        detail: `Campos inválidos`,
+        life: 2500,
+      });
+    }
+  }
+
+  getProjectSelectedDatas(projectId: number): void {
+    const allProjects = this.projectAction?.projectsDatas;
+
+    if(allProjects.length > 0) {
+      const projectFiltered = allProjects.filter(
+        (element) => element?.id === projectId
+      );
+
+      if(projectFiltered) {
+        this.projectSelectedDatas = projectFiltered[0];
+
+        const userSelected = this.usersDatas.find(
+          (element) => element.nome === this.projectSelectedDatas.nomeUsuario
+        );
+
+        this.editProjectForm.patchValue({
+          nome: this.projectSelectedDatas?.nome,
+          descricao: this.projectSelectedDatas?.descricao,
+          data_inicio: this.projectSelectedDatas?.data_inicio,
+          data_fim: this.projectSelectedDatas?.data_fim,
+          status: this.projectSelectedDatas?.status,
+          prioridade: this.projectSelectedDatas?.prioridade,
+          projetoId: this.projectSelectedDatas?.id.toString(),
+        });
+      }
     }
   }
 

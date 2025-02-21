@@ -79,7 +79,8 @@ export class ProjectHomeComponent implements OnInit, OnDestroy{
         baseZIndex: 10000,
         maximizable: true,
         data: {
-          event: event
+          event: event,
+          projectsDatas: this.projectsDatas,
         },
       });
       this.ref.onClose

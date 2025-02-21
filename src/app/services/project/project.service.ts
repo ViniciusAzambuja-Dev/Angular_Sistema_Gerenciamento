@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { ProjectResponse } from '../../models/interfaces/project/ProjectResponse';
 import { ActivityResponse } from '../../models/interfaces/activity/ActivityResponse';
 import { ProjectRequest } from '../../models/interfaces/project/ProjectRequest';
+import { ProjectUpdate } from '../../models/interfaces/project/ProjectUpdate';
 
 @Injectable({
   providedIn: 'root'
@@ -49,5 +50,13 @@ export class ProjectService {
       `${this.API_URL}/projetos/deletar/${projectId}`,
       this.httpOptions
     )
+  }
+
+  editProject(editProjectRequest: ProjectUpdate): Observable<void> {
+    return this.http.put<void>(
+      `${this.API_URL}/projetos/atualizar`,
+      editProjectRequest,
+      this.httpOptions
+    );
   }
 }
