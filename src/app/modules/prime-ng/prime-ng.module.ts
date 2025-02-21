@@ -12,6 +12,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { InputMaskModule } from 'primeng/inputmask';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 @NgModule({
   declarations: [],
@@ -28,6 +29,7 @@ import { DynamicDialogModule } from 'primeng/dynamicdialog';
     InputTextareaModule,
     InputMaskModule,
     AutoCompleteModule,
+    ConfirmDialogModule
   ],
   exports: [
     CommonModule,
@@ -42,7 +44,8 @@ import { DynamicDialogModule } from 'primeng/dynamicdialog';
     InputTextareaModule,
     InputMaskModule,
     AutoCompleteModule,
-    DynamicDialogModule
+    DynamicDialogModule,
+    ConfirmDialogModule
   ],
   providers: []
 })

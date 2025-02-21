@@ -7,6 +7,7 @@ import { PROJECTS_ROUTES } from './project.routing';
 import { ProjectTableComponent } from './components/project-table/project-table.component';
 import { ProjectFormComponent } from './components/project-form/project-form.component';
 import { DialogService } from 'primeng/dynamicdialog';
+import { ConfirmationService } from 'primeng/api';
 
 
 
@@ -21,6 +22,6 @@ import { DialogService } from 'primeng/dynamicdialog';
     RouterModule.forChild(PROJECTS_ROUTES),
     SharedModule,
   ],
-  providers: [DialogService]
+  providers: [DialogService, ConfirmationService]
 })
 export class ProjectModule { }

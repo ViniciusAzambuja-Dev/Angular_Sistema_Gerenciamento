@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ProjectResponse } from '../../../../models/interfaces/project/ProjectResponse';
 import { ProjectEvent } from '../../../../models/enums/project/ProjectEvent';
 import { EventAction } from '../../../../models/interfaces/events/EventAction';
+import { DeleteAction } from '../../../../models/interfaces/events/DeleteAction';
 
 @Component({
   selector: 'app-project-table',
@@ -11,6 +12,7 @@ import { EventAction } from '../../../../models/interfaces/events/EventAction';
 export class ProjectTableComponent {
   @Input() projects: Array<ProjectResponse> = [];
   @Output() projectExpanded = new EventEmitter<number>();
+  @Output() deleteProjectEvent = new EventEmitter<DeleteAction>
   @Output() projectEvent = new EventEmitter<EventAction>();
 
   public projectSelected!: ProjectResponse;
@@ -21,6 +23,13 @@ export class ProjectTableComponent {
     if(action && action !== '') {
       const projectEventData = id && id !== "" ? {action, id} : {action};
       this.projectEvent.emit(projectEventData);
+    }
+  }
+
+  handleDeleteProject(id: number, name: string) {
+    if(id && name !== '') {
+      const projectEventData = {id, name};
+      this.deleteProjectEvent.emit(projectEventData);
     }
   }
 

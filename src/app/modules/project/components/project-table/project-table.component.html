@@ -162,7 +162,7 @@
           <div>
             <p-button
               styleClass="p-button-info"
-              icon=""
+              icon="bx bx-plus"
               label="Adicionar"
               pTooltip="Adicionar produto"
               tooltipPosition="top"
@@ -193,6 +193,27 @@
         <td> {{ project?.status }} </td>
         <td> {{ project?.prioridade }} </td>
         <td> {{ project?.nomeUsuario }} </td>
+        <td>
+          <div class="flex justify-content-center gap-3 align-content-center align-items-center">
+            <button
+              pButton
+              pRipple
+              icon="bx bx-pencil"
+              class="p-button-rounded p-button-warning"
+              pTooltip="Editar Projeto"
+              tooltipPosition="top"
+              ></button>
+              <button
+              pButton
+              pRipple
+              icon="bx bxs-trash"
+              class="p-button-rounded p-button-danger"
+              pTooltip="Remover Projeto"
+              tooltipPosition="top"
+              (click)="handleDeleteProject(project?.id, project?.nome)"
+            ></button>
+          </div>
+        </td>
       </tr>
     </ng-template>
 

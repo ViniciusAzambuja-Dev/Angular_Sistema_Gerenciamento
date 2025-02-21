@@ -1,3 +1,9 @@
 <app-sidebar-navigation></app-sidebar-navigation>
 
-<app-project-table [projects]="projectsDatas" (projectExpanded)="handleGetActivity($event)" (projectEvent)="handleProjectAction($event)"></app-project-table>
+<app-project-table
+ [projects]="projectsDatas"
+ (projectExpanded)="handleGetActivity($event)"
+ (projectEvent)="handleProjectAction($event)"
+ (deleteProjectEvent)="handleDeleteProjectAction($event)">
+</app-project-table>
+<p-confirmDialog [style]="{ width: '50vw' }"></p-confirmDialog>
