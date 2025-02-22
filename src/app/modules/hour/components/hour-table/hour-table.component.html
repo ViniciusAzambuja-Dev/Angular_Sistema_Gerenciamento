@@ -1,0 +1,164 @@
+<div class="card-container">
+  <p-card
+    header="Horas lançadas"
+    >
+    <p-table
+    [value]="hours"
+    [rows]="10"
+    [paginator]="true"
+    [tableStyle]="{'min-width': '75rem'}"
+    [(selection)]="hourSelected"
+    [rowHover]="true"
+    dataKey="id"
+    showCurrentPageReport="true"
+    currentPageReportTemplate="Mostrando {first} de {last} de {totalRecords} atividades"
+    >
+
+    <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="descricao">
+          <div class="flex justify-content-between align-items-center">
+            <div class="flex justify-content-between align-items-center">
+              Descrição
+            </div>
+            <div class="flex justify-content-between align-items-center">
+              <p-sortIcon field="descricao"></p-sortIcon>
+              <p-columnFilter
+                type="text"
+                field="descricao"
+                display="menu"
+                matchMode="contains"
+                [showMatchModes]="false"
+                [showOperator]="false"
+                [showAddButton]="false"
+              ></p-columnFilter>
+            </div>
+          </div>
+        </th>
+
+        <th pSortableColumn="data_inicio">
+          <div class="flex justify-content-between align-items-center">
+            <div class="flex justify-content-between align-items-center">
+              De
+            </div>
+            <div class="flex justify-content-between align-items-center">
+              <p-sortIcon field="data_inicio"></p-sortIcon>
+              <p-columnFilter
+                type="text"
+                field="data_inicio"
+                display="menu"
+                matchMode="contains"
+                [showMatchModes]="false"
+                [showOperator]="false"
+                [showAddButton]="false"
+              ></p-columnFilter>
+            </div>
+          </div>
+        </th>
+
+        <th pSortableColumn="data_fim">
+          <div class="flex justify-content-between align-items-center">
+            <div class="flex justify-content-between align-items-center">
+              Até
+            </div>
+            <div class="flex justify-content-between align-items-center">
+              <p-sortIcon field="data_fim"></p-sortIcon>
+              <p-columnFilter
+                type="text"
+                field="data_fim"
+                display="menu"
+                matchMode="contains"
+                [showMatchModes]="false"
+                [showOperator]="false"
+                [showAddButton]="false"
+              ></p-columnFilter>
+            </div>
+          </div>
+        </th>
+
+        <th pSortableColumn="nomeUsuario">
+          <div class="flex justify-content-between align-items-center">
+            <div class="flex justify-content-between align-items-center">
+              Responsável
+            </div>
+            <div class="flex justify-content-between align-items-center">
+              <p-sortIcon field="nomeUsuario"></p-sortIcon>
+              <p-columnFilter
+                type="text"
+                field="nomeUsuario"
+                display="menu"
+                matchMode="contains"
+                [showMatchModes]="false"
+                [showOperator]="false"
+                [showAddButton]="false"
+              ></p-columnFilter>
+            </div>
+          </div>
+        </th>
+        <th pSortableColumn="nomeAtividade">
+          <div class="flex justify-content-between align-items-center">
+            <div class="flex justify-content-between align-items-center">
+              Atividade
+            </div>
+            <div class="flex justify-content-between align-items-center">
+              <p-sortIcon field="nomeAtividade"></p-sortIcon>
+              <p-columnFilter
+                type="text"
+                field="nomeAtividade"
+                display="menu"
+                matchMode="contains"
+                [showMatchModes]="false"
+                [showOperator]="false"
+                [showAddButton]="false"
+              ></p-columnFilter>
+            </div>
+          </div>
+        </th>
+        <th>
+          <div>
+            <p-button
+              styleClass="p-button-info"
+              icon="bx bx-plus"
+              label="Adicionar"
+              pTooltip="Lançar hora"
+              tooltipPosition="top"
+            ></p-button>
+          </div>
+        </th>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-hour>
+      <tr>
+        <td [pTooltip]="hour?.descricao" tooltipPosition="top"> {{ hour?.descricao }} </td>
+        <td> {{ hour?.data_inicio }} </td>
+        <td> {{ hour?.data_fim }} </td>
+        <td> {{ hour?.nomeUsuario }} </td>
+        <td> {{ hour?.nomeAtividade }} </td>
+        <td>
+          <div class="flex justify-content-center gap-3 align-content-center align-items-center">
+            <button
+              pButton
+              pRipple
+              icon="bx bx-pencil"
+              class="p-button-rounded p-button-warning"
+              pTooltip="Editar hora lançada"
+              tooltipPosition="top"
+
+              ></button>
+              <button
+              pButton
+              pRipple
+              icon="bx bxs-trash"
+              class="p-button-rounded p-button-danger"
+              pTooltip="Remover hora lançada"
+              tooltipPosition="top"
+            ></button>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+    </p-table>
+  </p-card>
+</div>
+
