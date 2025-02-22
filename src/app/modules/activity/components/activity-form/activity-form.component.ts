@@ -9,6 +9,11 @@ import { ProjectResponse } from '../../../../models/interfaces/project/ProjectRe
 import { ActivityRequest } from '../../../../models/interfaces/activity/ActivityRequest';
 import { ActivityService } from '../../../../services/activity/activity.service';
 import { AutoCompleteCompleteEvent } from 'primeng/autocomplete';
+import { DynamicDialogConfig } from 'primeng/dynamicdialog';
+import { EventAction } from '../../../../models/interfaces/events/EventAction';
+import { ActivityResponse } from '../../../../models/interfaces/activity/ActivityResponse';
+import { ActivityUpdate } from '../../../../models/interfaces/activity/ActivityUpdate';
+import { ActivityEvent } from '../../../../models/enums/activity/ActivityEvent';
 
 @Component({
   selector: 'app-activity-form',
@@ -20,6 +25,11 @@ export class ActivityFormComponent implements OnInit, OnDestroy {
   public usersDatas: Array<UserResponse> = [];
   public projectsDatas: Array<ProjectResponse> = [];
   public filterDatas: Array<UserResponse> = [];
+  public activityAction!: {
+    event: EventAction;
+    activitiesDatas: Array<ActivityResponse>
+  };
+  public activitySelectedDatas!: ActivityResponse;
 
   public status = [
     { name: 'ABERTA' },
@@ -28,7 +38,7 @@ export class ActivityFormComponent implements OnInit, OnDestroy {
     { name: 'PAUSADA' },
   ];
 
-  public addActivityForm = this.formBuider.group({
+  public addActivityForm = this.formBuilder.group({
     nome: ['', [Validators.required, Validators.maxLength(50)]],
     descricao: ['', Validators.maxLength(200)],
     data_inicio: ['', Validators.required],
@@ -39,15 +49,32 @@ export class ActivityFormComponent implements OnInit, OnDestroy {
     integrantesIds: [[] as UserResponse[], Validators.required]
   })
 
+  public editActivityForm = this.formBuilder.group({
+    nome: ['', [Validators.required, Validators.maxLength(50)]],
+    descricao: ['', Validators.maxLength(200)],
+    data_inicio: ['', Validators.required],
+    data_fim: ['', Validators.required],
+    status: ['', Validators.required],
+    atividadeId: [0, Validators.required],
+    projetoId: [0, Validators.required],
+    usuarioId: [0, Validators.required],
+  });
+
+  public addActivityAction = ActivityEvent.ADD_ACTIVITY_EVENT;
+  public editActivityAction = ActivityEvent.EDIT_ACTIVITY_EVENT;
+
   constructor(
     private activityService: ActivityService,
     private messageService: MessageService,
     private projectService: ProjectService,
     private userService: UserService,
-    private formBuider: FormBuilder
+    private formBuilder: FormBuilder,
+    private ref: DynamicDialogConfig
   ) {}
 
   ngOnInit(): void {
+    this.activityAction = this.ref.data;
+
     this.getAllUsers();
     this.getAllProjects();
   }
@@ -66,6 +93,10 @@ export class ActivityFormComponent implements OnInit, OnDestroy {
       next: (response) => {
         if(response.length > 0) {
           this.usersDatas = response;
+
+          if(this.activityAction?.event?.action === this.editActivityAction && this.activityAction?.activitiesDatas) {
+            this.getActivitySelectedDatas(Number(this.activityAction?.event?.id))
+          }
         }
       },
     });
@@ -131,6 +162,81 @@ export class ActivityFormComponent implements OnInit, OnDestroy {
     }
   }
 
+  submitEditActivity(): void {
+    if(this.editActivityForm.value && this.editActivityForm.valid &&
+      this.activityAction.event.id
+    ) {
+      const requestEditActivity : ActivityUpdate = {
+        nome: this.editActivityForm.value.nome as string,
+        descricao: this.editActivityForm.value.descricao as string || '',
+        data_inicio: this.editActivityForm.value.data_inicio as string,
+        data_fim: this.editActivityForm.value.data_fim as string,
+        status: this.editActivityForm.value.status as string,
+        atividadeId: Number(this.editActivityForm.value.atividadeId),
+        projetoId: Number(this.editActivityForm.value.projetoId),
+        usuarioId: Number(this.editActivityForm.value.usuarioId)
+      };
+
+      this.activityService
+      .editActivity(requestEditActivity)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: () => {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Sucesso',
+            detail: `Atividade editada com sucesso`,
+            life: 2500,
+          });
+          this.editActivityForm.reset();
+        },
+        error: (err) => {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Erro',
+            detail: `Erro ao editar atividade`,
+            life: 2500,
+          });
+        }
+      });
+    }
+    else {
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Erro',
+        detail: `Campos inválidos`,
+        life: 2500,
+      });
+    }
+  }
+
+  getActivitySelectedDatas(activityId: number): void {
+    const allActivities = this.activityAction?.activitiesDatas;
+
+    if(allActivities.length > 0) {
+      const activityFiltered = allActivities.filter(
+        (element) => element?.id === activityId
+      );
+
+      if(activityFiltered) {
+        this.activitySelectedDatas = activityFiltered[0];
+
+        const userSelected = this.usersDatas.find(
+          (element) => element.nome === this.activitySelectedDatas.nomeUsuario
+        );
+
+        this.editActivityForm.patchValue({
+          nome: this.activitySelectedDatas?.nome,
+          descricao: this.activitySelectedDatas?.descricao,
+          data_inicio: this.activitySelectedDatas?.data_inicio,
+          data_fim: this.activitySelectedDatas?.data_fim,
+          status: this.activitySelectedDatas?.status,
+          atividadeId: this.activitySelectedDatas?.id,
+          usuarioId: userSelected?.id || null
+        });
+      }
+    }
+  }
 
   ngOnDestroy(): void {
     this.destroy$.next();

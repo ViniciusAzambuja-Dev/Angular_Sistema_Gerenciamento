@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { ActivityResponse } from '../../models/interfaces/activity/ActivityResponse';
 import { HourResponse } from '../../models/interfaces/hour/HourResponse';
 import { ActivityRequest } from '../../models/interfaces/activity/ActivityRequest';
+import { ActivityUpdate } from '../../models/interfaces/activity/ActivityUpdate';
 
 @Injectable({
   providedIn: 'root'
@@ -49,5 +50,13 @@ export class ActivityService {
         `${this.API_URL}/atividades/deletar/${activityId}`,
         this.httpOptions
       )
+    }
+
+    editActivity(editActivityRequest: ActivityUpdate): Observable<void> {
+      return this.http.put<void>(
+        `${this.API_URL}/atividades/atualizar`,
+        editActivityRequest,
+        this.httpOptions
+      );
     }
 }

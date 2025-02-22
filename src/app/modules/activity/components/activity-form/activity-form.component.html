@@ -1,4 +1,4 @@
-<div class="form-container">
+<div class="form-container" *ngIf="activityAction?.event?.action === addActivityAction">
     <form [formGroup]="addActivityForm" (ngSubmit)="submitActivityForm()">
       <div class="flex">
         <div class="input-container custom-input">
@@ -68,3 +68,67 @@
     </form>
 </div>
 
+<div class="form-container" *ngIf="activityAction?.event?.action === editActivityAction">
+  <form [formGroup]="editActivityForm" (ngSubmit)="submitEditActivity()">
+    <div class="flex">
+      <div class="input-container custom-input">
+        <input pInputText pTooltip="(max: 50 caracteres)" placeholder="Nome" formControlName="nome">
+      </div>
+
+      <div class="input-container custom-input">
+        <p-inputMask mask="99/99/9999" placeholder="DD/MM/YYYY" formControlName="data_inicio"></p-inputMask>
+      </div>
+      <div class="input-container custom-input">
+        <p-inputMask mask="99/99/9999" placeholder="DD/MM/YYYY" formControlName="data_fim"></p-inputMask>
+      </div>
+    </div>
+    <div class="flex">
+      <div class="input-container custom-input">
+        <p-dropdown
+          styleClass="flex"
+          [options]="usersDatas"
+          optionLabel="nome"
+          optionValue="id"
+          [filter]="true"
+          filterBy="nome"
+          placeholder="Responsável"
+          formControlName="usuarioId"/>
+      </div>
+      <div class="input-container custom-input">
+        <p-dropdown
+          styleClass="flex"
+          [options]="projectsDatas"
+          optionLabel="nome"
+          optionValue="id"
+          [filter]="true"
+          filterBy="nome"
+          placeholder="Projeto"
+          formControlName="projetoId"/>
+      </div>
+    </div>
+    <div class="input-container status">
+      <p-dropdown
+        styleClass="flex"
+        [options]="status"
+        optionLabel="name"
+        optionValue="name"
+        placeholder="Status"
+        formControlName="status"/>
+    </div>
+    <div>
+      <textarea
+        rows="5"
+        cols="40"
+        pInputTextarea
+        pTooltip="(max: 200 caracteres)"
+        placeholder="Descrição"
+        [autoResize]="true"
+        formControlName="descricao">
+      </textarea>
+    </div>
+
+    <div class="button-container">
+      <button type="submit">Salvar</button>
+    </div>
+  </form>
+</div>

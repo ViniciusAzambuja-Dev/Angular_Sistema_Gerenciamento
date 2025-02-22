@@ -79,7 +79,8 @@ export class ActivityHomeComponent implements OnInit, OnDestroy {
         baseZIndex: 10000,
         maximizable: true,
         data: {
-          event: event
+          event: event,
+          activitiesDatas: this.activitiesDatas,
         },
       });
       this.ref.onClose
