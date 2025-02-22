@@ -35,6 +35,13 @@ const routes: Routes = [
     ),
     canActivate: [AuthGuardService],
   },
+  {
+    path: 'hour',
+    loadChildren: () => import('./modules/hour/hour.module').then(
+      (module) => module.HourModule
+    ),
+    canActivate: [AuthGuardService],
+  },
 ];
 
 @NgModule({
