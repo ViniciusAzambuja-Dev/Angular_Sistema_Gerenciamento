@@ -6,12 +6,14 @@ import { ConfirmationService } from 'primeng/api';
 import { HourHomeComponent } from './page/hour-home/hour-home.component';
 import { HOUR_ROUTES } from './hour.routing';
 import { HourTableComponent } from './components/hour-table/hour-table.component';
+import { HourFormComponent } from './components/hour-form/hour-form.component';
 
 
 @NgModule({
   declarations: [
     HourHomeComponent,
-    HourTableComponent
+    HourTableComponent,
+    HourFormComponent
   ],
   imports: [
     RouterModule.forChild(HOUR_ROUTES),

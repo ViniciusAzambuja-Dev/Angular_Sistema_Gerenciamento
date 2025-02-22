@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
 import { HourResponse } from '../../../../models/interfaces/hour/HourResponse';
 import { HourService } from '../../../../services/hour/hour.service';
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   templateUrl: './hour-home.component.html',
   styleUrl: './hour-home.component.scss'
 })
-export class HourHomeComponent {
+export class HourHomeComponent implements OnInit, OnDestroy{
   private destroy$: Subject<void> = new Subject;
   public hoursDatas: Array<HourResponse> = [];
 
