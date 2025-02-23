@@ -1,6 +1,6 @@
 <app-sidebar-navigation></app-sidebar-navigation>
-<app-hour-form></app-hour-form>
 
 <app-hour-table
   [hours]="hoursDatas"
+  (hourEvent)="handleHourAction($event)"
 ></app-hour-table>

@@ -4,6 +4,9 @@ import { HourResponse } from '../../../../models/interfaces/hour/HourResponse';
 import { HourService } from '../../../../services/hour/hour.service';
 import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
+import { EventAction } from '../../../../models/interfaces/events/EventAction';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { HourFormComponent } from '../../components/hour-form/hour-form.component';
 
 @Component({
   selector: 'app-hour-home',
@@ -13,8 +16,10 @@ import { Router } from '@angular/router';
 export class HourHomeComponent implements OnInit, OnDestroy{
   private destroy$: Subject<void> = new Subject;
   public hoursDatas: Array<HourResponse> = [];
+  private ref!: DynamicDialogRef;
 
   constructor(
+    private dialogService: DialogService,
     private hourService: HourService,
     private messageService: MessageService,
     private router: Router
@@ -44,6 +49,27 @@ export class HourHomeComponent implements OnInit, OnDestroy{
         this.router.navigate(['/dashboard']);
       },
     });
+  }
+
+  handleHourAction(event: EventAction): void {
+    if(event) {
+      this.ref = this.dialogService.open(HourFormComponent, {
+        header: event?.action,
+        width: '70%',
+        contentStyle: { overflow: 'auto'},
+        baseZIndex: 10000,
+        maximizable: true,
+        data: {
+          event: event.action,
+          hoursDatas: this.hoursDatas,
+        },
+      });
+      this.ref.onClose
+        .pipe(takeUntil(this.destroy$))
+        .subscribe({
+          next: () => this.getHourDatas(),
+        });
+    }
   }
 
   ngOnDestroy(): void {
