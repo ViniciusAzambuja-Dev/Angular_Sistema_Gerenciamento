@@ -7,6 +7,7 @@ export interface ActivityResponse {
   data_inicio: string;
   data_fim: string;
   status: string;
+  nomeProjeto: string;
   nomeUsuario: string;
   horasLancadas?: HourResponse[];
 }
