@@ -3,4 +3,6 @@
 <app-hour-table
   [hours]="hoursDatas"
   (hourEvent)="handleHourAction($event)"
+  (deleteHourEvent)="handleDeleteHourAction($event)"
 ></app-hour-table>
+<p-confirmDialog [style]="{ width: '50vw' }"></p-confirmDialog>

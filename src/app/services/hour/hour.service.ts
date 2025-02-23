@@ -36,4 +36,11 @@ export class HourService {
         this.httpOptions
       );
     }
+
+    deleteHour(hourId: number): Observable<void> {
+      return this.http.delete<void>(
+        `${this.API_URL}/horas/deletar/${hourId}`,
+        this.httpOptions
+      )
+    }
 }
