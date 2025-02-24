@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
 import { UserResponse } from '../../../../models/interfaces/user/UserResponse';
 import { UserService } from '../../../../services/user/user.service';
@@ -14,7 +14,7 @@ import { DeleteAction } from '../../../../models/interfaces/events/DeleteAction'
   templateUrl: './user-home.component.html',
   styleUrl: './user-home.component.scss'
 })
-export class UserHomeComponent {
+export class UserHomeComponent implements OnInit, OnDestroy{
   private destroy$: Subject<void> = new Subject;
   public usersDatas: Array<UserResponse> = [];
   private ref!: DynamicDialogRef;
@@ -62,7 +62,7 @@ export class UserHomeComponent {
         baseZIndex: 10000,
         maximizable: true,
         data: {
-          event: event.action,
+          event: event,
           usersDatas: this.usersDatas,
         },
       });

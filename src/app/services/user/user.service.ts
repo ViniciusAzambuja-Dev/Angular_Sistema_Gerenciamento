@@ -11,6 +11,7 @@ import { SignUpRequest } from '../../models/interfaces/user/signUp/SignUpRequest
 import { UserResponse } from '../../models/interfaces/user/UserResponse';
 import { jwtDecode } from 'jwt-decode';
 import { Router } from '@angular/router';
+import { UserUpdate } from '../../models/interfaces/user/UserUpdate';
 
 @Injectable({
   providedIn: 'root'
@@ -61,6 +62,14 @@ export class UserService {
       `${this.API_URL}/usuarios/deletar/${userId}`,
       this.httpOptions
     )
+  }
+
+  editUser(editUserRequest: UserUpdate): Observable<void> {
+    return this.http.put<void>(
+      `${this.API_URL}/usuarios/atualizar`,
+      editUserRequest,
+      this.httpOptions
+    );
   }
 
   decodeToken(): any {
