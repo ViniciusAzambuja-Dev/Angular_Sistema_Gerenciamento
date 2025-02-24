@@ -119,13 +119,27 @@ export class ActivityFormComponent implements OnInit, OnDestroy {
       && this.addActivityForm?.valid
       && this.addActivityForm.value.nome?.trim() !== ""
     ) {
+      if(!this.isDateValid(
+        this.addActivityForm.value.data_inicio as string,
+        this.addActivityForm.value.data_fim as string
+      )) {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Erro',
+          detail: `Data inicial deve ser menor que a data final`,
+          life: 2500,
+        });
+        return;
+      }
       const integrantesIds = this.addActivityForm.value.integrantesIds?.map(user => user.id);
+      const data_inicio = this.formatDate(this.addActivityForm.value.data_inicio as string);
+      const data_fim = this.formatDate(this.addActivityForm.value.data_fim as string);
 
       const activityRequest: ActivityRequest = {
         nome: this.addActivityForm.value.nome as string,
         descricao: this.addActivityForm.value.descricao as string || '',
-        data_inicio: this.addActivityForm.value.data_inicio as string,
-        data_fim: this.addActivityForm.value.data_fim as string,
+        data_inicio: data_inicio,
+        data_fim: data_fim,
         status: this.addActivityForm.value.status as string,
         projetoId: Number(this.addActivityForm.value.projetoId),
         usuarioId: Number(this.addActivityForm.value.usuarioId),
@@ -171,11 +185,28 @@ export class ActivityFormComponent implements OnInit, OnDestroy {
       && this.activityAction.event.id
       && this.editActivityForm.value.nome?.trim() !== ""
     ) {
+
+      if(!this.isDateValid(
+        this.editActivityForm.value.data_inicio as string,
+        this.editActivityForm.value.data_fim as string
+      )) {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Erro',
+          detail: `Data inicial deve ser menor que a data final`,
+          life: 2500,
+        });
+        return;
+      }
+
+      const data_inicio = this.formatDate(this.editActivityForm.value.data_inicio as string);
+      const data_fim = this.formatDate(this.editActivityForm.value.data_fim as string);
+
       const requestEditActivity : ActivityUpdate = {
         nome: this.editActivityForm.value.nome as string,
         descricao: this.editActivityForm.value.descricao as string || '',
-        data_inicio: this.editActivityForm.value.data_inicio as string,
-        data_fim: this.editActivityForm.value.data_fim as string,
+        data_inicio: data_inicio,
+        data_fim: data_fim,
         status: this.editActivityForm.value.status as string,
         atividadeId: Number(this.editActivityForm.value.atividadeId),
         projetoId: Number(this.editActivityForm.value.projetoId),
@@ -233,14 +264,34 @@ export class ActivityFormComponent implements OnInit, OnDestroy {
         this.editActivityForm.patchValue({
           nome: this.activitySelectedDatas?.nome,
           descricao: this.activitySelectedDatas?.descricao,
-          data_inicio: this.activitySelectedDatas?.data_inicio,
-          data_fim: this.activitySelectedDatas?.data_fim,
           status: this.activitySelectedDatas?.status,
           atividadeId: this.activitySelectedDatas?.id,
           usuarioId: userSelected?.id || null
         });
       }
     }
+  }
+
+  formatDate(dateString: string): string {
+    const date = new Date(dateString);
+
+    const day = date.getDate().toString().padStart(2, '0');
+
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+
+    const year = date.getFullYear().toString();
+
+    return `${day}/${month}/${year}`;
+  }
+
+  isDateValid(startDate: string, endDate: string) : boolean {
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+
+    if(start > end) {
+      return false;
+    }
+    return true;
   }
 
   ngOnDestroy(): void {

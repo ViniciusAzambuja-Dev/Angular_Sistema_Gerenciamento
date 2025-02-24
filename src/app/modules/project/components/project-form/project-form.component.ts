@@ -108,13 +108,29 @@ export class ProjectFormComponent implements OnInit, OnDestroy{
       && this.addProjectForm?.valid
       && this.addProjectForm.value.nome?.trim() !== ""
     ) {
+
+      if(!this.isDateValid(
+        this.addProjectForm.value.data_inicio as string,
+        this.addProjectForm.value.data_fim as string
+      )) {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Erro',
+          detail: `Data inicial deve ser menor que a data final`,
+          life: 2500,
+        });
+        return;
+      }
+
       const integrantesIds = this.addProjectForm.value.integrantesIds?.map(user => user.id);
+      const data_inicio = this.formatDate(this.addProjectForm.value.data_inicio as string);
+      const data_fim = this.formatDate(this.addProjectForm.value.data_fim as string);
 
       const projectRequest: ProjectRequest = {
         nome: this.addProjectForm.value.nome as string,
         descricao: this.addProjectForm.value.descricao as string || '',
-        data_inicio: this.addProjectForm.value.data_inicio as string,
-        data_fim: this.addProjectForm.value.data_fim as string,
+        data_inicio: data_inicio,
+        data_fim: data_fim,
         status: this.addProjectForm.value.status as string,
         prioridade: this.addProjectForm.value.prioridade as string,
         usuarioId: Number(this.addProjectForm.value.usuarioId),
@@ -160,11 +176,27 @@ export class ProjectFormComponent implements OnInit, OnDestroy{
       && this.projectAction.event.id
       && this.editProjectForm.value.nome?.trim() !== ""
     ) {
+
+      if(!this.isDateValid(
+        this.editProjectForm.value.data_inicio as string,
+        this.editProjectForm.value.data_fim as string
+      )) {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Erro',
+          detail: `Data inicial deve ser menor que a data final`,
+          life: 2500,
+        });
+        return;
+      }
+      const data_inicio = this.formatDate(this.editProjectForm.value.data_inicio as string);
+      const data_fim = this.formatDate(this.editProjectForm.value.data_fim as string);
+
       const requestEditProject : ProjectUpdate = {
         nome: this.editProjectForm.value.nome as string,
         descricao: this.editProjectForm.value.descricao as string || '',
-        data_inicio: this.editProjectForm.value.data_inicio as string,
-        data_fim: this.editProjectForm.value.data_fim as string,
+        data_inicio: data_inicio,
+        data_fim: data_fim,
         status: this.editProjectForm.value.status as string,
         prioridade: this.editProjectForm.value.prioridade as string,
         projetoId: Number(this.editProjectForm.value.projetoId),
@@ -219,11 +251,9 @@ export class ProjectFormComponent implements OnInit, OnDestroy{
           (element) => element.nome === this.projectSelectedDatas.nomeUsuario
         );
 
-        this.editProjectForm.setValue({
+        this.editProjectForm.patchValue({
           nome: this.projectSelectedDatas?.nome,
           descricao: this.projectSelectedDatas?.descricao,
-          data_inicio: this.projectSelectedDatas?.data_inicio,
-          data_fim: this.projectSelectedDatas?.data_fim,
           status: this.projectSelectedDatas?.status,
           prioridade: this.projectSelectedDatas?.prioridade,
           projetoId: this.projectSelectedDatas?.id,
@@ -231,6 +261,28 @@ export class ProjectFormComponent implements OnInit, OnDestroy{
         });
       }
     }
+  }
+
+  formatDate(dateString: string): string {
+    const date = new Date(dateString);
+
+    const day = date.getDate().toString().padStart(2, '0');
+
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+
+    const year = date.getFullYear().toString();
+
+    return `${day}/${month}/${year}`;
+  }
+
+  isDateValid(startDate: string, endDate: string) : boolean {
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+
+    if(start > end) {
+      return false;
+    }
+    return true;
   }
 
   ngOnDestroy(): void {

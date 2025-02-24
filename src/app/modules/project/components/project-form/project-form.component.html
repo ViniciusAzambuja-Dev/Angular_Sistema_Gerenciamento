@@ -28,10 +28,22 @@
       </div>
       <div class="flex">
         <div class="input-container custom-input">
-          <p-inputMask mask="99/99/9999" placeholder="DD/MM/YYYY" formControlName="data_inicio"></p-inputMask>
+          <p-calendar
+            [showIcon]="true"
+            [showOnFocus]="false"
+            inputId="buttondisplay"
+            dateFormat="dd/mm/yy"
+            placeholder="DD/MM/YYYY"
+            formControlName="data_inicio" />
         </div>
         <div class="input-container custom-input">
-          <p-inputMask mask="99/99/9999" placeholder="DD/MM/YYYY" formControlName="data_fim"></p-inputMask>
+          <p-calendar
+            [showIcon]="true"
+            [showOnFocus]="false"
+            inputId="buttondisplay"
+            dateFormat="dd/mm/yy"
+            placeholder="DD/MM/YYYY"
+            formControlName="data_fim" />
         </div>
         <div class="input-container custom-input">
           <p-dropdown
@@ -90,10 +102,22 @@
     </div>
     <div class="flex">
       <div class="input-container custom-input">
-        <p-inputMask mask="99/99/9999" placeholder="DD/MM/YYYY" formControlName="data_inicio"></p-inputMask>
+        <p-calendar
+          [showIcon]="true"
+          [showOnFocus]="false"
+          inputId="buttondisplay"
+          dateFormat="dd/mm/yy"
+          placeholder="DD/MM/YYYY"
+          formControlName="data_inicio" />
       </div>
       <div class="input-container custom-input">
-        <p-inputMask mask="99/99/9999" placeholder="DD/MM/YYYY" formControlName="data_fim"></p-inputMask>
+        <p-calendar
+          [showIcon]="true"
+          [showOnFocus]="false"
+          inputId="buttondisplay"
+          dateFormat="dd/mm/yy"
+          placeholder="DD/MM/YYYY"
+          formControlName="data_fim" />
       </div>
       <div class="input-container custom-input">
         <p-dropdown
