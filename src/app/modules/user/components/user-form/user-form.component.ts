@@ -63,7 +63,12 @@ export class UserFormComponent implements OnInit, OnDestroy{
   }
 
   submitSignUpForm(): void {
-    if(this.signupForm.value && this.signupForm.valid) {
+    if(this.signupForm.value
+      && this.signupForm.valid
+      && this.signupForm.value.nome?.trim() !== ""
+      && this.signupForm.value.email?.trim() !== ""
+      && this.signupForm.value.senha?.trim() !== ""
+    ) {
       this.userService.signupUser(this.signupForm.value as SignUpRequest)
       .pipe (
         takeUntil(this.destroy$)

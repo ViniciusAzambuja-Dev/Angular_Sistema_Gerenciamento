@@ -104,7 +104,10 @@ export class ProjectFormComponent implements OnInit, OnDestroy{
   }
 
   submitProjectForm(): void {
-    if(this.addProjectForm?.value && this.addProjectForm?.valid) {
+    if(this.addProjectForm?.value
+      && this.addProjectForm?.valid
+      && this.addProjectForm.value.nome?.trim() !== ""
+    ) {
       const integrantesIds = this.addProjectForm.value.integrantesIds?.map(user => user.id);
 
       const projectRequest: ProjectRequest = {
@@ -152,8 +155,10 @@ export class ProjectFormComponent implements OnInit, OnDestroy{
   }
 
   submitEditProject(): void {
-    if(this.editProjectForm.value && this.editProjectForm.valid &&
-      this.projectAction.event.id
+    if(this.editProjectForm.value
+      && this.editProjectForm.valid
+      && this.projectAction.event.id
+      && this.editProjectForm.value.nome?.trim() !== ""
     ) {
       const requestEditProject : ProjectUpdate = {
         nome: this.editProjectForm.value.nome as string,

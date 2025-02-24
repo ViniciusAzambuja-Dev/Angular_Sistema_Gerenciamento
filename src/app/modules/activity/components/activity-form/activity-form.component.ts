@@ -115,7 +115,10 @@ export class ActivityFormComponent implements OnInit, OnDestroy {
   }
 
   submitActivityForm() {
-    if(this.addActivityForm?.value && this.addActivityForm?.valid) {
+    if(this.addActivityForm?.value
+      && this.addActivityForm?.valid
+      && this.addActivityForm.value.nome?.trim() !== ""
+    ) {
       const integrantesIds = this.addActivityForm.value.integrantesIds?.map(user => user.id);
 
       const activityRequest: ActivityRequest = {
@@ -163,8 +166,10 @@ export class ActivityFormComponent implements OnInit, OnDestroy {
   }
 
   submitEditActivity(): void {
-    if(this.editActivityForm.value && this.editActivityForm.valid &&
-      this.activityAction.event.id
+    if(this.editActivityForm.value
+      && this.editActivityForm.valid
+      && this.activityAction.event.id
+      && this.editActivityForm.value.nome?.trim() !== ""
     ) {
       const requestEditActivity : ActivityUpdate = {
         nome: this.editActivityForm.value.nome as string,

@@ -30,7 +30,11 @@ export class HomeComponent implements OnDestroy{
   }
 
   submitLoginForm(): void {
-    if(this.loginForm.value && this.loginForm.valid) {
+    if(this.loginForm.value
+      && this.loginForm.valid
+      && this.loginForm.value.email?.trim() !== ""
+      && this.loginForm.value.senha?.trim() !== ""
+    ) {
       this.userService.authUser(this.loginForm.value as LoginRequest)
         .pipe (
           takeUntil(this.destroy$)
@@ -63,8 +67,8 @@ export class HomeComponent implements OnDestroy{
     else {
       this.messageService.add({
         severity: 'error',
-        summary: 'Erro:',
-        detail: `Os campos não podem estar vazios`,
+        summary: 'Erro - Verifique se:',
+        detail: `Os campos estão preenchidos corretamente `,
         life: 2500,
       });
     }
