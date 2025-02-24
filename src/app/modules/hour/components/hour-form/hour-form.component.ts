@@ -85,7 +85,9 @@ export class HourFormComponent implements OnInit, OnDestroy {
   }
 
   submitHourForm(): void {
-    if(this.addHourForm?.value && this.addHourForm?.valid) {
+    if(this.addHourForm?.value && this.addHourForm?.valid
+      && this.addHourForm.value.descricao?.trim() !== ""
+    )  {
       const data_inicio = this.formatHour(this.addHourForm.value.data_inicio as string);
       const data_fim = this.formatHour(this.addHourForm.value.data_fim as string);
 
