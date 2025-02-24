@@ -1,5 +1,54 @@
-<div class="form-container">
+<div class="form-container" *ngIf="hourAction?.event?.action === addHourAction">
   <form [formGroup]="addHourForm" (ngSubmit)="submitHourForm()">
+    <div class="flex">
+      <div class="input-container custom-input">
+        <p-calendar
+          inputId="calendar-timeonly"
+          [timeOnly]="true"
+          [readonlyInput]="true"
+          placeholder="HH:mm"
+          formControlName="data_inicio"/>
+      </div>
+      <div class="input-container custom-input">
+        <p-calendar
+          inputId="calendar-timeonly"
+          [timeOnly]="true"
+          [readonlyInput]="true"
+          placeholder="HH:mm"
+          formControlName="data_fim"/>
+      </div>
+      <div class="input-container custom-input">
+        <p-dropdown
+          styleClass="flex"
+          [options]="dropdownDatas"
+          optionLabel="nome"
+          optionValue="id"
+          [filter]="true"
+          filterBy="nome"
+          placeholder="Atividade"
+          formControlName="atividadeId"/>
+      </div>
+    </div>
+    <div>
+      <textarea
+        rows="5"
+        cols="40"
+        pInputTextarea
+        pTooltip="(max: 200 caracteres)"
+        [autoResize]="true"
+        placeholder="Descrição"
+        formControlName="descricao">
+      </textarea>
+    </div>
+
+    <div class="button-container">
+      <button type="submit">Salvar</button>
+    </div>
+  </form>
+</div>
+
+<div class="form-container" *ngIf="hourAction?.event?.action === editHourAction">
+  <form [formGroup]="editHourForm" (ngSubmit)="submitEditHour()">
     <div class="flex">
       <div class="input-container custom-input">
         <p-calendar

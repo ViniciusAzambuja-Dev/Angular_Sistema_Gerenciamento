@@ -5,6 +5,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { Observable } from 'rxjs';
 import { HourResponse } from '../../models/interfaces/hour/HourResponse';
 import { HourRequest } from '../../models/interfaces/hour/HourRequest';
+import { HourUpdate } from '../../models/interfaces/hour/HourUpdate';
 
 @Injectable({
   providedIn: 'root'
@@ -42,5 +43,13 @@ export class HourService {
         `${this.API_URL}/horas/deletar/${hourId}`,
         this.httpOptions
       )
+    }
+
+    editHour(editHourRequest: HourUpdate): Observable<void> {
+      return this.http.put<void>(
+        `${this.API_URL}/horas/atualizar`,
+        editHourRequest,
+        this.httpOptions
+      );
     }
 }

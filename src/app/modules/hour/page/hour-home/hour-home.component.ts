@@ -62,7 +62,7 @@ export class HourHomeComponent implements OnInit, OnDestroy{
         baseZIndex: 10000,
         maximizable: true,
         data: {
-          event: event.action,
+          event: event,
           hoursDatas: this.hoursDatas,
         },
       });
