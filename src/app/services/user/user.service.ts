@@ -56,6 +56,13 @@ export class UserService {
     )
   }
 
+  deleteUser(userId: number): Observable<void> {
+    return this.http.delete<void>(
+      `${this.API_URL}/usuarios/deletar/${userId}`,
+      this.httpOptions
+    )
+  }
+
   decodeToken(): any {
     try {
       const token = this.cookie.get('USUARIO_INFO');

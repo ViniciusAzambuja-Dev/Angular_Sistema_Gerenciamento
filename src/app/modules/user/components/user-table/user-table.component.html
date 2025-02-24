@@ -131,6 +131,7 @@
               class="p-button-rounded p-button-danger"
               pTooltip="Remover usuário"
               tooltipPosition="top"
+              (click)="handleDeleteUser(user?.id, user?.nome)"
             ></button>
           </div>
         </td>

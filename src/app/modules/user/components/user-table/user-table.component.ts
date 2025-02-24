@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { UserResponse } from '../../../../models/interfaces/user/UserResponse';
 import { EventAction } from '../../../../models/interfaces/events/EventAction';
 import { UserEvent } from '../../../../models/enums/user/UserEvent';
+import { DeleteAction } from '../../../../models/interfaces/events/DeleteAction';
 
 @Component({
   selector: 'app-user-table',
@@ -11,6 +12,7 @@ import { UserEvent } from '../../../../models/enums/user/UserEvent';
 export class UserTableComponent {
   @Input() users: Array<UserResponse> = [];
   @Output() userEvent = new EventEmitter<EventAction>();
+  @Output() deleteUserEvent = new EventEmitter<DeleteAction>
 
   public userSelected!: UserResponse;
 
@@ -22,5 +24,12 @@ export class UserTableComponent {
      const userEventData = id ? {action, id} : {action};
      this.userEvent.emit(userEventData);
    }
+  }
+
+  handleDeleteUser(id: number, name: string) {
+    if(id && name !== '') {
+      const userEventData = {id, name};
+      this.deleteUserEvent.emit(userEventData);
+    }
   }
 }
