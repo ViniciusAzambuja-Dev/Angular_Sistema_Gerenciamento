@@ -1,8 +1,6 @@
 <div class="home-container">
 
-  <!--FORM LOGIN-->
-
-  <div class="form-container" *ngIf="isLogin">
+  <div class="form-container">
     <span class="title-container"><h1>Faça seu Login</h1></span>
 
     <form [formGroup]="loginForm" (ngSubmit)="submitLoginForm()">
@@ -22,48 +20,6 @@
         <button type="submit" >Entrar</button>
       </div>
     </form>
-    <span class="change-form">Deseja criar uma nova conta? <span (click)="isLogin = !isLogin">Crie Agora</span></span>
-  </div>
-
-  <!--FORM CADASTRO-->
-
-  <div class="form-container" *ngIf="!isLogin">
-    <span class="title-container"><h1>Cadastrar Usuário</h1></span>
-
-    <form [formGroup]="signupForm" (ngSubmit)="submitSignUpForm()">
-      <div class="input-container">
-        <span class="input-title">Nome</span>
-        <i class='bx bxs-user' ></i>
-        <input type="text" pInputText placeholder="Digite o nome do usuário" pTooltip="Nome - max(50) *"  tooltipStyleClass="ml-2 custom-tooltip" formControlName="nome">
-      </div>
-
-      <div class="input-container">
-        <span class="input-title">E-mail</span>
-        <i class='bx bx-envelope'></i>
-        <input type="text" pInputText placeholder="Digite o email do usuário" pTooltip="Ex: usuario@gmail.com *"  tooltipStyleClass="ml-2 custom-tooltip" formControlName="email">
-      </div>
-
-      <div class="input-container">
-        <span class="input-title">Senha</span>
-        <i class='bx bxs-lock-alt'></i>
-        <input type="password" pInputText pTooltip="Senha - max(15) *" tooltipStyleClass="ml-2 custom-tooltip"  placeholder="Digite a senha do usuário" formControlName="senha">
-      </div>
-
-      <div class="input-container dropdown">
-        <p-dropdown
-          styleClass="flex"
-          [options]="profiles"
-          optionLabel="name"
-          optionValue="name"
-          placeholder="Perfil"
-          formControlName="perfil"/>
-      </div>
-
-      <div class="button-container">
-        <button type="submit" >Cadastrar</button>
-      </div>
-    </form>
-    <span class="change-form">Deseja realizar Login? <span (click)="isLogin = !isLogin">Login</span></span>
   </div>
 
   <div class="image-container">
