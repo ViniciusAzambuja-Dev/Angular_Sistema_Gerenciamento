@@ -1,6 +1,6 @@
 <app-sidebar-navigation></app-sidebar-navigation>
-<app-user-form></app-user-form>
 
 <app-user-table
   [users]="usersDatas"
+  (userEvent)="handleUserAction($event)"
 ></app-user-table>
