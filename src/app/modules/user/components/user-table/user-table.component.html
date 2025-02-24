@@ -1,0 +1,140 @@
+<div class="card-container">
+  <p-card
+    header="Usuários"
+    >
+    <p-table
+    [value]="users"
+    [rows]="10"
+    [paginator]="true"
+    [tableStyle]="{'min-width': '75rem'}"
+    [(selection)]="userSelected"
+    [rowHover]="true"
+    dataKey="id"
+    showCurrentPageReport="true"
+    currentPageReportTemplate="Mostrando {first} de {last} de {totalRecords} usuários"
+    >
+
+    <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="nome">
+          <div class="flex justify-content-between align-items-center">
+            <div class="flex justify-content-between align-items-center">
+              Nome
+            </div>
+            <div class="flex justify-content-between align-items-center">
+              <p-sortIcon field="nome"></p-sortIcon>
+              <p-columnFilter
+                type="text"
+                field="nome"
+                display="menu"
+                matchMode="contains"
+                [showMatchModes]="false"
+                [showOperator]="false"
+                [showAddButton]="false"
+              ></p-columnFilter>
+            </div>
+          </div>
+        </th>
+        <th pSortableColumn="email">
+          <div class="flex justify-content-between align-items-center">
+            <div class="flex justify-content-between align-items-center">
+              Email
+            </div>
+            <div class="flex justify-content-between align-items-center">
+              <p-sortIcon field="email"></p-sortIcon>
+              <p-columnFilter
+                type="text"
+                field="email"
+                display="menu"
+                matchMode="contains"
+                [showMatchModes]="false"
+                [showOperator]="false"
+                [showAddButton]="false"
+              ></p-columnFilter>
+            </div>
+          </div>
+        </th>
+        <th pSortableColumn="perfil">
+          <div class="flex justify-content-between align-items-center">
+            <div class="flex justify-content-between align-items-center">
+              Perfil
+            </div>
+            <div class="flex justify-content-between align-items-center">
+              <p-sortIcon field="perfil"></p-sortIcon>
+              <p-columnFilter
+                type="text"
+                field="perfil"
+                display="menu"
+                matchMode="contains"
+                [showMatchModes]="false"
+                [showOperator]="false"
+                [showAddButton]="false"
+              ></p-columnFilter>
+            </div>
+          </div>
+        </th>
+        <th pSortableColumn="ultimo_login">
+          <div class="flex justify-content-between align-items-center">
+            <div class="flex justify-content-between align-items-center">
+              Último Login
+            </div>
+            <div class="flex justify-content-between align-items-center">
+              <p-sortIcon field="ultimo_login"></p-sortIcon>
+              <p-columnFilter
+                type="text"
+                field="ultimo_login"
+                display="menu"
+                matchMode="contains"
+                [showMatchModes]="false"
+                [showOperator]="false"
+                [showAddButton]="false"
+              ></p-columnFilter>
+            </div>
+          </div>
+        </th>
+        <th>
+          <div>
+            <p-button
+              styleClass="p-button-info"
+              icon="bx bx-plus"
+              label="Adicionar"
+              pTooltip="Adicionar usuário"
+              tooltipPosition="top"
+            ></p-button>
+          </div>
+        </th>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-user>
+      <tr>
+        <td> {{ user?.nome }} </td>
+        <td> {{ user?.email }} </td>
+        <td> {{ user?.perfil }} </td>
+        <td> {{ user?.ultimo_login }} </td>
+        <td>
+          <div class="flex justify-content-center gap-3 align-content-center align-items-center">
+            <button
+              pButton
+              pRipple
+              icon="bx bx-pencil"
+              class="p-button-rounded p-button-warning"
+              pTooltip="Editar usuário"
+              tooltipPosition="top"
+
+              ></button>
+              <button
+              pButton
+              pRipple
+              icon="bx bxs-trash"
+              class="p-button-rounded p-button-danger"
+              pTooltip="Remover usuário"
+              tooltipPosition="top"
+            ></button>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+    </p-table>
+  </p-card>
+</div>

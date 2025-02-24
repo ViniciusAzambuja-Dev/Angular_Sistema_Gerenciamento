@@ -5,12 +5,14 @@ import { USERS_ROUTES } from './user.routing';
 import { SharedModule } from '../shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { UserHomeComponent } from './page/user-home/user-home.component';
+import { UserTableComponent } from './components/user-table/user-table.component';
 
 
 
 @NgModule({
   declarations: [
-    UserHomeComponent
+    UserHomeComponent,
+    UserTableComponent
   ],
   imports: [
     CommonModule,
