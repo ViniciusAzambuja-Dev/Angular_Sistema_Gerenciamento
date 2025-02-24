@@ -42,7 +42,7 @@ export class HourFormComponent implements OnInit, OnDestroy {
     descricao: ['', [Validators.required, Validators.maxLength(200)]],
     data_inicio: ['', Validators.required],
     data_fim: ['', Validators.required],
-    atividadeId: ['', Validators.required]
+    atividadeId: [0, Validators.required]
   })
 
   public editHourForm = this.formBuilder.group({

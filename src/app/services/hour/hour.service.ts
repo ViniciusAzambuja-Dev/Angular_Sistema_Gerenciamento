@@ -23,7 +23,7 @@ export class HourService {
 
     constructor(private http: HttpClient, private cookie: CookieService) { }
 
-    getAllProjects(): Observable<Array<HourResponse>> {
+    getAllHours(): Observable<Array<HourResponse>> {
       return this.http.get<Array<HourResponse>>(
         `${this.API_URL}/horas/listar`,
         this.httpOptions

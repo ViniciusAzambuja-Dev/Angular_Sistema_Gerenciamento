@@ -33,7 +33,7 @@ export class HourHomeComponent implements OnInit, OnDestroy{
 
   getHourDatas(): void {
     this.hourService
-    .getAllProjects()
+    .getAllHours()
     .pipe(takeUntil(this.destroy$))
     .subscribe({
       next: (response) => {
