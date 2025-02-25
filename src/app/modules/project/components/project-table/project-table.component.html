@@ -83,6 +83,12 @@
           </div>
         </th>
 
+        <th pSortableColumn="nomeUsuario" class="header-column">
+          <div>
+            Responsável
+          </div>
+        </th>
+
         <th pSortableColumn="status" class="header-column">
           <div>
             Status
@@ -92,12 +98,6 @@
         <th pSortableColumn="prioridade" class="header-column">
           <div>
             Prioridade
-          </div>
-        </th>
-
-        <th pSortableColumn="nomeUsuario" class="header-column">
-          <div>
-            Responsável
           </div>
         </th>
 
@@ -126,9 +126,9 @@
         <td [pTooltip]="project?.descricao" tooltipPosition="left"> {{ project?.descricao }} </td>
         <td> {{ project?.data_inicio }} </td>
         <td> {{ project?.data_fim }} </td>
+        <td> {{ project?.nomeUsuario }} </td>
         <td> <p-tag [value]="project.status" [severity]="getSeverityStatus(project.status)"></p-tag></td>
         <td> <p-tag [value]="project.prioridade" [severity]="getSeverityPriority(project.prioridade)"></p-tag></td>
-        <td> {{ project?.nomeUsuario }} </td>
         <td>
           <div class="flex justify-content-center gap-3 align-content-center align-items-center">
             <button
@@ -163,7 +163,6 @@
                 [value]="project.atividades"
                 dataKey="id"
                 [scrollable]="true"
-                scrollHeight="290px"
                 [rowHover]="true"
                 class="table-expanded"
                 [tableStyle]="{'min-width': '75rem', 'margin-left': '60px', 'border-left': '3px solid var(--home-image-background)'}"
@@ -190,14 +189,16 @@
                         Até
                       </div>
                     </th>
-                    <th pSortableColumn="project.atividades.status">
-                      <div>
-                        Status
-                      </div>
-                    </th>
+
                     <th pSortableColumn="project.atividades.nomeUsuario">
                       <div>
                         Responsável
+                      </div>
+                    </th>
+
+                    <th pSortableColumn="project.atividades.status">
+                      <div>
+                        Status
                       </div>
                     </th>
                   </tr>
@@ -208,8 +209,8 @@
                         <td [pTooltip]="activity?.descricao" tooltipPosition="left">{{ activity?.descricao }}</td>
                         <td>{{ activity?.data_inicio }}</td>
                         <td>{{ activity?.data_fim }}</td>
-                        <td> <p-tag [value]="activity?.status" [severity]="getSeverityStatus(activity?.status)"></p-tag></td>
                         <td>{{ activity?.nomeUsuario }}</td>
+                        <td> <p-tag [value]="activity?.status" [severity]="getSeverityStatus(activity?.status)"></p-tag></td>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="emptymessage">

@@ -17,7 +17,7 @@
     >
     <p-table
     [value]="activities"
-    [rows]="10"
+    [rows]="5"
     [paginator]="true"
     [tableStyle]="{'min-width': '75rem'}"
     [(selection)]="activitySelected"
@@ -83,15 +83,15 @@
           </div>
         </th>
 
-        <th pSortableColumn="status" class="header-column">
-          <div>
-            Status
-          </div>
-        </th>
-
         <th pSortableColumn="nomeUsuario" class="header-column">
           <div>
             Responsável
+          </div>
+        </th>
+
+        <th pSortableColumn="status" class="header-column">
+          <div>
+            Status
           </div>
         </th>
         <th class="header-column">
@@ -119,8 +119,8 @@
         <td [pTooltip]="activity?.descricao" tooltipPosition="left"> {{ activity?.descricao }} </td>
         <td> {{ activity?.data_inicio }} </td>
         <td> {{ activity?.data_fim }} </td>
-        <td> <p-tag [value]="activity.status" [severity]="getSeverityStatus(activity.status)"></p-tag></td>
         <td> {{ activity?.nomeUsuario }} </td>
+        <td> <p-tag [value]="activity.status" [severity]="getSeverityStatus(activity.status)"></p-tag></td>
         <td>
           <div class="flex justify-content-center gap-3 align-content-center align-items-center">
             <button
@@ -155,7 +155,6 @@
             [value]="activity.horasLancadas"
             dataKey="id"
             [scrollable]="true"
-            scrollHeight="290px"
             [rowHover]="true"
             [tableStyle]="{'min-width': '75rem', 'margin-left': '60px', 'border-left': '3px solid var(--home-image-background)'}"
             >
