@@ -1,30 +1,69 @@
+td, .title-container  {
+  border-bottom: 1px solid var(--border-bottom-color);
+}
+.title-container {
+  margin: 0 50px;
+}
+.title-container h1 {
+  font-size: 25px;
+  color: var(--toolbar-button-color);
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
 .card-container {
-  padding: 100px 50px;
+  padding: 20px 50px;
+}
+
+.table-header {
+  background-color: var(--home-image-background);
+}
+.table-expanded-header {
+  background-color: var(--background-color);
+}
+.header-column {
+  background-color: transparent;
+  color: var(--background-color);
 }
 
 :host ::ng-deep {
   .p-card-body,
-  .p-card-title {
-    padding: 20px;
+  .p-card-content {
+    padding: 0;
   }
 
-  .p-sortable-column, td {
-    padding: 16px;
+  .pi-filter-icon, .p-sortable-column-icon {
+    color: var(--background-color);
+  }
+  .p-column-filter-menu-button.p-column-filter-menu-button-open,
+  .p-column-filter-menu-button.p-column-filter-menu-button-open:hover {
+    background: none;
+    color: none;
+  }
+  .p-column-filter-menu-button:hover {
+    color: none;
+    border-color: none;
+    background:var(--filter-icon-hover);
   }
 
-  .p-paginator {
-    padding: 8px 16px;
-  }
+  .button-add.p-button {
+    margin-right: 20px;
+    font-size: 33px;
+    padding: 0;
 
-  .p-icon-wrapper {
-    margin-left: 8px;
-  }
-
-  .p-button-icon{
-    font-size: 20px;
+    &:hover{
+      background: none;
+    }
   }
 }
 
-#table-expanded {
+#table-expanded-column {
   padding: 0;
+
+  &:hover{
+    background:none;
+  }
+}
+.table-expanded-row:hover {
+  background: none;
 }

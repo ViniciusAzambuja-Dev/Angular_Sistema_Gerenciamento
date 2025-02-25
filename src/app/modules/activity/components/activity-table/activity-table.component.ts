@@ -36,4 +36,14 @@ export class ActivityTableComponent {
       this.deleteActivityEvent.emit(activityEventData);
     }
   }
+
+  getSeverityStatus(status: string): "success"  | "info" | "warning" | "danger" {
+    const statusMap: { [key: string]: "success" | "info" | "warning" | "danger" } = {
+      'ABERTA': 'info',
+      'PAUSADA': 'danger',
+      'EM_ANDAMENTO': 'warning',
+      'CONCLUIDA': 'success',
+    };
+    return statusMap[status] || "info";
+  }
 }
