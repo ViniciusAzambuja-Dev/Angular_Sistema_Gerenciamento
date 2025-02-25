@@ -14,6 +14,7 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { CalendarModule } from 'primeng/calendar';
+import { TagModule } from 'primeng/tag';
 
 @NgModule({
   declarations: [],
@@ -32,6 +33,7 @@ import { CalendarModule } from 'primeng/calendar';
     AutoCompleteModule,
     ConfirmDialogModule,
     CalendarModule,
+    TagModule
   ],
   exports: [
     CommonModule,
@@ -49,6 +51,7 @@ import { CalendarModule } from 'primeng/calendar';
     DynamicDialogModule,
     ConfirmDialogModule,
     CalendarModule,
+    TagModule
   ],
   providers: []
 })

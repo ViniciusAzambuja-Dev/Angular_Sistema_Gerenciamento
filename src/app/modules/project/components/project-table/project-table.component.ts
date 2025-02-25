@@ -36,4 +36,24 @@ export class ProjectTableComponent {
   getActivity(projectId: number) {
     this.projectExpanded.emit(projectId)
   }
+
+  getSeverityStatus(status: string): "success" | "info" | "warning" | "danger" {
+    const statusMap: { [key: string]: "success" | "info" | "warning" | "danger" } = {
+      'PLANEJADO': 'info',
+      'EM_ANDAMENTO': 'warning',
+      'CONCLUIDO': 'success',
+      'CANCELADO': 'danger'
+    };
+    return statusMap[status] || "info";
+  }
+
+  getSeverityPriority(priority: string): "info" | "warning" | "danger" {
+    const priorityMap: { [key: string]: "info" | "warning" | "danger" } = {
+      'ALTA': 'danger',
+      'MEDIA': 'warning',
+      'BAIXA': 'info',
+    };
+    return priorityMap[priority] || "info";
+  }
+
 }
