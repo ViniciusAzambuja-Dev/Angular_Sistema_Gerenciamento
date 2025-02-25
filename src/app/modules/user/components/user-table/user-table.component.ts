@@ -32,4 +32,12 @@ export class UserTableComponent {
       this.deleteUserEvent.emit(userEventData);
     }
   }
+
+  getSeverityProfile(profile: string): "info" | "contrast"{
+    const profileMap: { [key: string]: "info" | "contrast"} = {
+      'ADMIN': 'contrast',
+      'USUARIO': 'info',
+    };
+    return profileMap[profile] || "info";
+  }
 }

@@ -1,6 +1,19 @@
+<div class="flex justify-content-between align-items-center title-container">
+  <h1>Usuários ativos</h1>
+
+  <p-button
+    styleClass="button-add"
+    [text]="true"
+    icon="bx bx-plus"
+    pTooltip="Adicionar usuário"
+    tooltipPosition="top"
+    (onClick)="handleUserEvent(addUserEvent)"
+  ></p-button>
+</div>
+
 <div class="card-container">
   <p-card
-    header="Usuários"
+  styleClass="shadow-3"
     >
     <p-table
     [value]="users"
@@ -15,13 +28,13 @@
     >
 
     <ng-template pTemplate="header">
-      <tr>
-        <th pSortableColumn="nome">
+      <tr class="table-header">
+        <th pSortableColumn="nome" class="header-column name">
           <div class="flex justify-content-between align-items-center">
             <div class="flex justify-content-between align-items-center">
               Nome
             </div>
-            <div class="flex justify-content-between align-items-center">
+            <div class="flex justify-content-between align-items-center gap-1">
               <p-sortIcon field="nome"></p-sortIcon>
               <p-columnFilter
                 type="text"
@@ -35,31 +48,22 @@
             </div>
           </div>
         </th>
-        <th pSortableColumn="email">
-          <div class="flex justify-content-between align-items-center">
-            <div class="flex justify-content-between align-items-center">
-              Email
-            </div>
-            <div class="flex justify-content-between align-items-center">
-              <p-sortIcon field="email"></p-sortIcon>
-              <p-columnFilter
-                type="text"
-                field="email"
-                display="menu"
-                matchMode="contains"
-                [showMatchModes]="false"
-                [showOperator]="false"
-                [showAddButton]="false"
-              ></p-columnFilter>
-            </div>
+        <th pSortableColumn="email" class="header-column">
+          <div>
+            Email
           </div>
         </th>
-        <th pSortableColumn="perfil">
+        <th pSortableColumn="ultimo_login" class="header-column">
+          <div>
+            Último Login
+          </div>
+        </th>
+        <th pSortableColumn="perfil" class="header-column">
           <div class="flex justify-content-between align-items-center">
             <div class="flex justify-content-between align-items-center">
               Perfil
             </div>
-            <div class="flex justify-content-between align-items-center">
+            <div class="flex justify-content-between align-items-center gap-1">
               <p-sortIcon field="perfil"></p-sortIcon>
               <p-columnFilter
                 type="text"
@@ -73,35 +77,9 @@
             </div>
           </div>
         </th>
-        <th pSortableColumn="ultimo_login">
-          <div class="flex justify-content-between align-items-center">
-            <div class="flex justify-content-between align-items-center">
-              Último Login
-            </div>
-            <div class="flex justify-content-between align-items-center">
-              <p-sortIcon field="ultimo_login"></p-sortIcon>
-              <p-columnFilter
-                type="text"
-                field="ultimo_login"
-                display="menu"
-                matchMode="contains"
-                [showMatchModes]="false"
-                [showOperator]="false"
-                [showAddButton]="false"
-              ></p-columnFilter>
-            </div>
-          </div>
-        </th>
-        <th>
-          <div>
-            <p-button
-              styleClass="p-button-info"
-              icon="bx bx-plus"
-              label="Adicionar"
-              pTooltip="Adicionar usuário"
-              tooltipPosition="top"
-              (onClick)="handleUserEvent(addUserEvent)"
-            ></p-button>
+        <th class="header-column">
+          <div class="flex justify-content-center">
+            Ações
           </div>
         </th>
       </tr>
@@ -109,17 +87,18 @@
 
     <ng-template pTemplate="body" let-user>
       <tr>
-        <td> {{ user?.nome }} </td>
+        <td class="name"> {{ user?.nome }} </td>
         <td> {{ user?.email }} </td>
-        <td> {{ user?.perfil }} </td>
         <td> {{ user?.ultimo_login }} </td>
+        <td><p-tag icon="bx bxs-user" [value]="user.perfil" [severity]="getSeverityProfile(user.perfil)" /></td>
         <td>
           <div class="flex justify-content-center gap-3 align-content-center align-items-center">
             <button
               pButton
               pRipple
               icon="bx bx-pencil"
-              class="p-button-rounded p-button-warning"
+              [text]="true"
+              class="p-button-info"
               pTooltip="Editar usuário"
               tooltipPosition="top"
               (click)="handleUserEvent(editUserEvent, user?.id)"
@@ -128,7 +107,8 @@
               pButton
               pRipple
               icon="bx bxs-trash"
-              class="p-button-rounded p-button-danger"
+              [text]="true"
+              class="p-button-danger"
               pTooltip="Remover usuário"
               tooltipPosition="top"
               (click)="handleDeleteUser(user?.id, user?.nome)"
