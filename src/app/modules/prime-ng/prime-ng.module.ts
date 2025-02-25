@@ -6,7 +6,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ToastModule } from 'primeng/toast';
 import { DropdownModule } from 'primeng/dropdown';
 import { TooltipModule } from 'primeng/tooltip';
-import { SidebarModule } from 'primeng/sidebar';
+import { ToolbarModule } from 'primeng/toolbar';
 import { CardModule } from 'primeng/card';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { InputMaskModule } from 'primeng/inputmask';
@@ -24,7 +24,7 @@ import { CalendarModule } from 'primeng/calendar';
     ToastModule,
     DropdownModule,
     TooltipModule,
-    SidebarModule,
+    ToolbarModule,
     TableModule,
     CardModule,
     InputTextareaModule,
@@ -40,7 +40,7 @@ import { CalendarModule } from 'primeng/calendar';
     ToastModule,
     DropdownModule,
     TooltipModule,
-    SidebarModule,
+    ToolbarModule,
     TableModule,
     CardModule,
     InputTextareaModule,

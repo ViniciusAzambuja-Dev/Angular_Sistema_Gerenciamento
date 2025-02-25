@@ -11,14 +11,16 @@
   --shadow-first-color: rgba(0,0,0,0.2);
   --shadow-second-color: rgba(0,0,0,0.19);
   --home-tooltip-color: rgb(105, 139, 231);
-  --sidebar-logo-border: rgb(216, 216, 216);
-  --sidebar-second-background: rgb(245, 245, 245);
+  --toolbar-button-color: #64748b;
+  --toolbar-button-hover: #f1f5f9;
+  --active-route-background: #eff6ff;
+  --active-route-hover:  #dbeafe;
+  --logout-background: #fee2e2;
   --logout-color: red;
+  --logout-hover: #fecaca;
 }
 
 *{
-  padding: 0;
-  margin: 0;
   box-sizing: border-box;
   font-family: 'Poppins';
   border: none;

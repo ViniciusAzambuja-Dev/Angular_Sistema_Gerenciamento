@@ -1,15 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SidebarNavigationComponent } from './components/sidebar-navigation/sidebar-navigation.component';
 import { PrimeNgModule } from '../prime-ng/prime-ng.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { ToolbarNavigationComponent } from './components/toolbar-navigation/toolbar-navigation.component';
 
 
 
 @NgModule({
-  declarations: [SidebarNavigationComponent],
+  declarations: [
+    ToolbarNavigationComponent
+  ],
   imports: [
     CommonModule,
     PrimeNgModule,
@@ -18,7 +20,7 @@ import { RouterModule } from '@angular/router';
     FormsModule,
   ],
   exports: [
-    SidebarNavigationComponent,
+    ToolbarNavigationComponent,
     PrimeNgModule,
     ReactiveFormsModule,
     FormsModule,

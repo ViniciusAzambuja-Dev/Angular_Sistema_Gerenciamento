@@ -1,0 +1,39 @@
+<p-toolbar>
+  <div class="logo-container">
+    <a routerLink="/dashboard">
+      <img src="../../../../../assets/img/logo.png" alt="Logo">
+    </a>
+  </div>
+
+  <div class="buttons-container">
+    <p-button icon="bx bx-home" label="Dashboard" routerLink="/dashboard" routerLinkActive="active-route"
+      styleClass="button">
+    </p-button>
+
+    <p-button icon="bx bx-folder" label="Projetos" routerLink="/project" routerLinkActive="active-route"
+      styleClass="button">
+    </p-button>
+
+    <p-button icon="bx bx-task" label="Atividades" routerLink="/activity" routerLinkActive="active-route"
+    styleClass="button">
+    </p-button>
+
+    <p-button icon="bx bx-time-five" label="Lançamento de Horas" routerLink="/hour" routerLinkActive="active-route"
+    styleClass="button">
+    </p-button>
+
+    <p-button icon="bx bxs-user-detail" label="Usuários" routerLink="/users" routerLinkActive="active-route"
+      styleClass="button">
+    </p-button>
+
+
+    <p-button icon="bx bxs-report" label="Relatórios" routerLink="/report" routerLinkActive="active-route"
+      styleClass="button">
+    </p-button>
+  </div>
+
+  <div>
+    <p-button label="Sair" icon="bx bx-log-out" styleClass="log-out" (onClick)="handleLogOut()">
+    </p-button>
+  </div>
+</p-toolbar>

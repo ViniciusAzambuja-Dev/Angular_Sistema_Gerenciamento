@@ -3,13 +3,11 @@ import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 
 @Component({
-  selector: 'app-sidebar-navigation',
-  templateUrl: './sidebar-navigation.component.html',
-  styleUrl: './sidebar-navigation.component.scss'
+  selector: 'app-toolbar-navigation',
+  templateUrl: './toolbar-navigation.component.html',
+  styleUrl: './toolbar-navigation.component.scss'
 })
-export class SidebarNavigationComponent {
-  sidebarVisible: boolean = false;
-
+export class ToolbarNavigationComponent {
   constructor(private cookie: CookieService, private router: Router) {}
 
   handleLogOut(): void {
