@@ -2,7 +2,7 @@
     <form [formGroup]="addProjectForm" (ngSubmit)="submitProjectForm()">
       <div class="flex">
         <div class="input-container custom-input">
-          <input pInputText pTooltip="(max: 50 caracteres)" placeholder="Nome" formControlName="nome">
+          <input pInputText pTooltip="máx: 50 caracteres" tooltipPosition="bottom" placeholder="Nome" formControlName="nome">
         </div>
 
         <div class="input-container custom-input">
@@ -11,20 +11,9 @@
             [options]="usersDatas"
             optionLabel="nome"
             optionValue="id"
-            [filter]="true"
-            filterBy="nome"
             placeholder="Responsável"
             formControlName="usuarioId"/>
         </div>
-      </div>
-      <div class="input-container">
-        <p-autoComplete
-          [suggestions]="filterDatas"
-          (completeMethod)="searchUsers($event)"
-          field="nome"
-          placeholder="Integrantes"
-          [multiple]="true"
-          formControlName="integrantesIds"/>
       </div>
       <div class="flex">
         <div class="input-container custom-input">
@@ -64,12 +53,22 @@
             formControlName="status"/>
         </div>
       </div>
+      <div class="members">
+        <p-autoComplete
+          [suggestions]="filterDatas"
+          (completeMethod)="searchUsers($event)"
+          field="nome"
+          placeholder="Integrantes"
+          [multiple]="true"
+          formControlName="integrantesIds"/>
+      </div>
       <div>
         <textarea
           rows="5"
           cols="40"
           pInputTextarea
-          pTooltip="(max: 200 caracteres)"
+          pTooltip="máx: 200 caracteres"
+          tooltipPosition="top"
           placeholder="Descrição"
           [autoResize]="true"
           formControlName="descricao">
@@ -95,8 +94,6 @@
           [options]="usersDatas"
           optionLabel="nome"
           optionValue="id"
-          [filter]="true"
-          filterBy="nome"
           formControlName="usuarioId"/>
       </div>
     </div>
@@ -140,6 +137,7 @@
     </div>
     <div>
       <textarea
+        class="textarea-edit"
         rows="5"
         cols="40"
         pInputTextarea

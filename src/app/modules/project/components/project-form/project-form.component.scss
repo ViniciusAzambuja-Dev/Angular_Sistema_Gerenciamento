@@ -1,23 +1,17 @@
 .form-container {
-  width: 100%;
-  margin: 30px auto;
+  height: 100%;
+  margin-top: 20px;
 }
 
 form, input, textarea {
   width: 100%;
   height: 100%;
 }
-input, textarea {
-  padding-left: 8px;
-}
-textarea {
-  padding-top: 5px;
-}
 
 .flex {
   flex-wrap: wrap;
   gap: 10px;
-  margin: 12px 0 12px 0;
+  margin-top: 12px;
 }
 
 input, textarea{
@@ -28,17 +22,34 @@ input, textarea{
   height: 40px;
 }
 .input-container.custom-input {
-  flex: 1;
+  flex: 1 1 140px;
+}
+.members {
+  margin: 12px 0 12px 0;
 }
 
 :host ::ng-deep {
-  .p-autocomplete, .p-autocomplete-multiple-container {
+  .p-autocomplete, .p-autocomplete-multiple-container, .p-calendar {
     width: 100%;
   }
-  .p-inputmask, .p-dropdown-label, .p-dropdown-item, .p-autocomplete-input-token {
-    padding-left: 8px;
+
+  .p-calendar, .p-dropdown{
+    height: 100%;
   }
-  .p-autocomplete, .p-inputmask, .p-dropdown {
+  .p-calendar .p-button {
+    background-color: var(--home-image-background);
+  }
+  .p-calendar .p-inputtext {
+    outline: none;
+    outline-offset: none;
+    box-shadow: none;
+    border-color: none;
+  }
+
+  .p-autocomplete-input-token {
+    padding: 0;
+  }
+  .p-autocomplete, .p-dropdown, .p-calendar {
     border-radius: 6px;
     border: 1px solid var(--home-input-border);
   }
@@ -47,35 +58,27 @@ input, textarea{
     display: flex;
     align-items: center;
   }
-  .p-dropdown, .p-dropdown-trigger, .p-inputmask, .p-autocomplete {
-    height: 100%;
-  }
 
-  .p-dropdown-items-wrapper, .p-autocomplete-panel {
-    border-radius: 6px;
-    box-shadow: 0 4px 8px 0 var(--shadow-first-color),
-    0 6px 20px 0 var(--shadow-second-color);
+  .p-calendar .p-datepicker{
+    top: 0 !important;
   }
-  .p-dropdown-item, .p-autocomplete-panel {
-    color: var(--home-dropdown-color);
-    background-color: var(--background-color);
+  .p-datepicker td span {
+    width: 2.2rem;
+    height: 2.2rem;
   }
-  .p-dropdown-item:hover, .p-autocomplete-item:hover {
-    background-color: var(--home-dropdown-hover);
+  .p-datepicker table td{
+    margin: 0;
+    padding: 0;
   }
 
   .p-autocomplete-token{
-    display: flex;
-    padding: 0 10px;
-    border-radius: 8px;
-    margin-left: 8px;
+    padding: 5px 10px;
+    gap: 10px;
+    background-color: var(--home-image-background);
+    color: var(--background-color);
   }
-  .p-autocomplete-token-icon{
-    margin-left: 5px;
-  }
-
-  .p-autocomplete-item {
-    padding: 8px;
+  .p-autocomplete-token-icon {
+    color: var(--background-color);
   }
 }
 
@@ -90,5 +93,10 @@ input, textarea{
   color: var(--background-color);
   font-size: 16px;
   font-weight: bold;
+  margin-top: 40px;
   cursor: pointer;
+}
+
+.textarea-edit {
+  margin-top: 12px;
 }
