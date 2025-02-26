@@ -85,7 +85,7 @@
   <form [formGroup]="editProjectForm" (ngSubmit)="submitEditProject()">
     <div class="flex">
       <div class="input-container custom-input">
-        <input pInputText pTooltip="(max: 50 caracteres)" placeholder="Nome" formControlName="nome">
+        <input pInputText pTooltip="máx: 50 caracteres" tooltipPosition="bottom" placeholder="Nome" formControlName="nome">
       </div>
 
       <div class="input-container custom-input">
@@ -141,7 +141,8 @@
         rows="5"
         cols="40"
         pInputTextarea
-        pTooltip="(max: 200 caracteres)"
+        pTooltip="máx: 200 caracteres"
+        tooltipPosition="top"
         placeholder="Descrição"
         [autoResize]="true"
         formControlName="descricao">
