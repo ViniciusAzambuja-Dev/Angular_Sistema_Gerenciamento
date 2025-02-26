@@ -93,10 +93,6 @@ export class ActivityFormComponent implements OnInit, OnDestroy {
       next: (response) => {
         if(response.length > 0) {
           this.usersDatas = response;
-
-          if(this.activityAction?.event?.action === this.editActivityAction && this.activityAction?.activitiesDatas) {
-            this.getActivitySelectedDatas(Number(this.activityAction?.event?.id))
-          }
         }
       },
     });
@@ -109,6 +105,10 @@ export class ActivityFormComponent implements OnInit, OnDestroy {
       next: (response) => {
         if(response.length > 0) {
           this.projectsDatas = response;
+
+          if(this.activityAction?.event?.action === this.editActivityAction && this.activityAction?.activitiesDatas) {
+            this.getActivitySelectedDatas(Number(this.activityAction?.event?.id))
+          }
         }
       },
     });
@@ -261,11 +261,16 @@ export class ActivityFormComponent implements OnInit, OnDestroy {
           (element) => element.nome === this.activitySelectedDatas.nomeUsuario
         );
 
+        const projectSelected = this.projectsDatas.find(
+          (element) => element.nome === this.activitySelectedDatas.nomeProjeto
+        );
+
         this.editActivityForm.patchValue({
           nome: this.activitySelectedDatas?.nome,
           descricao: this.activitySelectedDatas?.descricao,
           status: this.activitySelectedDatas?.status,
           atividadeId: this.activitySelectedDatas?.id,
+          projetoId: projectSelected?.id || null,
           usuarioId: userSelected?.id || null
         });
       }

@@ -31,8 +31,6 @@
             [options]="usersDatas"
             optionLabel="nome"
             optionValue="id"
-            [filter]="true"
-            filterBy="nome"
             placeholder="Responsável"
             formControlName="usuarioId"/>
         </div>
@@ -42,13 +40,11 @@
             [options]="projectsDatas"
             optionLabel="nome"
             optionValue="id"
-            [filter]="true"
-            filterBy="nome"
             placeholder="Projeto"
             formControlName="projetoId"/>
         </div>
       </div>
-      <div class="input-container">
+      <div class="members">
         <p-autoComplete
           [suggestions]="filterDatas"
           (completeMethod)="searchUsers($event)"
@@ -117,8 +113,6 @@
           [options]="usersDatas"
           optionLabel="nome"
           optionValue="id"
-          [filter]="true"
-          filterBy="nome"
           placeholder="Responsável"
           formControlName="usuarioId"/>
       </div>
@@ -128,8 +122,6 @@
           [options]="projectsDatas"
           optionLabel="nome"
           optionValue="id"
-          [filter]="true"
-          filterBy="nome"
           placeholder="Projeto"
           formControlName="projetoId"/>
       </div>
