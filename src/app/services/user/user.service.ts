@@ -57,6 +57,13 @@ export class UserService {
     )
   }
 
+  getProjectMembers(projectId: number): Observable<Array<UserResponse>> {
+    return this.http.get<Array<UserResponse>>(
+      `${this.API_URL}/usuarios/listar/integrantes/${projectId}`,
+      this.httpOptions
+    )
+  }
+
   deleteUser(userId: number): Observable<void> {
     return this.http.delete<void>(
       `${this.API_URL}/usuarios/deletar/${userId}`,

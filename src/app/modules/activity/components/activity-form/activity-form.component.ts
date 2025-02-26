@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
-import { Subject, takeUntil } from 'rxjs';
+import { Observable, Subject, takeUntil, tap } from 'rxjs';
 import { ProjectService } from '../../../../services/project/project.service';
 import { UserService } from '../../../../services/user/user.service';
 import { FormBuilder, Validators } from '@angular/forms';
@@ -75,7 +75,6 @@ export class ActivityFormComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.activityAction = this.ref.data;
 
-    this.getAllUsers();
     this.getAllProjects();
   }
 
@@ -86,16 +85,33 @@ export class ActivityFormComponent implements OnInit, OnDestroy {
     );
   }
 
-  getAllUsers(): void {
-    this.userService.getAllUsers()
-    .pipe(takeUntil(this.destroy$))
-    .subscribe({
-      next: (response) => {
-        if(response.length > 0) {
-          this.usersDatas = response;
-        }
-      },
-    });
+  onProjectChange(event: any) {
+    if(event) {
+      const projectId = event.value;
+
+      this.getProjectMembers(projectId).subscribe({
+        next : (response) => {
+          if(response.length > 0) {
+            this.usersDatas = response
+          }
+        },
+        error: (err) => {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Erro',
+            detail: `Erro ao buscar dados dos integrantes`,
+            life: 2500,
+          });
+        },
+      });
+    }
+  }
+
+  getProjectMembers(projectId: number): Observable<Array<UserResponse>> {
+    return this.userService.getProjectMembers(projectId)
+    .pipe(
+      takeUntil(this.destroy$)
+    );
   }
 
   getAllProjects(): void {
@@ -257,21 +273,37 @@ export class ActivityFormComponent implements OnInit, OnDestroy {
       if(activityFiltered) {
         this.activitySelectedDatas = activityFiltered[0];
 
-        const userSelected = this.usersDatas.find(
-          (element) => element.nome === this.activitySelectedDatas.nomeUsuario
-        );
-
         const projectSelected = this.projectsDatas.find(
           (element) => element.nome === this.activitySelectedDatas.nomeProjeto
         );
 
-        this.editActivityForm.patchValue({
-          nome: this.activitySelectedDatas?.nome,
-          descricao: this.activitySelectedDatas?.descricao,
-          status: this.activitySelectedDatas?.status,
-          atividadeId: this.activitySelectedDatas?.id,
-          projetoId: projectSelected?.id || null,
-          usuarioId: userSelected?.id || null
+        this.getProjectMembers(Number(projectSelected?.id)).subscribe({
+          next: (response) => {
+            if(response.length > 0) {
+              this.usersDatas = response
+
+              const userSelected = this.usersDatas.find(
+                (element) => element.nome === this.activitySelectedDatas.nomeUsuario
+              );
+
+              this.editActivityForm.patchValue({
+                nome: this.activitySelectedDatas?.nome,
+                descricao: this.activitySelectedDatas?.descricao,
+                status: this.activitySelectedDatas?.status,
+                atividadeId: this.activitySelectedDatas?.id,
+                projetoId: projectSelected?.id || null,
+                usuarioId: userSelected?.id || null
+              });
+            }
+          },
+          error: (err) => {
+            this.messageService.add({
+              severity: 'error',
+              summary: 'Erro',
+              detail: `Erro ao buscar dados dos integrantes`,
+              life: 2500,
+            });
+          },
         });
       }
     }
