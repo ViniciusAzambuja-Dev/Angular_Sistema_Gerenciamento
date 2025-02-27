@@ -1,9 +1,10 @@
 <app-toolbar-navigation></app-toolbar-navigation>
 
 <app-project-table
- [projects]="projectsDatas"
+ [projects]="filteredDatas"
  (projectExpanded)="handleGetActivity($event)"
  (projectEvent)="handleProjectAction($event)"
- (deleteProjectEvent)="handleDeleteProjectAction($event)">
+ (deleteProjectEvent)="handleDeleteProjectAction($event)"
+ (dropdownEvent)="handleTableDatas($event)">
 </app-project-table>
 <p-confirmDialog [style]="{ width: '50vw' }"></p-confirmDialog>

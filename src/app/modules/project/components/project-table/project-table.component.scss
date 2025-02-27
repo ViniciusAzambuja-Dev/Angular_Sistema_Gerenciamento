@@ -26,6 +26,11 @@ td, .title-container  {
   color: var(--background-color);
 }
 
+.dropdown-container{
+  margin-top: 10px;
+  margin-left: 50px;
+}
+
 :host ::ng-deep {
   .p-card-body,
   .p-card-content {
@@ -54,6 +59,34 @@ td, .title-container  {
     &:hover{
       background: none;
     }
+  }
+
+  .custom-dropdown {
+    width: 160px;
+    border-radius: 3px;
+    border: 1px solid var(--home-input-border);
+  }
+  .custom-dropdown .p-dropdown-label {
+    padding: 0;
+    padding-left: 5px;
+  }
+  .custom-dropdown .p-dropdown-trigger {
+    width: 32px;
+    padding: 0 10px;
+    background-color: var(--dropdown-icon-background);
+    border-radius: 0;
+  }
+
+  .custom-dropdown  .p-dropdown-item{
+    padding: 5px;
+    border-radius: 0;
+    border-bottom: 1px solid var(--border-bottom-color);
+  }
+  .custom-dropdown  .p-dropdown-items{
+    padding: 0;
+  }
+  .custom-dropdown  .p-dropdown-panel {
+    border-radius: 0;
   }
 }
 

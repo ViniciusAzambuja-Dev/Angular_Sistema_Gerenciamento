@@ -14,7 +14,12 @@ export class ProjectTableComponent {
   @Output() projectExpanded = new EventEmitter<number>();
   @Output() deleteProjectEvent = new EventEmitter<DeleteAction>
   @Output() projectEvent = new EventEmitter<EventAction>();
+  @Output() dropdownEvent = new EventEmitter<string>();
 
+  public dropdownDatas = [
+    {type:'Todos'},
+    {type:'Relacionados'}
+  ];
   public projectSelected!: ProjectResponse;
   public addProjectEvent = ProjectEvent.ADD_PROJECT_EVENT;
   public editProjectEvent = ProjectEvent.EDIT_PROJECT_EVENT;
@@ -30,6 +35,13 @@ export class ProjectTableComponent {
     if(id && name !== '') {
       const projectEventData = {id, name};
       this.deleteProjectEvent.emit(projectEventData);
+    }
+  }
+
+  handleDropdownEvent(event: any): void {
+    if(event.value !== '') {
+      const dropdownEventData = event.value;
+      this.dropdownEvent.emit(dropdownEventData);
     }
   }
 

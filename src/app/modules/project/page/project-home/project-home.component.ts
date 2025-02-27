@@ -1,3 +1,4 @@
+import { AuthGuardService } from './../../../../guards/auth-guard.service';
 import { EventAction } from './../../../../models/interfaces/events/EventAction';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
@@ -19,8 +20,11 @@ export class ProjectHomeComponent implements OnInit, OnDestroy{
   private destroy$: Subject<void> = new Subject;
   private ref!: DynamicDialogRef;
   public projectsDatas: Array<ProjectResponse> = [];
+  public filteredDatas: Array<ProjectResponse> = [];
+  public userId!: number;
 
   constructor(
+    private authGuardService: AuthGuardService,
     private confirmationService: ConfirmationService,
     private projectService: ProjectService,
     private activityService: ActivityService,
@@ -30,6 +34,8 @@ export class ProjectHomeComponent implements OnInit, OnDestroy{
   ) {}
 
   ngOnInit(): void {
+    this.userId = Number(this.authGuardService.getLoggedUserId());
+
     this.getProjectDatas();
   }
 
@@ -41,6 +47,7 @@ export class ProjectHomeComponent implements OnInit, OnDestroy{
       next: (response) => {
         if(response.length > 0) {
           this.projectsDatas = response;
+          this.filteredDatas = response;
         }
       },
       error: (err) => {
@@ -52,6 +59,35 @@ export class ProjectHomeComponent implements OnInit, OnDestroy{
         });
         this.router.navigate(['/dashboard']);
       },
+    });
+  }
+
+  getProjectByUser(): void {
+    this.projectService.getProjectByUser(this.userId)
+    .pipe(takeUntil(this.destroy$))
+    .subscribe({
+      next: (response) => {
+        if(response.length > 0) {
+          this.filteredDatas = response;
+        }
+        else{
+          this.messageService.add({
+            severity: 'info',
+            summary: 'Atenção',
+            detail: 'Usuário não está relacionado a nenhum projeto',
+            life: 2500,
+          })
+        }
+      },
+      error: (err) => {
+        console.log(err)
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Erro',
+          detail: 'Erro ao buscar projetos',
+          life: 2500,
+        });
+      }
     });
   }
 
@@ -105,6 +141,17 @@ export class ProjectHomeComponent implements OnInit, OnDestroy{
         acceptButtonStyleClass: 'custom-accept-button',
         rejectButtonStyleClass: 'custom-reject-button'
       });
+    }
+  }
+
+  handleTableDatas(event: string): void {
+    if(event) {
+      if(event == "Relacionados") {
+        this.getProjectByUser();
+      }
+      else {
+        this.filteredDatas = this.projectsDatas;
+      }
     }
   }
 

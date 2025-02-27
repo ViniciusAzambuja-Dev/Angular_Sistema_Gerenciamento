@@ -29,6 +29,13 @@ export class ProjectService {
     );
   }
 
+  getProjectByUser(userId: number): Observable<Array<ProjectResponse>>{
+    return this.http.get<Array<ProjectResponse>>(
+      `${this.API_URL}/projetos/listar/usuario/${userId}`,
+      this.httpOptions
+    );
+  }
+
   createProject(projectRequest: ProjectRequest): Observable<void> {
     return this.http.post<void>(
       `${this.API_URL}/projetos/registrar`,
