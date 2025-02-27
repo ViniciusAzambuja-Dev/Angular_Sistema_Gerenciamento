@@ -7,6 +7,7 @@
     icon="bx bx-plus"
     pTooltip="Adicionar atividade"
     tooltipPosition="top"
+    *appHasRole="['ADMIN']"
     (onClick)="handleActivityEvent(addActivityEvent)"
   ></p-button>
 </div>
@@ -94,7 +95,7 @@
             Status
           </div>
         </th>
-        <th class="header-column">
+        <th class="header-column" *appHasRole="['ADMIN']">
           <div class="flex justify-content-center">
             Ações
           </div>
@@ -121,7 +122,7 @@
         <td> {{ activity?.data_fim }} </td>
         <td> {{ activity?.nomeUsuario }} </td>
         <td> <p-tag [value]="activity.status" [severity]="getSeverityStatus(activity.status)"></p-tag></td>
-        <td>
+        <td *appHasRole="['ADMIN']">
           <div class="flex justify-content-center gap-3 align-content-center align-items-center">
             <button
               pButton
