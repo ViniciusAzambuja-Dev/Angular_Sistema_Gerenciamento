@@ -99,7 +99,9 @@ export class ProjectHomeComponent implements OnInit, OnDestroy{
         icon: 'bx bxs-error-circle',
         acceptLabel: 'Sim',
         rejectLabel: 'Não',
-        accept: () => this.deleteProject(event?.id)
+        accept: () => this.deleteProject(event?.id),
+        acceptButtonStyleClass: 'custom-accept-button',
+        rejectButtonStyleClass: 'custom-reject-button'
       });
     }
   }

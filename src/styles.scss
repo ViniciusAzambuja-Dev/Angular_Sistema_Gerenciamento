@@ -21,6 +21,7 @@
   --border-bottom-color:rgb(190, 190, 190);
   --button-table-color: #55B3FE;
   --filter-icon-hover: rgb(131, 133, 241);
+  --accept-button-background: rgb(40, 194, 40);
 }
 
 *{
@@ -47,4 +48,16 @@ a {
 }
 .p-toast-message-icon{
   margin-right: 10px;
+}
+
+.custom-reject-button {
+  background-color: var(--home-image-background) !important;
+  padding: 5px 20px;
+}
+.custom-accept-button {
+  background-color: var(--home-image-background) !important;
+  padding: 5px 20px;
+}
+.bx.bxs-error-circle {
+  color: var(--logout-color);
 }

@@ -82,7 +82,9 @@ export class UserHomeComponent implements OnInit, OnDestroy{
         icon: 'bx bxs-error-circle',
         acceptLabel: 'Sim',
         rejectLabel: 'Não',
-        accept: () => this.deleteUser(event?.id)
+        accept: () => this.deleteUser(event?.id),
+        acceptButtonStyleClass: 'custom-accept-button',
+        rejectButtonStyleClass: 'custom-reject-button'
       });
     }
   }

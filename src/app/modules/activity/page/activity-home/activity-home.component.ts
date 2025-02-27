@@ -99,7 +99,9 @@ export class ActivityHomeComponent implements OnInit, OnDestroy {
         icon: 'bx bxs-error-circle',
         acceptLabel: 'Sim',
         rejectLabel: 'Não',
-        accept: () => this.deleteActivity(event?.id)
+        accept: () => this.deleteActivity(event?.id),
+        acceptButtonStyleClass: 'custom-accept-button',
+        rejectButtonStyleClass: 'custom-reject-button'
       });
     }
   }

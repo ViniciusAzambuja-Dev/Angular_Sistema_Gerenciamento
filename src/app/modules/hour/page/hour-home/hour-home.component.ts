@@ -82,7 +82,9 @@ export class HourHomeComponent implements OnInit, OnDestroy{
         icon: 'bx bxs-error-circle',
         acceptLabel: 'Sim',
         rejectLabel: 'Não',
-        accept: () => this.deleteHour(event?.id)
+        accept: () => this.deleteHour(event?.id),
+        acceptButtonStyleClass: 'custom-accept-button',
+        rejectButtonStyleClass: 'custom-reject-button'
       });
     }
   }
