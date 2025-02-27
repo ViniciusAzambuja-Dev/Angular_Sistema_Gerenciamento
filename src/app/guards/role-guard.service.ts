@@ -11,9 +11,8 @@ export class RoleGuardService {
 
   canActivate(route: ActivatedRouteSnapshot): boolean {
     const expectedRoles = route.data['roles'] as string[];
-    const userRoles = this.authService.getUserRoles();
 
-    const hasRole = expectedRoles.some(role => userRoles.includes(role));
+    const hasRole = this.authService.hasRole(expectedRoles);
 
     if (!hasRole) {
       this.router.navigate(['home']);

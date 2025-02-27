@@ -31,6 +31,11 @@ export class AuthGuardService {
     }
   }
 
+  hasRole(requiredRoles: string[]): boolean {
+    const userRoles = this.getUserRoles();
+    return requiredRoles.some(role => userRoles.includes(role));
+  }
+
   getLoggedUserId(): string {
     const decodedToken = this.decodeToken();
     return decodedToken?.id;
