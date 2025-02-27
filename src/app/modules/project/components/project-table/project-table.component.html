@@ -7,6 +7,7 @@
     icon="bx bx-plus"
     pTooltip="Adicionar produto"
     tooltipPosition="left"
+    *appHasRole="['ADMIN']"
     (onClick)="handleProjectEvent(addProjectEvent)"
     ></p-button>
 </div>
@@ -101,7 +102,7 @@
           </div>
         </th>
 
-        <th class="header-column">
+        <th class="header-column" *appHasRole="['ADMIN']">
           <div class="flex justify-content-center">
             Ações
           </div>
@@ -129,7 +130,7 @@
         <td> {{ project?.nomeUsuario }} </td>
         <td> <p-tag [value]="project.status" [severity]="getSeverityStatus(project.status)"></p-tag></td>
         <td> <p-tag [value]="project.prioridade" [severity]="getSeverityPriority(project.prioridade)"></p-tag></td>
-        <td>
+        <td *appHasRole="['ADMIN']">
           <div class="flex justify-content-center gap-3 align-content-center align-items-center">
             <button
               pButton

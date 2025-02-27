@@ -23,6 +23,7 @@ import { HasRoleDirective } from './directives/HasRole.directive';
   ],
   exports: [
     ToolbarNavigationComponent,
+    HasRoleDirective,
     PrimeNgModule,
     ReactiveFormsModule,
     FormsModule,
