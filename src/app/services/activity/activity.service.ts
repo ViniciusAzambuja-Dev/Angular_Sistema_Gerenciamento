@@ -30,6 +30,13 @@ export class ActivityService {
       );
   }
 
+  getAllActivitiesByUser(userId: number): Observable<Array<ActivityResponse>> {
+    return this.http.get<Array<ActivityResponse>>(
+      `${this.API_URL}/atividades/listar/usuario/${userId}`,
+        this.httpOptions
+      )
+  }
+
   getHourByActivity(activityId: number): Observable<Array<HourResponse>> {
     return this.http.get<Array<HourResponse>>(
       `${this.API_URL}/atividades/${activityId}/horas`,

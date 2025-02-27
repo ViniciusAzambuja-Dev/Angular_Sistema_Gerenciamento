@@ -60,11 +60,11 @@ export class HourFormComponent implements OnInit, OnDestroy {
     this.usuarioId = Number(this.userService.getLoggedUserId());
     this.hourAction = this.ref.data;
 
-    this.getAllActivities();
+    this.getAllActivitiesByUser();
   }
 
-  getAllActivities(): void {
-    this.activityService.getAllActivities()
+  getAllActivitiesByUser(): void {
+    this.activityService.getAllActivitiesByUser(this.usuarioId)
     .pipe(takeUntil(this.destroy$))
     .subscribe({
       next: (response) => {
