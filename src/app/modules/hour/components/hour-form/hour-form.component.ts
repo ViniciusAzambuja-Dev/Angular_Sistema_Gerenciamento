@@ -6,12 +6,12 @@ import { ActivityService } from '../../../../services/activity/activity.service'
 import { ActivityResponse } from '../../../../models/interfaces/activity/ActivityResponse';
 import { HourService } from '../../../../services/hour/hour.service';
 import { HourRequest } from '../../../../models/interfaces/hour/HourRequest';
-import { UserService } from '../../../../services/user/user.service';
 import { EventAction } from '../../../../models/interfaces/events/EventAction';
 import { HourResponse } from '../../../../models/interfaces/hour/HourResponse';
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
 import { HourEvent } from '../../../../models/enums/hour/HourEvent';
 import { HourUpdate } from '../../../../models/interfaces/hour/HourUpdate';
+import { AuthGuardService } from '../../../../guards/auth-guard.service';
 
 @Component({
   selector: 'app-hour-form',
@@ -32,7 +32,7 @@ export class HourFormComponent implements OnInit, OnDestroy {
   constructor(
     private hourService: HourService,
     private activityService: ActivityService,
-    private userService: UserService,
+    private authService: AuthGuardService,
     private formBuilder: FormBuilder,
     private messageService: MessageService,
     private ref: DynamicDialogConfig
@@ -57,7 +57,7 @@ export class HourFormComponent implements OnInit, OnDestroy {
   public editHourAction = HourEvent.EDIT_HOUR_EVENT;
 
   ngOnInit(): void {
-    this.usuarioId = Number(this.userService.getLoggedUserId());
+    this.usuarioId = Number(this.authService.getLoggedUserId());
     this.hourAction = this.ref.data;
 
     this.getAllActivitiesByUser();

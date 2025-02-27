@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../services/user/user.service';
+import { CookieService } from 'ngx-cookie-service';
+import { jwtDecode } from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuardService {
 
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(private userService: UserService, private router: Router, private cookie: CookieService) { }
 
   canActivate(): boolean {
 
@@ -17,5 +19,25 @@ export class AuthGuardService {
     }
 
     return true;
+  }
+
+  decodeToken(): any {
+    try {
+      const token = this.cookie.get('USUARIO_INFO');
+      const decoded = jwtDecode(token);
+      return decoded;
+    } catch (error) {
+      return null;
+    }
+  }
+
+  getLoggedUserId(): string {
+    const decodedToken = this.decodeToken();
+    return decodedToken?.id;
+  }
+
+  getUserRoles(): string[] {
+    const decodedToken = this.decodeToken();
+    return [decodedToken?.roles]
   }
 }
