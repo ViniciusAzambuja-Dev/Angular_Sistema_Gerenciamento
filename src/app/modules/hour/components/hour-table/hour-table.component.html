@@ -162,6 +162,7 @@
               class="p-button-danger"
               pTooltip="Remover hora lançada"
               tooltipPosition="top"
+              *appHasRole="['ADMIN']"
               (click)="handleDeleteHour(hour?.id)"
             ></button>
           </div>
