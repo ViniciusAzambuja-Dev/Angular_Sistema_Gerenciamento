@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ProjectFormComponent } from '../../components/project-form/project-form.component';
 import { DeleteAction } from '../../../../models/interfaces/events/DeleteAction';
+import { ActivityService } from '../../../../services/activity/activity.service';
 
 @Component({
   selector: 'app-project-home',
@@ -22,6 +23,7 @@ export class ProjectHomeComponent implements OnInit, OnDestroy{
   constructor(
     private confirmationService: ConfirmationService,
     private projectService: ProjectService,
+    private activityService: ActivityService,
     private messageService: MessageService,
     private dialogService: DialogService,
     private router: Router
@@ -54,7 +56,7 @@ export class ProjectHomeComponent implements OnInit, OnDestroy{
   }
 
   handleGetActivity(projectId: number): void {
-    this.projectService.getActivityByProject(projectId)
+    this.activityService.getActivityByProject(projectId)
     .pipe(takeUntil(this.destroy$))
     .subscribe({
       next: (response) => {

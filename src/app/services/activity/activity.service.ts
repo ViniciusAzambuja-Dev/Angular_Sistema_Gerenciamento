@@ -37,6 +37,13 @@ export class ActivityService {
       )
   }
 
+  getActivityByProject(projectId: number): Observable<Array<ActivityResponse>> {
+    return this.http.get<Array<ActivityResponse>>(
+      `${this.API_URL}/atividades/listar/projeto/${projectId}`,
+      this.httpOptions
+    );
+  }
+
   getHourByActivity(activityId: number): Observable<Array<HourResponse>> {
     return this.http.get<Array<HourResponse>>(
       `${this.API_URL}/atividades/${activityId}/horas`,
