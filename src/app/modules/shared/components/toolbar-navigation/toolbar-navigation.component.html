@@ -23,12 +23,12 @@
     </p-button>
 
     <p-button icon="bx bxs-user-detail" label="Usuários" routerLink="/users" routerLinkActive="active-route"
-      styleClass="button">
+      styleClass="button" *appHasRole="['ADMIN']">
     </p-button>
 
 
     <p-button icon="bx bxs-report" label="Relatórios" routerLink="/report" routerLinkActive="active-route"
-      styleClass="button">
+      styleClass="button" *appHasRole="['ADMIN']">
     </p-button>
   </div>
 
