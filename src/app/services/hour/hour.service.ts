@@ -30,6 +30,13 @@ export class HourService {
       );
     }
 
+    getHourByActivity(activityId: number): Observable<Array<HourResponse>> {
+      return this.http.get<Array<HourResponse>>(
+        `${this.API_URL}/horas/listar/atividade/${activityId}`,
+        this.httpOptions
+      );
+    }
+
     createHour(hourRequest: HourRequest): Observable<void> {
       return this.http.post<void>(
         `${this.API_URL}/horas/registrar`,

@@ -8,6 +8,7 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { EventAction } from '../../../../models/interfaces/events/EventAction';
 import { ActivityFormComponent } from '../../components/activity-form/activity-form.component';
 import { DeleteAction } from '../../../../models/interfaces/events/DeleteAction';
+import { HourService } from '../../../../services/hour/hour.service';
 
 @Component({
   selector: 'app-activity-home',
@@ -23,6 +24,7 @@ export class ActivityHomeComponent implements OnInit, OnDestroy {
     private confirmationService: ConfirmationService,
     private dialogService: DialogService,
     private activityService: ActivityService,
+    private hourService: HourService,
     private messageService: MessageService,
     private router: Router
   ) {}
@@ -54,7 +56,7 @@ export class ActivityHomeComponent implements OnInit, OnDestroy {
   }
 
   handleGetHour(activityId: number): void {
-    this.activityService.getHourByActivity(activityId)
+    this.hourService.getHourByActivity(activityId)
     .pipe(takeUntil(this.destroy$))
     .subscribe({
       next: (response) => {

@@ -4,7 +4,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { Observable } from 'rxjs';
 import { ActivityResponse } from '../../models/interfaces/activity/ActivityResponse';
-import { HourResponse } from '../../models/interfaces/hour/HourResponse';
 import { ActivityRequest } from '../../models/interfaces/activity/ActivityRequest';
 import { ActivityUpdate } from '../../models/interfaces/activity/ActivityUpdate';
 
@@ -40,13 +39,6 @@ export class ActivityService {
   getActivityByProject(projectId: number): Observable<Array<ActivityResponse>> {
     return this.http.get<Array<ActivityResponse>>(
       `${this.API_URL}/atividades/listar/projeto/${projectId}`,
-      this.httpOptions
-    );
-  }
-
-  getHourByActivity(activityId: number): Observable<Array<HourResponse>> {
-    return this.http.get<Array<HourResponse>>(
-      `${this.API_URL}/atividades/${activityId}/horas`,
       this.httpOptions
     );
   }
