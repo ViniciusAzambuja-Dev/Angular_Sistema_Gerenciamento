@@ -13,7 +13,12 @@ export class HourTableComponent {
   @Input() hours: Array<HourResponse> = [];
   @Output() hourEvent = new EventEmitter<EventAction>();
   @Output() deleteHourEvent = new EventEmitter<DeleteAction>
+  @Output() dropdownEvent = new EventEmitter<string>();
 
+  public dropdownDatas = [
+    {type:'Todos'},
+    {type:'Relacionados'}
+  ];
    public hourSelected!: HourResponse;
    public addHourEvent = HourEvent.ADD_HOUR_EVENT;
    public editHourEvent = HourEvent.EDIT_HOUR_EVENT;
@@ -29,6 +34,13 @@ export class HourTableComponent {
     if(id) {
       const hourEventData = {id};
       this.deleteHourEvent.emit(hourEventData);
+    }
+  }
+
+  handleDropdownEvent(event: any): void {
+    if(event.value !== '') {
+      const dropdownEventData = event.value;
+      this.dropdownEvent.emit(dropdownEventData);
     }
   }
 }

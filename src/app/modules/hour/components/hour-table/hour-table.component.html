@@ -11,6 +11,15 @@
   ></p-button>
 </div>
 
+<div class="dropdown-container">
+  <p-dropdown
+    styleClass="custom-dropdown"
+    [options]="dropdownDatas"
+    optionLabel="type"
+    optionValue="type"
+    *appHasRole="['ADMIN']"
+    (onChange)="handleDropdownEvent($event)"/>
+</div>
 <div class="card-container">
   <p-card
     styleClass="shadow-3"
