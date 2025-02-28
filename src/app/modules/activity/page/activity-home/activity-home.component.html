@@ -1,9 +1,10 @@
 <app-toolbar-navigation></app-toolbar-navigation>
 
 <app-activity-table
-  [activities]="activitiesDatas"
+  [activities]="filteredDatas"
   (activityExpanded)="handleGetHour($event)"
   (activityEvent)="handleActivityAction($event)"
   (deleteActivityEvent)="handleDeleteActivityAction($event)"
+  (dropdownEvent)="handleTableDatas($event)"
 ></app-activity-table>
 <p-confirmDialog [style]="{ width: '50vw' }"></p-confirmDialog>

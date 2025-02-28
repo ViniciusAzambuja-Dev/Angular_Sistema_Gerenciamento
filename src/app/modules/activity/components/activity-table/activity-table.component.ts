@@ -14,7 +14,12 @@ export class ActivityTableComponent {
   @Output() activityExpanded = new EventEmitter<number>();
   @Output() deleteActivityEvent = new EventEmitter<DeleteAction>
   @Output() activityEvent = new EventEmitter<EventAction>();
+  @Output() dropdownEvent = new EventEmitter<string>();
 
+  public dropdownDatas = [
+    {type:'Todos'},
+    {type:'Relacionados'}
+  ];
   public activitySelected!: ActivityResponse;
   public addActivityEvent = ActivityEvent.ADD_ACTIVITY_EVENT;
   public editActivityEvent = ActivityEvent.EDIT_ACTIVITY_EVENT;
@@ -34,6 +39,13 @@ export class ActivityTableComponent {
     if(id && name !== '') {
       const activityEventData = {id, name};
       this.deleteActivityEvent.emit(activityEventData);
+    }
+  }
+
+  handleDropdownEvent(event: any): void {
+    if(event.value !== '') {
+      const dropdownEventData = event.value;
+      this.dropdownEvent.emit(dropdownEventData);
     }
   }
 

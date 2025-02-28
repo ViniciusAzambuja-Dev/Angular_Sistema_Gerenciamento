@@ -9,6 +9,7 @@ import { EventAction } from '../../../../models/interfaces/events/EventAction';
 import { ActivityFormComponent } from '../../components/activity-form/activity-form.component';
 import { DeleteAction } from '../../../../models/interfaces/events/DeleteAction';
 import { HourService } from '../../../../services/hour/hour.service';
+import { AuthGuardService } from '../../../../guards/auth-guard.service';
 
 @Component({
   selector: 'app-activity-home',
@@ -19,8 +20,11 @@ export class ActivityHomeComponent implements OnInit, OnDestroy {
   private destroy$: Subject<void> = new Subject;
   private ref!: DynamicDialogRef;
   public activitiesDatas: Array<ActivityResponse> = [];
+  public filteredDatas: Array<ActivityResponse> = [];
+  public userId!: number;
 
   constructor(
+    private authGuardService: AuthGuardService,
     private confirmationService: ConfirmationService,
     private dialogService: DialogService,
     private activityService: ActivityService,
@@ -30,6 +34,8 @@ export class ActivityHomeComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    this.userId = Number(this.authGuardService.getLoggedUserId());
+
     this.getActivityDatas();
   }
 
@@ -41,6 +47,7 @@ export class ActivityHomeComponent implements OnInit, OnDestroy {
       next: (response) => {
         if(response.length > 0) {
           this.activitiesDatas = response;
+          this.filteredDatas = response;
         }
       },
       error: (err) => {
@@ -52,6 +59,34 @@ export class ActivityHomeComponent implements OnInit, OnDestroy {
         });
         this.router.navigate(['/dashboard']);
       },
+    });
+  }
+
+  getActivitiesByUser(): void {
+    this.activityService.getAllActivitiesByUser(this.userId)
+    .pipe(takeUntil(this.destroy$))
+    .subscribe({
+      next: (response) => {
+        if(response.length > 0) {
+          this.filteredDatas = response;
+        }
+        else{
+          this.messageService.add({
+            severity: 'info',
+            summary: 'Atenção',
+            detail: 'Usuário não está relacionado a nenhuma atividade',
+            life: 2500,
+          });
+        }
+      },
+      error: (err) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Erro',
+          detail: 'Erro ao buscar atividades',
+          life: 2500,
+        });
+      }
     });
   }
 
@@ -105,6 +140,17 @@ export class ActivityHomeComponent implements OnInit, OnDestroy {
         acceptButtonStyleClass: 'custom-accept-button',
         rejectButtonStyleClass: 'custom-reject-button'
       });
+    }
+  }
+
+  handleTableDatas(event: string): void {
+    if(event) {
+      if(event == "Relacionados") {
+        this.getActivitiesByUser();
+      }
+      else {
+        this.filteredDatas = this.activitiesDatas;
+      }
     }
   }
 

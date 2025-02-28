@@ -80,7 +80,6 @@ export class ProjectHomeComponent implements OnInit, OnDestroy{
         }
       },
       error: (err) => {
-        console.log(err)
         this.messageService.add({
           severity: 'error',
           summary: 'Erro',
