@@ -1,1 +1,140 @@
 <app-toolbar-navigation></app-toolbar-navigation>
+
+<div class="flex mt-5 mr-5 ml-5 gap-8">
+  <div>
+    <div class="card-container mb-5">
+      <p-card
+        styleClass="h-full shadow-3"
+      >
+        <ng-template pTemplate="header">
+          <div class="flex justify-content-center align-items-center">
+            <i class='bx bx-timer'></i>
+            <h2>Horas lançadas</h2>
+          </div>
+        </ng-template>
+
+        <div>
+          <div class="hour-container">
+            <span class="quantity">35</span>
+            <span>h</span>
+          </div>
+          <p class="m-0">Total de Horas lançadas no mês</p>
+        </div>
+        <div>
+          <a routerLink="/hour"><i class="bx bx-chevrons-right hour"></i></a>
+        </div>
+      </p-card>
+      </div>
+      <div class="card-container mb-3">
+        <p-card
+          styleClass="h-full shadow-3 p-0"
+        >
+        <ng-template pTemplate="header">
+          <div class="flex justify-content-center align-items-center">
+            <i class='bx bx-folder' ></i>
+            <h2>Projetos em andamento</h2>
+          </div>
+        </ng-template>
+
+        <div>
+          <div class="project-container">
+            <span class="quantity">35</span>
+          </div>
+          <p class="m-0">Total de projetos em andamento</p>
+        </div>
+        <div>
+          <a routerLink="/project"><i class="bx bx-chevrons-right project"></i></a>
+        </div>
+      </p-card>
+      </div>
+      <div class="card-container mb-3">
+        <p-card
+          styleClass="h-full shadow-3 p-0"
+        >
+        <ng-template pTemplate="header">
+          <div class="flex justify-content-center align-items-center">
+            <i class='bx bx-calendar-exclamation'></i>
+            <h2>Atividades pendentes</h2>
+          </div>
+        </ng-template>
+
+        <div>
+          <div class="activity-container">
+            <span class="quantity">35</span>
+          </div>
+          <p class="m-0">Total de atividades pendentes</p>
+        </div>
+        <div>
+          <a routerLink="/activity"><i class="bx bx-chevrons-right activity"></i></a>
+        </div>
+      </p-card>
+    </div>
+  </div>
+
+  <div class="w-full">
+    <div>
+      <p-card
+        header="Últimas horas lançadas"
+        styleClass="shadow-3"
+      >
+        <p-table
+          [value]="hoursDatas"
+          [rows]="4"
+          scrollHeight="150px"
+          [scrollable]="true"
+          [rowHover]="true"
+          [tableStyle]="{'min-width': '100%'}"
+          dataKey="id"
+        >
+        <ng-template pTemplate="header">
+          <tr>
+            <th pSortableColumn="atividade">
+              <div>
+                 Atividade
+               </div>
+            </th>
+            <th pSortableColumn="descricao">
+             <div>
+                Descrição
+              </div>
+            </th>
+
+            <th pSortableColumn="data_inicio">
+              <div>
+                De
+              </div>
+            </th>
+
+            <th pSortableColumn="data_fim">
+              <div>
+                Até
+              </div>
+            </th>
+
+            <th pSortableColumn="nomeUsuario">
+              <div>
+                Responsável
+              </div>
+            </th>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-hour>
+          <tr>
+            <td>{{ hour?.nomeAtividade }}</td>
+            <td class="description" [pTooltip]="hour?.descricao" tooltipPosition="top">{{ hour?.descricao }} </td>
+            <td> {{ hour?.data_inicio }} </td>
+            <td> {{ hour?.data_fim }} </td>
+            <td> {{ hour?.nomeUsuario }} </td>
+          </tr>
+        </ng-template>
+        </p-table>
+      </p-card>
+    </div>
+
+    <div class="card">
+      <p-chart type="bar" [data]="data" [options]="options" />
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,63 @@
+.card-container{
+  width: 400px;
+}
+
+h2 {
+  font-size: 16px;
+}
+.bx-timer, .bx-folder, .bx-calendar-exclamation {
+  font-size: 18px;
+  margin-right: 5px;
+}
+
+.hour-container, .project-container, .activity-container {
+  font-weight: 600;
+}
+.hour-container, .bx-chevrons-right.hour {
+  color: rgb(12, 203, 12);
+}
+.project-container, .bx-chevrons-right.project {
+  color: rgb(35, 164, 245);
+}
+.activity-container, .bx-chevrons-right.activity {
+  color: rgb(228, 228, 36);
+}
+.bx-chevrons-right {
+  position: absolute;
+  right: 10px;
+  bottom: 45px;
+  font-size: 40px;
+  cursor: pointer;
+}
+
+.quantity {
+  font-size: 25px;
+}
+
+th, td {
+  font-size: 13px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+th {
+  background-color: var(--home-image-background);
+  color: var(--background-color);
+}
+
+:host ::ng-deep {
+  .p-card {
+    text-align: center;
+    position: relative;
+  }
+  .p-card-title {
+    padding-top: 5px;
+    font-size: 14px;
+  }
+  .p-card-body {
+    padding: 0;
+  }
+  .p-card-content {
+    padding: 0;
+    padding-bottom: 20px;
+  }
+}
