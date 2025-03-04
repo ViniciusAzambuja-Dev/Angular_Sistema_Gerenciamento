@@ -3,6 +3,9 @@ import { Subject, takeUntil } from 'rxjs';
 import { HourService } from '../../../../services/hour/hour.service';
 import { HourResponse } from '../../../../models/interfaces/hour/HourResponse';
 import { MessageService } from 'primeng/api';
+import { DashboardService } from '../../../../services/dashboard/dashboard.service';
+import { DashboardAdmin } from '../../../../models/interfaces/dashboard/DashboardAdmin';
+import { ChartData, ChartOptions } from 'chart.js';
 
 @Component({
   selector: 'app-dashboard-home',
@@ -12,19 +15,20 @@ import { MessageService } from 'primeng/api';
 export class DashboardHomeComponent implements OnInit, OnDestroy {
   private destroy$: Subject<void> = new Subject;
   public hoursDatas: Array<HourResponse> = [];
-
-  data: any;
-  options: any;
+  public dashboardAdminDatas!: DashboardAdmin;
+  public chartDatas!: ChartData;
+  public chartOptions!: ChartOptions;
 
   constructor(
     private hourService: HourService,
+    private dashboardService: DashboardService,
     private messageService: MessageService,
   ) {
   }
 
   ngOnInit() {
     this.getAllHours();
-    this.setChartConfig();
+    this.getDashboardAdminDatas();
   }
 
   setChartConfig(): void {
@@ -33,19 +37,20 @@ export class DashboardHomeComponent implements OnInit, OnDestroy {
     const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
     const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
 
-    this.data = {
-      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+    this.chartDatas = {
+      labels: this.dashboardAdminDatas.chartDatas.map((element) => element?.nomeProjeto),
       datasets: [
         {
-          label: 'My First dataset',
-          backgroundColor: documentStyle.getPropertyValue('--blue-500'),
-          borderColor: documentStyle.getPropertyValue('--blue-500'),
-          data: [65, 59, 80, 81, 56, 55, 40],
-          barThickness: 35,
+          label: 'Quantidade',
+          backgroundColor: documentStyle.getPropertyValue('--home-image-background'),
+          borderColor: documentStyle.getPropertyValue('--home-image-background'),
+          hoverBackgroundColor: documentStyle.getPropertyValue('--chart-hover-color'),
+          data: this.dashboardAdminDatas.chartDatas.map((element) => element?.totalHoras),
+          barThickness: 30,
         },
       ]
     };
-    this.options = {
+    this.chartOptions = {
       maintainAspectRatio: false,
       aspectRatio: 1.1,
       plugins: {
@@ -65,7 +70,6 @@ export class DashboardHomeComponent implements OnInit, OnDestroy {
           },
           grid: {
             color: surfaceBorder,
-            drawBorder: false
           }
         },
         y: {
@@ -74,7 +78,6 @@ export class DashboardHomeComponent implements OnInit, OnDestroy {
           },
           grid: {
             color: surfaceBorder,
-            drawBorder: false
           }
         }
       }
@@ -95,6 +98,27 @@ export class DashboardHomeComponent implements OnInit, OnDestroy {
           severity: 'error',
           summary: 'Erro',
           detail: 'Erro ao buscar horas lançadas',
+          life: 2500
+        });
+      }
+    });
+  }
+
+  getDashboardAdminDatas(): void {
+    this.dashboardService.getDashboardAdminDatas()
+    .pipe(takeUntil(this.destroy$))
+    .subscribe({
+      next: (response) => {
+        if(response) {
+          this.dashboardAdminDatas = response;
+          this.setChartConfig();
+        }
+      },
+      error: (err) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Erro',
+          detail: 'Erro ao buscar métricas',
           life: 2500
         });
       }

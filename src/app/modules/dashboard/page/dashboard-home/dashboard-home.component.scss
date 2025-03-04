@@ -5,22 +5,33 @@
 h2 {
   font-size: 16px;
 }
+h3 {
+  font-size: 10px;
+  margin: 0;
+}
 .bx-timer, .bx-folder, .bx-calendar-exclamation {
   font-size: 18px;
   margin-right: 5px;
 }
 
-.hour-container, .project-container, .activity-container {
+.bxs-user-check {
+  font-size: 16px !important;
+}
+
+.hour-container, .project-container, .activity-container{
   font-weight: 600;
 }
-.hour-container, .bx-chevrons-right.hour {
-  color: rgb(12, 203, 12);
+.hour-container, .bx-chevrons-right.hour, .bxs-circle.completed {
+  color: var(--severity-first-color)
 }
-.project-container, .bx-chevrons-right.project {
-  color: rgb(35, 164, 245);
+.project-container, .bx-chevrons-right.project, .bxs-circle.open-planned, .bxs-user-check, .bxs-time-five {
+  color: var(--severity-second-color)
 }
-.activity-container, .bx-chevrons-right.activity {
-  color: rgb(228, 228, 36);
+.activity-container, .bx-chevrons-right.activity, .bxs-circle.pending {
+  color: var(--severity-third-color);
+}
+.bxs-circle.canceled-paused {
+  color: var(--severity-fourth-color);
 }
 .bx-chevrons-right {
   position: absolute;
@@ -44,6 +55,35 @@ th {
   color: var(--background-color);
 }
 
+.grid-container, .title-container {
+  border-bottom: 1px solid var(--home-input-border);
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 5px 16px;
+}
+.datas-container {
+  border: 1px solid var(--home-input-border);
+  border-radius: 10px;
+}
+.datas-container i {
+  margin-right: 5px;
+}
+.title-container h2 {
+  margin: 0;
+}
+.datas-container i, .title-container h2 {
+  font-size: 13px;
+}
+
+.title-container {
+  text-align: start;
+}
+.title-container, .bottom-container{
+  padding: 0 0 3px 16px;
+}
+
 :host ::ng-deep {
   .p-card {
     text-align: center;
@@ -59,5 +99,11 @@ th {
   .p-card-content {
     padding: 0;
     padding-bottom: 20px;
+  }
+
+  .custom-card .p-card-title{
+    background-color: var(--home-image-background);
+    color: var(--background-color);
+    padding-bottom: 5px;
   }
 }

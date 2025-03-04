@@ -74,8 +74,68 @@
   <div class="w-full">
     <div>
       <p-card
+        header="Dados gerais"
+        styleClass="shadow-3 custom-card"
+        *appHasRole="['ADMIN']"
+      >
+        <div class="datas-container mr-4 ml-4" *ngIf="dashboardAdminDatas; else loading">
+          <div>
+            <div class="title-container"><h2>Projetos em geral</h2></div>
+            <div class="grid-container">
+              <div class="flex align-items-center">
+                <i class='bx bxs-circle completed'></i>
+                <h3>Concluídos: {{ dashboardAdminDatas.projetosConcluidos }}</h3>
+              </div>
+              <div class="flex align-items-center">
+                <i class='bx bxs-circle pending'></i>
+                <h3>Em andamento: {{ dashboardAdminDatas.projetosPendentes }}</h3>
+              </div>
+              <div class="flex align-items-center">
+                <i class='bx bxs-circle open-planned'></i>
+              <h3>Planejados:  {{ dashboardAdminDatas.projetosPlanejados }}</h3>
+              </div>
+              <div class="flex align-items-center">
+                <i class='bx bxs-circle canceled-paused'></i>
+                <h3>Cancelados:  {{ dashboardAdminDatas.projetosCancelados }}</h3>
+              </div>
+            </div>
+          </div>
+          <div class="mb-2">
+            <div class="title-container"><h2>Atividades no mês</h2></div>
+            <div class="grid-container">
+              <div class="flex align-items-center">
+                <i class='bx bxs-circle completed'></i>
+                <h3>Concluídas: {{ dashboardAdminDatas.atividadesConcluidas }}</h3>
+              </div>
+              <div class="flex align-items-center">
+                <i class='bx bxs-circle pending'></i>
+                <h3>Em andamento: {{ dashboardAdminDatas.atividadesPendentes }}</h3>
+              </div>
+              <div class="flex align-items-center">
+                <i class='bx bxs-circle open-planned'></i>
+                <h3>Abertas: {{ dashboardAdminDatas.atividadesAbertas }}</h3>
+              </div>
+              <div class="flex align-items-center">
+                <i class='bx bxs-circle canceled-paused'></i>
+                <h3>Pausadas: {{ dashboardAdminDatas.atividadesPausadas }}</h3>
+              </div>
+            </div>
+          </div>
+          <div class="flex align-items-center bottom-container">
+            <i class='bx bxs-user-check'></i>
+            <h3>Usuários ativos:  {{ dashboardAdminDatas.usuariosAtivos }}</h3>
+          </div>
+          <div class="flex align-items-center bottom-container">
+            <i class='bx bxs-time-five' ></i>
+            <h3> Horas lançadas no mês: {{ dashboardAdminDatas.totalHorasPorMes }}h</h3>
+          </div>
+        </div>
+      </p-card>
+
+      <p-card
         header="Últimas horas lançadas"
         styleClass="shadow-3"
+        *appHasRole="['USUARIO']"
       >
         <p-table
           [value]="hoursDatas"
@@ -132,9 +192,14 @@
       </p-card>
     </div>
 
-    <div class="card">
-      <p-chart type="bar" [data]="data" [options]="options" />
+    <div class="card" *appHasRole="['ADMIN']">
+      <p-chart type="bar" [data]="chartDatas" [options]="chartOptions" />
     </div>
 
   </div>
 </div>
+<ng-template #loading>
+  <div class="spinner-container">
+    <p-progressSpinner styleClass="h-4rem" ariaLabel="loading" />
+  </div>
+</ng-template>

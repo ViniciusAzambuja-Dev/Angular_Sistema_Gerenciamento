@@ -16,6 +16,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { CalendarModule } from 'primeng/calendar';
 import { TagModule } from 'primeng/tag';
 import { ChartModule } from 'primeng/chart';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @NgModule({
   declarations: [],
@@ -36,6 +37,7 @@ import { ChartModule } from 'primeng/chart';
     CalendarModule,
     TagModule,
     ChartModule,
+    ProgressSpinnerModule
   ],
   exports: [
     CommonModule,
@@ -54,7 +56,8 @@ import { ChartModule } from 'primeng/chart';
     ConfirmDialogModule,
     CalendarModule,
     TagModule,
-    ChartModule
+    ChartModule,
+    ProgressSpinnerModule
   ],
   providers: []
 })
