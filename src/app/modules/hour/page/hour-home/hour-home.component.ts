@@ -34,7 +34,7 @@ export class HourHomeComponent implements OnInit, OnDestroy{
   ngOnInit(): void {
     this.userId = Number(this.authGuardService.getLoggedUserId());
 
-    this.getHourDatas();
+    this.getHoursByUser();
   }
 
   getHourDatas(): void {
@@ -44,7 +44,6 @@ export class HourHomeComponent implements OnInit, OnDestroy{
     .subscribe({
       next: (response) => {
         if(response.length > 0) {
-          this.hoursDatas = response;
           this.filteredDatas = response;
         }
       },
@@ -59,13 +58,14 @@ export class HourHomeComponent implements OnInit, OnDestroy{
       },
     });
   }
-  
+
   getHoursByUser(): void {
     this.hourService.getHoursByUser(this.userId)
     .pipe(takeUntil(this.destroy$))
     .subscribe({
       next: (response) => {
         if(response.length > 0) {
+          this.hoursDatas = response;
           this.filteredDatas = response;
         }
         else{
@@ -126,8 +126,8 @@ export class HourHomeComponent implements OnInit, OnDestroy{
 
   handleTableDatas(event: string): void {
     if(event) {
-      if(event == "Relacionados") {
-        this.getHoursByUser();
+      if(event == "Todos") {
+        this.getHourDatas();
       }
       else {
         this.filteredDatas = this.hoursDatas;

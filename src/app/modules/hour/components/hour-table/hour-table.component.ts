@@ -16,8 +16,8 @@ export class HourTableComponent {
   @Output() dropdownEvent = new EventEmitter<string>();
 
   public dropdownDatas = [
-    {type:'Todos'},
-    {type:'Relacionados'}
+    {type:'Relacionados'},
+    {type:'Todos'}
   ];
    public hourSelected!: HourResponse;
    public addHourEvent = HourEvent.ADD_HOUR_EVENT;

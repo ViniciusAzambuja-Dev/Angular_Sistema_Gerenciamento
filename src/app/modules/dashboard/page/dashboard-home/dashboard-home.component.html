@@ -159,6 +159,12 @@
               </div>
             </th>
 
+            <th pSortableColumn="data_registro">
+              <div>
+                Registro
+              </div>
+            </th>
+
             <th pSortableColumn="data_inicio">
               <div>
                 De
@@ -183,6 +189,7 @@
           <tr>
             <td>{{ hour?.nomeAtividade }}</td>
             <td class="description" [pTooltip]="hour?.descricao" tooltipPosition="top">{{ hour?.descricao }} </td>
+            <td> {{ hour?.data_registro }} </td>
             <td> {{ hour?.data_inicio }} </td>
             <td> {{ hour?.data_fim }} </td>
             <td> {{ hour?.nomeUsuario }} </td>

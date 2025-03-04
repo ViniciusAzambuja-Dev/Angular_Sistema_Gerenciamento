@@ -33,7 +33,7 @@
     [rowHover]="true"
     dataKey="id"
     showCurrentPageReport="true"
-    currentPageReportTemplate="Mostrando {first} de {last} de {totalRecords} atividades"
+    currentPageReportTemplate="Mostrando {first} de {last} de {totalRecords} horas lançadas"
     >
 
     <ng-template pTemplate="header">
@@ -48,6 +48,26 @@
               <p-columnFilter
                 type="text"
                 field="descricao"
+                display="menu"
+                matchMode="contains"
+                [showMatchModes]="false"
+                [showOperator]="false"
+                [showAddButton]="false"
+              ></p-columnFilter>
+            </div>
+          </div>
+        </th>
+
+        <th pSortableColumn="data_registro" class="header-column">
+          <div class="flex justify-content-between align-items-center">
+            <div class="flex justify-content-between align-items-center">
+              Registro
+            </div>
+            <div class="flex justify-content-between align-items-center gap-1">
+              <p-sortIcon field="data_registro"></p-sortIcon>
+              <p-columnFilter
+                type="text"
+                field="data_registro"
                 display="menu"
                 matchMode="contains"
                 [showMatchModes]="false"
@@ -147,6 +167,7 @@
     <ng-template pTemplate="body" let-hour>
       <tr>
         <td class="description" [pTooltip]="hour?.descricao" tooltipPosition="right"> {{ hour?.descricao }} </td>
+        <td> {{ hour?.data_registro }} </td>
         <td> {{ hour?.data_inicio }} </td>
         <td> {{ hour?.data_fim }} </td>
         <td> {{ hour?.nomeUsuario }} </td>

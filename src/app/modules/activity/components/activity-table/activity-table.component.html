@@ -173,6 +173,11 @@
                     Descrição
                   </div>
                 </th>
+                <th pSortableColumn="activity.horasLancadas.data_registro">
+                  <div>
+                    Registro
+                  </div>
+                </th>
                 <th pSortableColumn="activity.horasLancadas.data_inicio">
                   <div>
                     De
@@ -188,20 +193,15 @@
                     Responsável
                   </div>
                 </th>
-                <th pSortableColumn="activity.horasLancadas.nomeAtividade">
-                  <div>
-                    Atividade
-                  </div>
-                </th>
               </tr>
             </ng-template>
             <ng-template pTemplate="body" let-hour>
                 <tr>
                     <td [pTooltip]="hour?.descricao" tooltipPosition="right">{{ hour?.descricao }}</td>
+                    <td>{{ hour?.data_registro }}</td>
                     <td>{{ hour?.data_inicio }}</td>
                     <td>{{ hour?.data_fim }}</td>
                     <td>{{ hour?.nomeUsuario }}</td>
-                    <td>{{ hour?.nomeAtividade }}</td>
                 </tr>
             </ng-template>
             <ng-template pTemplate="emptymessage">
