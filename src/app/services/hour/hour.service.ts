@@ -30,6 +30,13 @@ export class HourService {
       );
     }
 
+    getHoursByUserAndMonth(userId: number): Observable<Array<HourResponse>> {
+      return this.http.get<Array<HourResponse>>(
+        `${this.API_URL}/horas/listar/mes/usuario/${userId}`,
+        this.httpOptions
+      );
+    }
+
     getHourByActivity(activityId: number): Observable<Array<HourResponse>> {
       return this.http.get<Array<HourResponse>>(
         `${this.API_URL}/horas/listar/atividade/${activityId}`,

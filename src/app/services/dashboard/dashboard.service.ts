@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { Observable } from 'rxjs';
 import { DashboardAdmin } from '../../models/interfaces/dashboard/DashboardAdmin';
+import { DashboardGeneral } from '../../models/interfaces/dashboard/DashboardGeneral';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +23,12 @@ export class DashboardService {
 
   getDashboardAdminDatas(): Observable<DashboardAdmin> {
     return this.http.get<DashboardAdmin>(`${this.API_URL}/dashboard/dados/admin`,
+      this.httpOptions
+    );
+  }
+
+  getDashboardGeneralData(userId: number): Observable<DashboardGeneral> {
+    return this.http.get<DashboardGeneral>(`${this.API_URL}/dashboard/dados/gerais/${userId}`,
       this.httpOptions
     );
   }

@@ -1,3 +1,4 @@
+import { AuthGuardService } from './../../../../guards/auth-guard.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
 import { HourService } from '../../../../services/hour/hour.service';
@@ -6,6 +7,7 @@ import { MessageService } from 'primeng/api';
 import { DashboardService } from '../../../../services/dashboard/dashboard.service';
 import { DashboardAdmin } from '../../../../models/interfaces/dashboard/DashboardAdmin';
 import { ChartData, ChartOptions } from 'chart.js';
+import { DashboardGeneral } from '../../../../models/interfaces/dashboard/DashboardGeneral';
 
 @Component({
   selector: 'app-dashboard-home',
@@ -16,10 +18,14 @@ export class DashboardHomeComponent implements OnInit, OnDestroy {
   private destroy$: Subject<void> = new Subject;
   public hoursDatas: Array<HourResponse> = [];
   public dashboardAdminDatas!: DashboardAdmin;
+  public dashboardGeneralData!: DashboardGeneral;
   public chartDatas!: ChartData;
   public chartOptions!: ChartOptions;
+  public userRole!: string[];
+  public userId!: number;
 
   constructor(
+    private authGuardService: AuthGuardService,
     private hourService: HourService,
     private dashboardService: DashboardService,
     private messageService: MessageService,
@@ -27,8 +33,16 @@ export class DashboardHomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.getAllHours();
-    this.getDashboardAdminDatas();
+    this.userRole = this.authGuardService.getUserRoles();
+    this.userId = Number(this.authGuardService.getLoggedUserId());
+
+    if(this.userRole[0] === 'ADMIN'){
+      this.getDashboardAdminDatas();
+    }
+    else if(this.userRole[0] === 'USUARIO'){
+      this.getHoursByUserAndMonth();
+    }
+    this.getDashboardGeneralData();
   }
 
   setChartConfig(): void {
@@ -84,8 +98,8 @@ export class DashboardHomeComponent implements OnInit, OnDestroy {
     };
   }
 
-  getAllHours(): void {
-    this.hourService.getAllHours()
+  getHoursByUserAndMonth(): void {
+    this.hourService.getHoursByUserAndMonth(this.userId)
     .pipe(takeUntil(this.destroy$))
     .subscribe({
       next: (response) => {
@@ -119,6 +133,26 @@ export class DashboardHomeComponent implements OnInit, OnDestroy {
           severity: 'error',
           summary: 'Erro',
           detail: 'Erro ao buscar métricas',
+          life: 2500
+        });
+      }
+    });
+  }
+
+  getDashboardGeneralData(): void {
+    this.dashboardService.getDashboardGeneralData(this.userId)
+    .pipe(takeUntil(this.destroy$))
+    .subscribe({
+      next: (response) => {
+        if(response) {
+          this.dashboardGeneralData = response;
+        }
+      },
+      error: (err) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Erro',
+          detail: 'Erro ao buscar métricas gerais',
           life: 2500
         });
       }
