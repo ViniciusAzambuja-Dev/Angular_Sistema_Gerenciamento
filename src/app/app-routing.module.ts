@@ -55,6 +55,14 @@ const routes: Routes = [
     canActivate: [AuthGuardService, RoleGuardService],
     data: { roles: ['ADMIN', 'USUARIO'] }
   },
+  {
+    path: 'report',
+    loadChildren: () => import('./modules/report/report.module').then(
+      (module) => module.ReportModule
+    ),
+    canActivate: [AuthGuardService, RoleGuardService],
+    data: { roles: ['ADMIN', 'USUARIO'] }
+  },
 ];
 
 @NgModule({
