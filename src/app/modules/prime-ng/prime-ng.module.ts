@@ -17,6 +17,7 @@ import { CalendarModule } from 'primeng/calendar';
 import { TagModule } from 'primeng/tag';
 import { ChartModule } from 'primeng/chart';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { TabViewModule } from 'primeng/tabview';
 
 @NgModule({
   declarations: [],
@@ -37,7 +38,8 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
     CalendarModule,
     TagModule,
     ChartModule,
-    ProgressSpinnerModule
+    ProgressSpinnerModule,
+    TabViewModule
   ],
   exports: [
     CommonModule,
@@ -57,7 +59,8 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
     CalendarModule,
     TagModule,
     ChartModule,
-    ProgressSpinnerModule
+    ProgressSpinnerModule,
+    TabViewModule
   ],
   providers: []
 })

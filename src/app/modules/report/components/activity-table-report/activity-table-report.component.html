@@ -1,0 +1,67 @@
+<p-table
+  [rows]="5"
+  [scrollable]="true"
+  scrollHeight="300px"
+  [tableStyle]="{'min-width': '100%'}"
+  [rowHover]="true"
+  dataKey="id"
+  styleClass="shadow-2"
+  >
+
+  <ng-template pTemplate="header">
+    <tr>
+      <th pSortableColumn="nome">
+        <div>
+          Nome
+        </div>
+      </th>
+
+      <th pSortableColumn="descricao">
+        <div>
+          Descrição
+        </div>
+      </th>
+
+      <th pSortableColumn="data_inicio">
+        <div>
+          De
+        </div>
+      </th>
+
+      <th pSortableColumn="data_fim">
+        <div>
+          Até
+        </div>
+      </th>
+
+      <th pSortableColumn="nomeUsuario">
+        <div>
+          Responsável
+        </div>
+      </th>
+
+      <th pSortableColumn="status">
+        <div>
+          Status
+        </div>
+      </th>
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="body" let-activity>
+    <tr>
+      <td> [{{ activity?.nomeProjeto }}] {{ activity?.nome }} </td>
+      <td> {{ activity?.descricao }} </td>
+      <td> {{ activity?.data_inicio }} </td>
+      <td> {{ activity?.data_fim }} </td>
+      <td> {{ activity?.nomeUsuario }} </td>
+      <td> <p-tag [value]="activity.status" [severity]="getSeverityStatus(activity.status)"></p-tag></td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="emptymessage">
+    <tr>
+        <td colspan="8">Nenhuma hora lançada encontrada</td>
+    </tr>
+  </ng-template>
+</p-table>
+

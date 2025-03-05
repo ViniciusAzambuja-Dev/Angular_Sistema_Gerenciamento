@@ -1,0 +1,19 @@
+th, td {
+  font-size: 13px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+th {
+  background-color: var(--home-image-background);
+  color: var(--background-color);
+}
+td {
+  border-bottom: 1px solid var(--border-bottom-color);
+}
+
+:host ::ng-deep {
+  .p-tag-value {
+    font-size: 10px;
+  }
+}
+
