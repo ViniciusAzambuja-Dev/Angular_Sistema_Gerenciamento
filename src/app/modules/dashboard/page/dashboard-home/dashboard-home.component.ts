@@ -21,6 +21,8 @@ export class DashboardHomeComponent implements OnInit, OnDestroy {
   public dashboardGeneralData!: DashboardGeneral;
   public chartDatas!: ChartData;
   public chartOptions!: ChartOptions;
+  public data: any;
+  public options: any;
   public userRole!: string[];
   public userId!: number;
 
@@ -39,10 +41,9 @@ export class DashboardHomeComponent implements OnInit, OnDestroy {
     if(this.userRole[0] === 'ADMIN'){
       this.getDashboardAdminDatas();
     }
-    else if(this.userRole[0] === 'USUARIO'){
-      this.getHoursByUserAndMonth();
-    }
+    this.getHoursByUserAndMonth();
     this.getDashboardGeneralData();
+    this.setDoughnutConfig();
   }
 
   setChartConfig(): void {
@@ -60,13 +61,13 @@ export class DashboardHomeComponent implements OnInit, OnDestroy {
           borderColor: documentStyle.getPropertyValue('--home-image-background'),
           hoverBackgroundColor: documentStyle.getPropertyValue('--chart-hover-color'),
           data: this.dashboardAdminDatas.chartDatas.map((element) => element?.totalHoras),
-          barThickness: 30,
+          barThickness: 25,
         },
       ]
     };
     this.chartOptions = {
       maintainAspectRatio: false,
-      aspectRatio: 1.1,
+      aspectRatio: 0.6,
       plugins: {
         legend: {
           labels: {
@@ -96,6 +97,34 @@ export class DashboardHomeComponent implements OnInit, OnDestroy {
         }
       }
     };
+  }
+
+  setDoughnutConfig() {
+      const documentStyle = getComputedStyle(document.documentElement);
+      const textColor = documentStyle.getPropertyValue('--text-color');
+
+      this.data = {
+        labels: ['A', 'B', 'C'],
+        datasets: [
+          {
+            data: [300, 50, 100],
+            backgroundColor: [documentStyle.getPropertyValue('--blue-500'), documentStyle.getPropertyValue('--yellow-500'), documentStyle.getPropertyValue('--green-500')],
+            hoverBackgroundColor: [documentStyle.getPropertyValue('--blue-400'), documentStyle.getPropertyValue('--yellow-400'), documentStyle.getPropertyValue('--green-400')]
+          }
+        ]
+      };
+
+      this.options = {
+        aspectRatio: 1.8,
+        cutout: '60%',
+        plugins: {
+          legend: {
+            labels: {
+
+            }
+          }
+        }
+      };
   }
 
   getHoursByUserAndMonth(): void {

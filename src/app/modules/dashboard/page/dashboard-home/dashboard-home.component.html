@@ -1,6 +1,6 @@
 <app-toolbar-navigation></app-toolbar-navigation>
 
-<div class="flex mt-5 mr-5 ml-5 gap-8">
+<div class="flex mb-5 mt-5 mr-5 ml-5 gap-8">
   <div>
     <div class="card-container mb-3">
       <p-card
@@ -9,7 +9,7 @@
         <ng-template pTemplate="header">
           <div class="flex justify-content-center align-items-center">
             <i class='bx bx-timer'></i>
-            <h2>Horas lançadas</h2>
+            <h2>Minhas horas lançadas</h2>
           </div>
         </ng-template>
 
@@ -32,7 +32,7 @@
         <ng-template pTemplate="header">
           <div class="flex justify-content-center align-items-center">
             <i class='bx bx-folder' ></i>
-            <h2>Projetos em andamento</h2>
+            <h2>Meus projetos em andamento</h2>
           </div>
         </ng-template>
 
@@ -54,7 +54,7 @@
         <ng-template pTemplate="header">
           <div class="flex justify-content-center align-items-center">
             <i class='bx bx-calendar-exclamation'></i>
-            <h2>Atividades pendentes</h2>
+            <h2>Minhas atividades pendentes</h2>
           </div>
         </ng-template>
 
@@ -75,7 +75,7 @@
     <div>
       <p-card
         header="Dados gerais"
-        styleClass="shadow-3 custom-card"
+        styleClass="shadow-3 custom-card mb-3"
         *appHasRole="['ADMIN']"
       >
         <div class="datas-container mr-4 ml-4" *ngIf="dashboardAdminDatas; else loading">
@@ -133,14 +133,13 @@
       </p-card>
 
       <p-card
-        header="Horas lançadas no mês"
+        header="Minhas horas lançadas no mês"
         styleClass="shadow-3"
-        *appHasRole="['USUARIO']"
       >
         <p-table
           [value]="hoursDatas"
           [rows]="4"
-          scrollHeight="240px"
+          scrollHeight="160px"
           [scrollable]="true"
           [rowHover]="true"
           [tableStyle]="{'min-width': '100%'}"
@@ -203,13 +202,45 @@
         </p-table>
       </p-card>
     </div>
-
-    <div class="card" *appHasRole="['ADMIN']">
-      <p-chart type="bar" [data]="chartDatas" [options]="chartOptions" />
-    </div>
-
   </div>
 </div>
+
+<div class="flex justify-content-center pr-5 pl-5 mb-5 w-full gap-3" *appHasRole="['ADMIN']">
+  <div class="flex-1">
+    <p-card
+      header="Gráfico 1"
+      styleClass="shadow-3">
+
+      <p-chart type="doughnut" [data]="data" [options]="options" />
+    </p-card>
+  </div>
+  <div class="flex-1">
+    <p-card
+      header="Gráfico 2"
+      styleClass="shadow-3">
+
+      <p-chart type="doughnut" [data]="data" [options]="options" />
+    </p-card>
+  </div>
+  <div class="flex-1">
+    <p-card
+      header="Gráfico 3"
+      styleClass="shadow-3">
+
+      <p-chart type="doughnut" [data]="data" [options]="options" />
+    </p-card>
+  </div>
+</div>
+
+<div class="pr-5 pl-5 w-full" *appHasRole="['ADMIN']">
+  <p-card
+    header="Horas por projeto geral"
+    styleClass="shadow-3 pr-6 pl-6 pb-3">
+
+      <p-chart type="bar" [data]="chartDatas" [options]="chartOptions" />
+  </p-card>
+</div>
+
 <ng-template #loading>
   <div class="spinner-container">
     <p-progressSpinner styleClass="h-4rem" ariaLabel="loading" />
