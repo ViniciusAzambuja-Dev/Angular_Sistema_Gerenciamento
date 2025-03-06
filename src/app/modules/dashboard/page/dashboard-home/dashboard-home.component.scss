@@ -109,5 +109,14 @@ th {
     background-color: var(--home-image-background);
     color: var(--background-color);
     padding-bottom: 5px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+  }
+
+  .custom-doughnut-card{
+    width: calc(100% - 1rem);
+  }
+  .custom-doughnut-card .p-card-title{
+    font-size: 10px;
   }
 }

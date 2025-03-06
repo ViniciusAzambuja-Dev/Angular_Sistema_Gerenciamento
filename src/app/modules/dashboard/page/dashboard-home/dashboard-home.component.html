@@ -1,6 +1,6 @@
 <app-toolbar-navigation></app-toolbar-navigation>
 
-<div class="flex mb-5 mt-5 mr-5 ml-5 gap-8">
+<div class="flex mb-5 mt-5 mr-5 ml-5 gap-5">
   <div>
     <div class="card-container mb-3">
       <p-card
@@ -202,32 +202,58 @@
         </p-table>
       </p-card>
     </div>
+    <div class="flex mt-3 gap-3" *appHasRole="['USUARIO']">
+      <div class="flex-1">
+        <p-card
+          header="Quantidade de projetos por prioridade"
+          styleClass="shadow-3 custom-doughnut-card">
+
+          <p-chart type="doughnut" [data]="dataFirstDoughnut" [options]="doughnutOptions" />
+        </p-card>
+      </div>
+      <div class="flex-1">
+        <p-card
+          header="Quantidade de projetos por status"
+          styleClass="shadow-3 custom-doughnut-card">
+
+          <p-chart type="doughnut" [data]="dataSecondDoughnut" [options]="doughnutOptions" />
+        </p-card>
+      </div>
+      <div class="flex-1">
+        <p-card
+          header="Quantidade de atividades por status"
+          styleClass="shadow-3 custom-doughnut-card">
+
+          <p-chart type="doughnut" [data]="dataThirdDoughnut" [options]="doughnutOptions" />
+        </p-card>
+      </div>
+    </div>
   </div>
 </div>
 
-<div class="flex justify-content-center pr-5 pl-5 mb-5 w-full gap-3" *appHasRole="['ADMIN']">
+<div class="flex pr-5 pl-5 mb-5 w-full gap-5" *appHasRole="['ADMIN']">
   <div class="flex-1">
     <p-card
-      header="Gráfico 1"
+      header="Quantidade de projetos por prioridade"
       styleClass="shadow-3">
 
-      <p-chart type="doughnut" [data]="data" [options]="options" />
+      <p-chart *ngIf="dashboardGeneralData; else loading" type="doughnut" [data]="dataFirstDoughnut" [options]="doughnutOptions" />
     </p-card>
   </div>
   <div class="flex-1">
     <p-card
-      header="Gráfico 2"
+      header="Quantidade de projetos por status"
       styleClass="shadow-3">
 
-      <p-chart type="doughnut" [data]="data" [options]="options" />
+      <p-chart *ngIf="dashboardGeneralData; else loading" type="doughnut" [data]="dataSecondDoughnut" [options]="doughnutOptions" />
     </p-card>
   </div>
   <div class="flex-1">
     <p-card
-      header="Gráfico 3"
+      header="Quantidade de atividades por status"
       styleClass="shadow-3">
 
-      <p-chart type="doughnut" [data]="data" [options]="options" />
+      <p-chart *ngIf="dashboardGeneralData; else loading" type="doughnut" [data]="dataThirdDoughnut" [options]="doughnutOptions" />
     </p-card>
   </div>
 </div>

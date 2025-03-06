@@ -21,8 +21,12 @@ export class DashboardHomeComponent implements OnInit, OnDestroy {
   public dashboardGeneralData!: DashboardGeneral;
   public chartDatas!: ChartData;
   public chartOptions!: ChartOptions;
-  public data: any;
-  public options: any;
+
+  public dataFirstDoughnut!: ChartData;
+  public dataSecondDoughnut!: ChartData;
+  public dataThirdDoughnut!: ChartData;
+  public doughnutOptions: any;
+
   public userRole!: string[];
   public userId!: number;
 
@@ -43,7 +47,6 @@ export class DashboardHomeComponent implements OnInit, OnDestroy {
     }
     this.getHoursByUserAndMonth();
     this.getDashboardGeneralData();
-    this.setDoughnutConfig();
   }
 
   setChartConfig(): void {
@@ -100,31 +103,107 @@ export class DashboardHomeComponent implements OnInit, OnDestroy {
   }
 
   setDoughnutConfig() {
-      const documentStyle = getComputedStyle(document.documentElement);
-      const textColor = documentStyle.getPropertyValue('--text-color');
+    const documentStyle = getComputedStyle(document.documentElement);
+    const textColor = documentStyle.getPropertyValue('--text-color');
 
-      this.data = {
-        labels: ['A', 'B', 'C'],
-        datasets: [
-          {
-            data: [300, 50, 100],
-            backgroundColor: [documentStyle.getPropertyValue('--blue-500'), documentStyle.getPropertyValue('--yellow-500'), documentStyle.getPropertyValue('--green-500')],
-            hoverBackgroundColor: [documentStyle.getPropertyValue('--blue-400'), documentStyle.getPropertyValue('--yellow-400'), documentStyle.getPropertyValue('--green-400')]
-          }
-        ]
-      };
+    const coresPrioridade: { [key: string]: string } = {
+      BAIXA: documentStyle.getPropertyValue('--severity-second-color'),
+      MEDIA: documentStyle.getPropertyValue('--severity-third-color'),
+      ALTA: documentStyle.getPropertyValue('--severity-fourth-color')
+    };
 
-      this.options = {
-        aspectRatio: 1.8,
-        cutout: '60%',
-        plugins: {
-          legend: {
-            labels: {
+    const coresStatusProjetos: { [key: string]: string } = {
+      CONCLUIDO: documentStyle.getPropertyValue('--severity-first-color'),
+      PLANEJADO: documentStyle.getPropertyValue('--severity-second-color'),
+      EM_ANDAMENTO: documentStyle.getPropertyValue('--severity-third-color'),
+      CANCELADO: documentStyle.getPropertyValue('--severity-fourth-color')
+    }
 
-            }
+    const coresStatusAtividades: { [key: string]: string } = {
+      CONCLUIDA: documentStyle.getPropertyValue('--severity-first-color'),
+      ABERTA: documentStyle.getPropertyValue('--severity-second-color'),
+      EM_ANDAMENTO: documentStyle.getPropertyValue('--severity-third-color'),
+      PAUSADA: documentStyle.getPropertyValue('--severity-fourth-color')
+    };
+
+    this.dataFirstDoughnut = this.dashboardGeneralData.projPorPrioridade.length > 0
+    ? {
+      labels: this.dashboardGeneralData.projPorPrioridade.map(element => element.prioridade),
+      datasets: [
+        {
+          label: 'Quantidade',
+          data: this.dashboardGeneralData.projPorPrioridade.map(element => element.totalProjetos),
+          backgroundColor: this.dashboardGeneralData.projPorPrioridade
+            .map(element => coresPrioridade[element.prioridade]),
+        }
+      ]
+    }
+    : {
+      labels: ['Nenhum dado'],
+      datasets: [
+        {
+          data: [1],
+          backgroundColor: ['#CCCCCC'],
+        }
+      ]
+    };
+
+    this.dataSecondDoughnut = this.dashboardGeneralData.projPorStatus.length > 0
+    ? {
+      labels: this.dashboardGeneralData.projPorStatus.map(p => p.status),
+      datasets: [
+        {
+          label: 'Quantidade',
+          data: this.dashboardGeneralData.projPorStatus.map(p => p.totalProjetos),
+          backgroundColor: this.dashboardGeneralData.projPorStatus
+          .map(element => coresStatusProjetos[element.status]),
+        }
+      ]
+    }
+    : {
+      labels: ['Nenhum dado'],
+      datasets: [
+        {
+          data: [1],
+          backgroundColor: ['#CCCCCC'],
+        }
+      ]
+    };
+
+    this.dataThirdDoughnut = this.dashboardGeneralData.ativPorStatus.length > 0
+    ? {
+      labels: this.dashboardGeneralData.ativPorStatus.map(a => a.status),
+      datasets: [
+        {
+          label: 'Quantidade',
+          data: this.dashboardGeneralData.ativPorStatus.map(a => a.totalAtividades),
+          backgroundColor: this.dashboardGeneralData.ativPorStatus
+          .map(element => coresStatusAtividades[element.status]),
+        }
+      ]
+    }
+    : {
+      labels: ['Nenhum dado'],
+      datasets: [
+        {
+          data: [1],
+          backgroundColor: ['#CCCCCC'],
+        }
+      ]
+    };
+
+    this.doughnutOptions = {
+      maintainAspectRatio: false,
+      aspectRatio: 1.8,
+      cutout: '60%',
+      plugins: {
+        legend: {
+          labels: {
+            color: textColor
           }
         }
-      };
+      }
+    };
   }
 
   getHoursByUserAndMonth(): void {
@@ -175,6 +254,7 @@ export class DashboardHomeComponent implements OnInit, OnDestroy {
       next: (response) => {
         if(response) {
           this.dashboardGeneralData = response;
+          this.setDoughnutConfig();
         }
       },
       error: (err) => {
