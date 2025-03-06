@@ -19,8 +19,8 @@ export class DashboardHomeComponent implements OnInit, OnDestroy {
   public hoursDatas: Array<HourResponse> = [];
   public dashboardAdminDatas!: DashboardAdmin;
   public dashboardGeneralData!: DashboardGeneral;
-  public chartDatas!: ChartData;
-  public chartOptions!: ChartOptions;
+  public barChartDatas!: ChartData;
+  public barChartOptions!: ChartOptions;
 
   public dataFirstDoughnut!: ChartData;
   public dataSecondDoughnut!: ChartData;
@@ -55,22 +55,23 @@ export class DashboardHomeComponent implements OnInit, OnDestroy {
     const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
     const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
 
-    this.chartDatas = {
-      labels: this.dashboardAdminDatas.chartDatas.map((element) => element?.nomeProjeto),
+    this.barChartDatas = {
+      labels: this.dashboardAdminDatas.dadosGraficoBarras.map((element) => element?.nomeProjeto),
       datasets: [
         {
           label: 'Quantidade',
           backgroundColor: documentStyle.getPropertyValue('--home-image-background'),
           borderColor: documentStyle.getPropertyValue('--home-image-background'),
           hoverBackgroundColor: documentStyle.getPropertyValue('--chart-hover-color'),
-          data: this.dashboardAdminDatas.chartDatas.map((element) => element?.totalHoras),
-          barThickness: 25,
+          data: this.dashboardAdminDatas.dadosGraficoBarras.map((element) => element?.totalHoras),
+          barThickness: 18,
         },
       ]
     };
-    this.chartOptions = {
+    this.barChartOptions = {
+      indexAxis: 'y',
       maintainAspectRatio: false,
-      aspectRatio: 0.6,
+      aspectRatio: 0.5,
       plugins: {
         legend: {
           labels: {
@@ -233,7 +234,9 @@ export class DashboardHomeComponent implements OnInit, OnDestroy {
       next: (response) => {
         if(response) {
           this.dashboardAdminDatas = response;
-          this.setChartConfig();
+          if(this.dashboardAdminDatas.dadosGraficoBarras.length > 0) {
+            this.setChartConfig();
+          }
         }
       },
       error: (err) => {

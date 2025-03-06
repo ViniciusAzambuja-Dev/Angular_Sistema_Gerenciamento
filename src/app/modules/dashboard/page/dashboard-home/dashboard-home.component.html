@@ -260,10 +260,11 @@
 
 <div class="pr-5 pl-5 w-full" *appHasRole="['ADMIN']">
   <p-card
-    header="Horas por projeto geral"
-    styleClass="shadow-3 pr-6 pl-6 pb-3">
+    header="Horas por projeto(Geral)"
+    styleClass="shadow-3 pr-8 pl-8 pb-3 pt-3"
+    *ngIf="dashboardAdminDatas && dashboardAdminDatas.dadosGraficoBarras.length > 0;">
 
-      <p-chart type="bar" [data]="chartDatas" [options]="chartOptions" />
+    <p-chart type="bar" [data]="barChartDatas" [options]="barChartOptions" />
   </p-card>
 </div>
 

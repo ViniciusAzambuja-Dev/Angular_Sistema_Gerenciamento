@@ -9,7 +9,7 @@ export interface DashboardAdmin {
   atividadesPausadas: number,
   usuariosAtivos: number,
   totalHorasPorMes: number
-  chartDatas: [{
+  dadosGraficoBarras: [{
     projetoId: number,
     nomeProjeto: string,
     totalHoras: number
