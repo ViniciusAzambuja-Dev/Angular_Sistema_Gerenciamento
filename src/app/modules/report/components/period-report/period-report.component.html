@@ -1,0 +1,42 @@
+<div class="flex flex-column">
+  <div class="flex gap-2">
+    <div class="input-container mb-2">
+      <p-dropdown
+        styleClass="flex"
+        [options]="entities"
+        optionLabel="name"
+        optionValue="name"
+        [(ngModel)]="selectedEntity"
+        placeholder="Filtrar por:">
+      </p-dropdown>
+    </div>
+    <div class="input-container mb-2">
+      <p-calendar
+        [showIcon]="true"
+        [showOnFocus]="false"
+        dateFormat="dd/mm/yy"
+        placeholder="Data inicial" />
+    </div>
+    <div class="input-container mb-2">
+      <p-calendar
+        [showIcon]="true"
+        [showOnFocus]="false"
+        dateFormat="dd/mm/yy"
+        placeholder="Data final" />
+    </div>
+    <div class="button-container">
+      <button
+        class="custom-button"
+        pButton
+        pRipple
+        icon="bx bx-filter-alt"
+        label="Filtrar"
+        ></button>
+    </div>
+  </div>
+  <div [ngSwitch]="selectedEntity">
+    <div class="mt-5" *ngSwitchCase="'Projetos'">
+      <app-project-table-report></app-project-table-report>
+    </div>
+  </div>
+</div>
