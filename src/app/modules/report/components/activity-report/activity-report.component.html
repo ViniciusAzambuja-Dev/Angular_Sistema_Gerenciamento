@@ -1,0 +1,127 @@
+<div class="flex flex-column">
+  <div class="flex gap-2">
+    <div class="input-container mb-2">
+      <p-dropdown
+        styleClass="flex"
+        [options]="projectsDatas"
+        optionLabel="nome"
+        optionValue="id"
+        [(ngModel)]="selectedProjectId"
+        [editable]="true"
+        (onChange)="getAllActivities()"
+        placeholder="Selecione o projeto">
+      </p-dropdown>
+    </div>
+    <div class="input-container mb-2">
+      <p-dropdown
+        styleClass="flex"
+        [options]="activitiesDatas"
+        optionLabel="nome"
+        optionValue="id"
+        [(ngModel)]="selectedActivityId"
+        [editable]="true"
+        placeholder="Selecione a atividade">
+      </p-dropdown>
+    </div>
+    <div class="button-container">
+      <button
+        class="custom-button"
+        pButton
+        pRipple
+        icon="bx bx-filter-alt"
+        label="Gerar"
+        (click)="getReportDatas()"></button>
+    </div>
+  </div>
+  <div *ngIf="reportDatas;">
+    <div class="general-metrics pl-3">
+      <div>
+        <span><h2>Nome: {{ reportDatas.detalhes.nome }}</h2></span>
+        <div>
+          <div class="flex align-items-center row-report">
+            <i class='bx bx-calendar'></i>
+            <h3>Data de inicio: {{ reportDatas.detalhes.data_inicio }}</h3>
+          </div>
+          <div class="flex align-items-center row-report">
+            <i class='bx bx-calendar'></i>
+            <h3>Data de término(Prevista): {{ reportDatas.detalhes.data_fim }}</h3>
+          </div>
+          <div class="flex align-items-center row-report">
+            <i class='bx bx-line-chart'></i>
+            <h3>Status: {{ reportDatas.detalhes.status }}</h3>
+          </div>
+          <div class="flex align-items-center row-report">
+            <i class='bx bxs-user-check'></i>
+            <h3>Quantidade de integrantes: {{ reportDatas.detalhes.quantidadeIntegrantes }}</h3>
+          </div>
+          <div class="flex align-items-center">
+            <i class='bx bxs-time-five' ></i>
+            <h3>Total de horas lançadas: {{ reportDatas.detalhes.totalHoras }}</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mt-5">
+      <h2 class="title pb-1">Tabela de horas:</h2>
+      <p-table
+        [value]="reportDatas.horasLancadas"
+        [rows]="5"
+        [scrollable]="true"
+        scrollHeight="300px"
+        [tableStyle]="{'min-width': '100%'}"
+        [rowHover]="true"
+        dataKey="id"
+        styleClass="shadow-2"
+      >
+        <ng-template pTemplate="header">
+          <tr>
+            <th pSortableColumn="descricao">
+              <div>
+                Descrição
+              </div>
+            </th>
+
+            <th pSortableColumn="data_registro">
+              <div>
+                Registro
+              </div>
+            </th>
+
+            <th pSortableColumn="data_inicio">
+              <div>
+                De
+              </div>
+            </th>
+
+            <th pSortableColumn="data_fim">
+              <div>
+                Até
+              </div>
+            </th>
+
+            <th pSortableColumn="nomeUsuario">
+              <div>
+                Responsável
+              </div>
+            </th>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-hour>
+          <tr>
+            <td> {{ hour?.descricao }} </td>
+            <td> {{ hour?.data_registro }} </td>
+            <td> {{ hour?.data_inicio }} </td>
+            <td> {{ hour?.data_fim }} </td>
+            <td> {{ hour?.nomeUsuario }} </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <tr>
+              <td colspan="8">Nenhuma hora lançada encontrada</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>

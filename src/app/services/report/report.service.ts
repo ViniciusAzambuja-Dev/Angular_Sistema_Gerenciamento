@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { ReportProject } from '../../models/interfaces/report/Project/ReportProject';
 import { Observable } from 'rxjs';
+import { ReportActivity } from '../../models/interfaces/report/Activity/ReportActivity';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +23,12 @@ export class ReportService {
 
   getProjectReport(projectId: number): Observable<ReportProject> {
     return this.http.get<ReportProject>(`${this.API_URL}/relatorio/projetos/${projectId}`,
+      this.httpOptions
+    );
+  }
+
+  getActivityReport(activityId: number): Observable<ReportActivity> {
+    return this.http.get<ReportActivity>(`${this.API_URL}/relatorio/atividades/${activityId}`,
       this.httpOptions
     );
   }

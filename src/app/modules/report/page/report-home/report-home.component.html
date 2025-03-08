@@ -14,6 +14,11 @@
                >
                 <app-project-report></app-project-report>
               </div>
+              <div
+              *ngSwitchCase="'activity-report'"
+             >
+              <app-activity-report></app-activity-report>
+            </div>
             </div>
           </p-tabPanel>
         </p-tabView>
