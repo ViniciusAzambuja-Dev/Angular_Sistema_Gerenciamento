@@ -3,6 +3,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { Subject, takeUntil } from 'rxjs';
 import { ProjectResponse } from '../../../../models/interfaces/project/ProjectResponse';
+import { ActivityResponse } from '../../../../models/interfaces/activity/ActivityResponse';
 
 @Component({
   selector: 'app-period-report',
@@ -12,6 +13,7 @@ import { ProjectResponse } from '../../../../models/interfaces/project/ProjectRe
 export class PeriodReportComponent implements OnInit, OnDestroy {
   private destroy$ : Subject<void> = new Subject;
   public projectsDatas: ProjectResponse[] = [];
+  public activitiesDatas: ActivityResponse[] = [];
   public selectedEntity!: string;
   public startDate!: Date;
   public endDate!: Date;
@@ -57,7 +59,9 @@ export class PeriodReportComponent implements OnInit, OnDestroy {
       case "Projetos":
         this.getProjectByPeriod();
         break;
-
+      case "Atividades":
+        this.getActivitiesByPeriod();
+        break;
       default:
         break;
     }
@@ -88,6 +92,37 @@ export class PeriodReportComponent implements OnInit, OnDestroy {
           severity: 'error',
           summary: 'Erro:',
           detail: 'Erro ao buscar projetos',
+          life: 2500
+        });
+      }
+    })
+  }
+
+  getActivitiesByPeriod(): void {
+    const initialPeriod = this.formatDate(this.startDate);
+    const finalPeriod = this.formatDate(this.endDate);
+
+    this.reportService.getActivitiesByPeriod(initialPeriod, finalPeriod)
+    .pipe(takeUntil(this.destroy$))
+    .subscribe({
+      next: (response) => {
+        if(response.length > 0) {
+          this.activitiesDatas = response
+        }
+        else {
+          this.messageService.add({
+            severity: 'info',
+            summary: 'Informação:',
+            detail: 'Nenhuma atividade encontrada',
+            life: 2500
+          });
+        }
+      },
+      error: (err) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Erro:',
+          detail: 'Erro ao buscar atividades',
           life: 2500
         });
       }

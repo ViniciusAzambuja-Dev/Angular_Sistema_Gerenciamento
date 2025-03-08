@@ -6,6 +6,7 @@ import { ReportProject } from '../../models/interfaces/report/Project/ReportProj
 import { Observable } from 'rxjs';
 import { ReportActivity } from '../../models/interfaces/report/Activity/ReportActivity';
 import { ProjectResponse } from '../../models/interfaces/project/ProjectResponse';
+import { ActivityResponse } from '../../models/interfaces/activity/ActivityResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -36,6 +37,16 @@ export class ReportService {
 
   getProjectsByPeriod(periodoInicial: string, periodoFinal: string): Observable<Array<ProjectResponse>> {
     return this.http.get<Array<ProjectResponse>>(`${this.API_URL}/relatorio/periodo/projetos`,
+      {
+        ...this.httpOptions, params: {
+          periodoInicial, periodoFinal
+        }
+      }
+    );
+  }
+
+  getActivitiesByPeriod(periodoInicial: string, periodoFinal: string): Observable<Array<ActivityResponse>> {
+    return this.http.get<Array<ActivityResponse>>(`${this.API_URL}/relatorio/periodo/atividades`,
       {
         ...this.httpOptions, params: {
           periodoInicial, periodoFinal
