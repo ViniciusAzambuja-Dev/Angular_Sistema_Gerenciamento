@@ -8,6 +8,7 @@ import { ProjectReportComponent } from './components/project-report/project-repo
 import { ActivityReportComponent } from './components/activity-report/activity-report.component';
 import { PeriodReportComponent } from './components/period-report/period-report.component';
 import { ProjectTableReportComponent } from './components/table/project-table-report/project-table-report.component';
+import { ActivityTableReportComponent } from './components/table/activity-table-report/activity-table-report.component';
 
 
 
@@ -18,6 +19,7 @@ import { ProjectTableReportComponent } from './components/table/project-table-re
     ActivityReportComponent,
     PeriodReportComponent,
     ProjectTableReportComponent,
+    ActivityTableReportComponent,
   ],
   imports: [
     CommonModule,
