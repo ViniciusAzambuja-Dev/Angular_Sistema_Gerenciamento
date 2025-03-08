@@ -129,13 +129,13 @@ export class DashboardHomeComponent implements OnInit, OnDestroy {
 
     this.dataFirstDoughnut = this.dashboardGeneralData.projPorPrioridade.length > 0
     ? {
-      labels: this.dashboardGeneralData.projPorPrioridade.map(element => element.prioridade),
+      labels: this.dashboardGeneralData.projPorPrioridade.map(element => element.dados),
       datasets: [
         {
           label: 'Quantidade',
-          data: this.dashboardGeneralData.projPorPrioridade.map(element => element.totalProjetos),
+          data: this.dashboardGeneralData.projPorPrioridade.map(element => element.total),
           backgroundColor: this.dashboardGeneralData.projPorPrioridade
-            .map(element => coresPrioridade[element.prioridade]),
+            .map(element => coresPrioridade[element.dados]),
         }
       ]
     }
@@ -151,13 +151,13 @@ export class DashboardHomeComponent implements OnInit, OnDestroy {
 
     this.dataSecondDoughnut = this.dashboardGeneralData.projPorStatus.length > 0
     ? {
-      labels: this.dashboardGeneralData.projPorStatus.map(p => p.status),
+      labels: this.dashboardGeneralData.projPorStatus.map(p => p.dados),
       datasets: [
         {
           label: 'Quantidade',
-          data: this.dashboardGeneralData.projPorStatus.map(p => p.totalProjetos),
+          data: this.dashboardGeneralData.projPorStatus.map(p => p.total),
           backgroundColor: this.dashboardGeneralData.projPorStatus
-          .map(element => coresStatusProjetos[element.status]),
+          .map(element => coresStatusProjetos[element.dados]),
         }
       ]
     }
@@ -173,13 +173,13 @@ export class DashboardHomeComponent implements OnInit, OnDestroy {
 
     this.dataThirdDoughnut = this.dashboardGeneralData.ativPorStatus.length > 0
     ? {
-      labels: this.dashboardGeneralData.ativPorStatus.map(a => a.status),
+      labels: this.dashboardGeneralData.ativPorStatus.map(a => a.dados),
       datasets: [
         {
           label: 'Quantidade',
-          data: this.dashboardGeneralData.ativPorStatus.map(a => a.totalAtividades),
+          data: this.dashboardGeneralData.ativPorStatus.map(a => a.total),
           backgroundColor: this.dashboardGeneralData.ativPorStatus
-          .map(element => coresStatusAtividades[element.status]),
+          .map(element => coresStatusAtividades[element.dados]),
         }
       ]
     }

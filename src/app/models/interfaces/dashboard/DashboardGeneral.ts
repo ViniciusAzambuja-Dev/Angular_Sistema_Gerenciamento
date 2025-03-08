@@ -3,15 +3,15 @@ export interface DashboardGeneral {
   atividadesPendentes: number,
   totalHorasPorMes: number
   projPorPrioridade: [{
-    prioridade: string,
-    totalProjetos: number
+    dados: string,
+    total: number
   }],
   projPorStatus: [{
-    status: string,
-    totalProjetos: number
+    dados: string,
+    total: number
   }],
   ativPorStatus: [{
-    status: string,
-    totalAtividades: number
+    dados: string,
+    total: number
   }]
 }
