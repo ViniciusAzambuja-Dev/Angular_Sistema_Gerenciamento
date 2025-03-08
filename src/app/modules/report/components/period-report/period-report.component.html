@@ -15,14 +15,16 @@
         [showIcon]="true"
         [showOnFocus]="false"
         dateFormat="dd/mm/yy"
-        placeholder="Data inicial" />
+        [(ngModel)]="startDate"
+        placeholder="Período inicial" />
     </div>
     <div class="input-container mb-2">
       <p-calendar
         [showIcon]="true"
         [showOnFocus]="false"
         dateFormat="dd/mm/yy"
-        placeholder="Data final" />
+        [(ngModel)]="endDate"
+        placeholder="Período final" />
     </div>
     <div class="button-container">
       <button
@@ -31,12 +33,13 @@
         pRipple
         icon="bx bx-filter-alt"
         label="Filtrar"
+        (click)="handleFilter()"
         ></button>
     </div>
   </div>
   <div [ngSwitch]="selectedEntity">
     <div class="mt-5" *ngSwitchCase="'Projetos'">
-      <app-project-table-report></app-project-table-report>
+      <app-project-table-report [projects]="projectsDatas"></app-project-table-report>
     </div>
   </div>
 </div>

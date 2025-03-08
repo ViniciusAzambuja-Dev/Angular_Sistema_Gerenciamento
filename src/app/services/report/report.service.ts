@@ -5,6 +5,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { ReportProject } from '../../models/interfaces/report/Project/ReportProject';
 import { Observable } from 'rxjs';
 import { ReportActivity } from '../../models/interfaces/report/Activity/ReportActivity';
+import { ProjectResponse } from '../../models/interfaces/project/ProjectResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +31,16 @@ export class ReportService {
   getActivityReport(activityId: number): Observable<ReportActivity> {
     return this.http.get<ReportActivity>(`${this.API_URL}/relatorio/atividades/${activityId}`,
       this.httpOptions
+    );
+  }
+
+  getProjectsByPeriod(periodoInicial: string, periodoFinal: string): Observable<Array<ProjectResponse>> {
+    return this.http.get<Array<ProjectResponse>>(`${this.API_URL}/relatorio/periodo/projetos`,
+      {
+        ...this.httpOptions, params: {
+          periodoInicial, periodoFinal
+        }
+      }
     );
   }
 }

@@ -1,5 +1,8 @@
+import { ReportService } from './../../../../services/report/report.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subject } from 'rxjs';
+import { MessageService } from 'primeng/api';
+import { Subject, takeUntil } from 'rxjs';
+import { ProjectResponse } from '../../../../models/interfaces/project/ProjectResponse';
 
 @Component({
   selector: 'app-period-report',
@@ -8,7 +11,16 @@ import { Subject } from 'rxjs';
 })
 export class PeriodReportComponent implements OnInit, OnDestroy {
   private destroy$ : Subject<void> = new Subject;
+  public projectsDatas: ProjectResponse[] = [];
   public selectedEntity!: string;
+  public startDate!: Date;
+  public endDate!: Date;
+
+  constructor(
+    private reportService: ReportService,
+    private messageService: MessageService
+  ) {
+  }
 
   public entities = [
     {name: "Projetos"},
@@ -18,6 +30,87 @@ export class PeriodReportComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
   }
+
+  handleFilter(): void {
+    if(!this.selectedEntity || this.selectedEntity == ''
+      || !this.startDate || !this.endDate
+    ) {
+      this.messageService.add({
+        severity: 'warn',
+        summary: 'Atenção:',
+        detail: 'Preencha os campos',
+        life: 2500
+      });
+      return;
+    }
+    if(!this.isDateValid(this.startDate, this.endDate)) {
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Erro:',
+        detail: 'Período inicial deve ser menor que o final',
+        life: 2500
+      });
+      return;
+    }
+
+    switch (this.selectedEntity) {
+      case "Projetos":
+        this.getProjectByPeriod();
+        break;
+
+      default:
+        break;
+    }
+  }
+
+  getProjectByPeriod(): void {
+    const initialPeriod = this.formatDate(this.startDate);
+    const finalPeriod = this.formatDate(this.endDate);
+
+    this.reportService.getProjectsByPeriod(initialPeriod, finalPeriod)
+    .pipe(takeUntil(this.destroy$))
+    .subscribe({
+      next: (response) => {
+        if(response.length > 0) {
+          this.projectsDatas = response
+        }
+        else {
+          this.messageService.add({
+            severity: 'info',
+            summary: 'Informação:',
+            detail: 'Nenhum projeto encontrado',
+            life: 2500
+          });
+        }
+      },
+      error: (err) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Erro:',
+          detail: 'Erro ao buscar projetos',
+          life: 2500
+        });
+      }
+    })
+  }
+
+  formatDate(date: Date): string {
+    const day = date.getDate().toString().padStart(2, '0');
+
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+
+    const year = date.getFullYear().toString();
+
+    return `${day}/${month}/${year}`;
+  }
+
+  isDateValid(initialPeriod: Date, finalPeriod: Date) : boolean {
+    if(initialPeriod > finalPeriod) {
+      return false;
+    }
+    return true;
+  }
+
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { ProjectResponse } from '../../../../../models/interfaces/project/ProjectResponse';
 
 @Component({
   selector: 'app-project-table-report',
@@ -6,6 +7,7 @@ import { Component } from '@angular/core';
   styleUrl: './project-table-report.component.scss'
 })
 export class ProjectTableReportComponent {
+  @Input() projects: Array<ProjectResponse> = [];
 
   getSeverityStatus(status: string): "success" | "info" | "warning" | "danger" {
     const statusMap: { [key: string]: "success" | "info" | "warning" | "danger" } = {
