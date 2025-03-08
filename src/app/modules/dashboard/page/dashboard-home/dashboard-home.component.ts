@@ -56,7 +56,7 @@ export class DashboardHomeComponent implements OnInit, OnDestroy {
     const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
 
     this.barChartDatas = {
-      labels: this.dashboardAdminDatas.dadosGraficoBarras.map((element) => element?.nomeProjeto),
+      labels: this.dashboardAdminDatas.dadosGraficoBarras.map((element) => element?.nome),
       datasets: [
         {
           label: 'Quantidade',

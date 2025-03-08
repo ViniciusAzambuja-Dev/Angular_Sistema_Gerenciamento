@@ -10,8 +10,8 @@ export interface DashboardAdmin {
   usuariosAtivos: number,
   totalHorasPorMes: number
   dadosGraficoBarras: [{
-    projetoId: number,
-    nomeProjeto: string,
+    id: number,
+    nome: string,
     totalHoras: number
   }]
 }
