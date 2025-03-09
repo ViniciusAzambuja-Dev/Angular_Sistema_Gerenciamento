@@ -1,12 +1,13 @@
-import { UserService } from './../../../../services/user/user.service';
-import { ReportService } from './../../../../services/report/report.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { Subject, takeUntil } from 'rxjs';
-import { ProjectResponse } from '../../../../models/interfaces/project/ProjectResponse';
+
 import { ActivityResponse } from '../../../../models/interfaces/activity/ActivityResponse';
 import { HourResponse } from '../../../../models/interfaces/hour/HourResponse';
+import { ProjectResponse } from '../../../../models/interfaces/project/ProjectResponse';
 import { UserResponse } from '../../../../models/interfaces/user/UserResponse';
+import { ReportService } from './../../../../services/report/report.service';
+import { UserService } from './../../../../services/user/user.service';
 
 @Component({
   selector: 'app-period-report',

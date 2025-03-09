@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+
 import { HourResponse } from '../../../../../models/interfaces/hour/HourResponse';
 
 @Component({

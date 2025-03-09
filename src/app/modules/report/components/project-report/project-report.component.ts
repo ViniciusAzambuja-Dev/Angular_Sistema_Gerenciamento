@@ -1,10 +1,11 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { Subject, takeUntil } from 'rxjs';
-import { ProjectResponse } from '../../../../models/interfaces/project/ProjectResponse';
+import { ChartData, ChartOptions } from 'chart.js';
 import { MessageService } from 'primeng/api';
+import { Subject, takeUntil } from 'rxjs';
+
+import { ProjectResponse } from '../../../../models/interfaces/project/ProjectResponse';
 import { ReportProject } from '../../../../models/interfaces/report/Project/ReportProject';
 import { ReportService } from '../../../../services/report/report.service';
-import { ChartData, ChartOptions } from 'chart.js';
 
 @Component({
   selector: 'app-project-report',

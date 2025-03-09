@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+
 import { ActivityResponse } from '../../../../../models/interfaces/activity/ActivityResponse';
 
 @Component({

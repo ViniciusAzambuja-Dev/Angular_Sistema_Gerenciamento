@@ -1,11 +1,12 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { MessageService } from 'primeng/api';
 import { Subject, takeUntil } from 'rxjs';
+
 import { ActivityResponse } from '../../../../models/interfaces/activity/ActivityResponse';
+import { ProjectResponse } from '../../../../models/interfaces/project/ProjectResponse';
+import { ReportActivity } from '../../../../models/interfaces/report/Activity/ReportActivity';
 import { ActivityService } from '../../../../services/activity/activity.service';
 import { ReportService } from '../../../../services/report/report.service';
-import { MessageService } from 'primeng/api';
-import { ReportActivity } from '../../../../models/interfaces/report/Activity/ReportActivity';
-import { ProjectResponse } from '../../../../models/interfaces/project/ProjectResponse';
 
 @Component({
   selector: 'app-activity-report',
