@@ -1,7 +1,6 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
 import { ProjectResponse } from '../../../../models/interfaces/project/ProjectResponse';
-import { ProjectService } from '../../../../services/project/project.service';
 import { MessageService } from 'primeng/api';
 import { ReportProject } from '../../../../models/interfaces/report/Project/ReportProject';
 import { ReportService } from '../../../../services/report/report.service';
@@ -13,42 +12,20 @@ import { ChartData, ChartOptions } from 'chart.js';
   styleUrl: './project-report.component.scss'
 })
 export class ProjectReportComponent implements OnInit, OnDestroy{
+  @Input() projectsDatas: ProjectResponse[] = []
   private destroy$ : Subject<void> = new Subject;
   public selectedProjectId!: number;
-  public projectsDatas : Array<ProjectResponse> = [];
   public reportDatas!: ReportProject;
 
   public barChartDatas!: ChartData;
   public barChartOptions!: ChartOptions;
 
   constructor(
-    private projectService: ProjectService,
     private reportService: ReportService,
     private messageService: MessageService
   ) {}
 
   ngOnInit() {
-    this.getAllProjects();
-  }
-
-  getAllProjects(): void {
-    this.projectService.getAllProjects()
-    .pipe(takeUntil(this.destroy$))
-    .subscribe({
-      next: (response) => {
-        if(response.length > 0) {
-          this.projectsDatas = response;
-        }
-      },
-      error: (err) => {
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Erro:',
-          detail: 'Erro ao buscar projetos',
-          life: 2500
-        })
-      }
-    });
   }
 
   getReportDatas(): void {

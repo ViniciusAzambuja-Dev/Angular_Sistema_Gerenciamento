@@ -1,5 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
+import { ProjectService } from '../../../../services/project/project.service';
+import { ProjectResponse } from '../../../../models/interfaces/project/ProjectResponse';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-report-home',
@@ -9,8 +12,9 @@ import { Subject } from 'rxjs';
 export class ReportHomeComponent implements OnInit, OnDestroy{
   private destroy$ : Subject<void> = new Subject;
   public tabs: { title: string, content: string }[] = [];
+  public projectsDatas: ProjectResponse[] = [];
 
-  constructor() {}
+  constructor(private projectService: ProjectService, private messageService: MessageService) {}
 
   ngOnInit(): void {
     this.tabs = [
@@ -18,6 +22,28 @@ export class ReportHomeComponent implements OnInit, OnDestroy{
       { title: 'Atividades', content: 'activity-report' },
       { title: 'Período', content: 'period-report'},
     ];
+
+    this.getAllProjects();
+  }
+
+  getAllProjects(): void {
+    this.projectService.getAllProjects()
+    .pipe(takeUntil(this.destroy$))
+    .subscribe({
+      next: (response) => {
+        if(response.length > 0) {
+          this.projectsDatas = response;
+        }
+      },
+      error: (err) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Erro:',
+          detail: 'Erro ao buscar projetos',
+          life: 2500
+        })
+      }
+    });
   }
 
   ngOnDestroy(): void {

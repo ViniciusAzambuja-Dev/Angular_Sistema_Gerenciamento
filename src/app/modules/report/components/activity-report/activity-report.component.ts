@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
 import { ActivityResponse } from '../../../../models/interfaces/activity/ActivityResponse';
 import { ActivityService } from '../../../../services/activity/activity.service';
@@ -6,7 +6,6 @@ import { ReportService } from '../../../../services/report/report.service';
 import { MessageService } from 'primeng/api';
 import { ReportActivity } from '../../../../models/interfaces/report/Activity/ReportActivity';
 import { ProjectResponse } from '../../../../models/interfaces/project/ProjectResponse';
-import { ProjectService } from '../../../../services/project/project.service';
 
 @Component({
   selector: 'app-activity-report',
@@ -14,49 +13,27 @@ import { ProjectService } from '../../../../services/project/project.service';
   styleUrl: './activity-report.component.scss'
 })
 export class ActivityReportComponent implements OnInit, OnDestroy {
+  @Input() projectsDatas : ProjectResponse[] = [];
   private destroy$ : Subject<void> = new Subject;
   public selectedProjectId!: number;
-  public projectsDatas : Array<ProjectResponse> = [];
   public selectedActivityId: number | null = null;
-  public activitiesDatas : Array<ActivityResponse> = [];
-  public reportDatas: ReportActivity | null = null;
+  public activitiesDatas : ActivityResponse[] = [];
+  public reportDatas!: ReportActivity;
 
   constructor(
-    private projectService: ProjectService,
     private activityService: ActivityService,
     private reportService: ReportService,
     private messageService: MessageService
   ) {}
 
   ngOnInit() {
-    this.getAllProjects();
-  }
-
-  getAllProjects(): void {
-    this.projectService.getAllProjects()
-    .pipe(takeUntil(this.destroy$))
-    .subscribe({
-      next: (response) => {
-        if(response.length > 0) {
-          this.projectsDatas = response;
-        }
-      },
-      error: (err) => {
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Erro:',
-          detail: 'Erro ao buscar projetos',
-          life: 2500
-        })
-      }
-    });
   }
 
   getAllActivities(): void {
     this.selectedActivityId = null;
-    this.reportDatas = null;
+    this.activitiesDatas = [];
 
-    this.activityService.getActivityByProject(Number(this.selectedProjectId))
+    this.activityService.getActivityByProject(this.selectedProjectId)
     .pipe(takeUntil(this.destroy$))
     .subscribe({
       next: (response) => {

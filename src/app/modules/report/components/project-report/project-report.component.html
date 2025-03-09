@@ -35,6 +35,10 @@
             <h3>Data de término(Prevista): {{ reportDatas.detalhes.data_fim }}</h3>
           </div>
           <div class="flex align-items-center row-report">
+            <i class='bx bx-line-chart'></i>
+            <h3>Status: {{ reportDatas.detalhes.status }}</h3>
+          </div>
+          <div class="flex align-items-center row-report">
             <i class='bx bxs-user-check'></i>
             <h3>Quantidade de integrantes: {{ reportDatas.detalhes.quantidadeIntegrantes }}</h3>
           </div>
@@ -45,8 +49,11 @@
         </div>
       </div>
       <div class="flex-1 activity-container ml-3 pl-3">
-        <span><h2>Total de atividades: {{ reportDatas.detalhes.totalAtividades }}</h2></span>
+        <span><h2>Atividades</h2></span>
         <div>
+          <div class="flex align-items-center row-report">
+            <h3>Total de atividades: {{ reportDatas.detalhes.totalAtividades }}</h3>
+          </div>
           <div class="flex align-items-center row-report">
             <i class='bx bxs-circle completed'></i>
             <h3>Concluídas: {{ reportDatas.detalhes.atividadesConcluidas }}</h3>

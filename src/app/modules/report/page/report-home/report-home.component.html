@@ -7,12 +7,12 @@
         <div
           *ngSwitchCase="'project-report'"
           >
-          <app-project-report></app-project-report>
+          <app-project-report [projectsDatas]="projectsDatas"></app-project-report>
         </div>
         <div
           *ngSwitchCase="'activity-report'"
           >
-        <app-activity-report></app-activity-report>
+        <app-activity-report [projectsDatas]="projectsDatas"></app-activity-report>
         </div>
         <div
           *ngSwitchCase="'period-report'"

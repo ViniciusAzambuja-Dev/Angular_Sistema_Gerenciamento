@@ -12,6 +12,7 @@ export interface ReportProject {
     nome: string,
     data_inicio : string,
     data_fim: string,
+    status: string,
     quantidadeIntegrantes: number,
     totalHoras: number,
     totalAtividades: number,
