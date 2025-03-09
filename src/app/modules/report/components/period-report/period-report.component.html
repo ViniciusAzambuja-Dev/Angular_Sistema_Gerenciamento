@@ -26,6 +26,20 @@
         [(ngModel)]="endDate"
         placeholder="Período final" />
     </div>
+    <div class="input-container mb-2"
+      *ngIf="selectedEntity === 'Horas lançadas'
+      && usersDatas.length > 0">
+      <p-dropdown
+        styleClass="flex"
+        [options]="usersDatas"
+        optionLabel="nome"
+        optionValue="id"
+        [showClear]="true"
+        [editable]="true"
+        [(ngModel)]="selectedUserId"
+        placeholder="Usuário(Opcional):">
+      </p-dropdown>
+    </div>
     <div class="button-container">
       <button
         class="custom-button"
@@ -45,7 +59,7 @@
       <app-activity-table-report [activities]="activitiesDatas"></app-activity-table-report>
     </div>
     <div class="mt-5" *ngSwitchCase="'Horas lançadas'">
-      <app-hour-table-report></app-hour-table-report>
+      <app-hour-table-report [hours]="hoursDatas"></app-hour-table-report>
     </div>
   </div>
 </div>

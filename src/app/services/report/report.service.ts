@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/enviroment';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { ReportProject } from '../../models/interfaces/report/Project/ReportProject';
 import { Observable } from 'rxjs';
 import { ReportActivity } from '../../models/interfaces/report/Activity/ReportActivity';
 import { ProjectResponse } from '../../models/interfaces/project/ProjectResponse';
 import { ActivityResponse } from '../../models/interfaces/activity/ActivityResponse';
+import { HourResponse } from '../../models/interfaces/hour/HourResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -51,6 +52,21 @@ export class ReportService {
         ...this.httpOptions, params: {
           periodoInicial, periodoFinal
         }
+      }
+    );
+  }
+
+  getHoursByPeriod(periodoInicial: string, periodoFinal: string, usuarioId?: number): Observable<Array<HourResponse>> {
+    let params = new HttpParams()
+    .set('periodoInicial', periodoInicial)
+    .set('periodoFinal', periodoFinal);
+    if(usuarioId) {
+      params = params.set('usuarioId', usuarioId);
+    }
+
+    return this.http.get<Array<HourResponse>>(`${this.API_URL}/relatorio/periodo/horas`,
+      {
+        ...this.httpOptions, params: params
       }
     );
   }
