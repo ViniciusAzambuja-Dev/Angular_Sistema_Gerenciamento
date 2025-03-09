@@ -103,7 +103,6 @@ export class ProjectReportComponent implements OnInit, OnDestroy{
       ]
     };
     this.barChartOptions = {
-      indexAxis: 'y',
       maintainAspectRatio: false,
       aspectRatio: 1.3,
       plugins: {

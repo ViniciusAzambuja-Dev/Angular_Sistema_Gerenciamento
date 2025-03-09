@@ -17,7 +17,6 @@ export class ReportHomeComponent implements OnInit, OnDestroy{
       { title: 'Projetos', content: 'project-report' },
       { title: 'Atividades', content: 'activity-report' },
       { title: 'Período', content: 'period-report'},
-      { title: 'Usuário', content: 'user-report'}
     ];
   }
 

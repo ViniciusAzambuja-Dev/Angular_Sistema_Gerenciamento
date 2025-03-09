@@ -35,26 +35,10 @@ i {
   color: var(--severity-second-color)
 }
 
-th, td {
-  font-size: 13px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
-th {
-  background-color: var(--home-image-background);
-  color: var(--background-color);
-}
-td {
-  border-bottom: 1px solid var(--border-bottom-color);
-}
-
-
 :host ::ng-deep {
 
   .p-dropdown, .custom-button {
     width: 100%;
-  }
-  .p-dropdown, .custom-button {
     height: 100%;
   }
   .p-dropdown, .p-dropdown-label, .p-dropdown-item, .custom-button {
@@ -62,14 +46,12 @@ td {
   }
   .p-dropdown {
     box-shadow: none;
+    border-radius: 6px;
+    border: 1px solid var(--home-input-border);
   }
   .p-dropdown-label {
     display: flex;
     align-items: center;
-  }
-  .p-dropdown {
-    border-radius: 6px;
-    border: 1px solid var(--home-input-border);
   }
 
   .custom-button {
