@@ -175,6 +175,8 @@ export class ProjectFormComponent implements OnInit, OnDestroy{
       && this.editProjectForm.valid
       && this.projectAction.event.id
       && this.editProjectForm.value.nome?.trim() !== ""
+      && this.editProjectForm.value.data_inicio
+      && this.editProjectForm.value.data_fim
     ) {
 
       if(!this.isDateValid(
@@ -189,8 +191,13 @@ export class ProjectFormComponent implements OnInit, OnDestroy{
         });
         return;
       }
-      const data_inicio = this.formatDate(this.editProjectForm.value.data_inicio as string);
-      const data_fim = this.formatDate(this.editProjectForm.value.data_fim as string);
+      const data_inicio = typeof this.editProjectForm.value.data_inicio === "string"
+      ? this.editProjectForm.value.data_inicio
+      : this.formatDate(this.editProjectForm.value.data_inicio as string);
+
+      const data_fim = typeof this.editProjectForm.value.data_fim === "string"
+      ? this.editProjectForm.value.data_fim
+      : this.formatDate(this.editProjectForm.value.data_fim as string);
 
       const requestEditProject : ProjectUpdate = {
         nome: this.editProjectForm.value.nome as string,
@@ -251,10 +258,12 @@ export class ProjectFormComponent implements OnInit, OnDestroy{
           (element) => element.nome === this.projectSelectedDatas.nomeUsuario
         );
 
-        this.editProjectForm.patchValue({
+        this.editProjectForm.setValue({
           nome: this.projectSelectedDatas?.nome,
           descricao: this.projectSelectedDatas?.descricao,
           status: this.projectSelectedDatas?.status,
+          data_inicio: this.projectSelectedDatas?.data_inicio,
+          data_fim: this.projectSelectedDatas?.data_fim,
           prioridade: this.projectSelectedDatas?.prioridade,
           projetoId: this.projectSelectedDatas?.id,
           usuarioId: userSelected?.id || null
