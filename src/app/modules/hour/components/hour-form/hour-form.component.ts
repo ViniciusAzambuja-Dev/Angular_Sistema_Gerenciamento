@@ -179,9 +179,15 @@ export class HourFormComponent implements OnInit, OnDestroy {
   submitEditHour(): void {
     if(this.editHourForm.value && this.editHourForm.valid &&
       this.hourAction.event.id && this.editHourForm.value.descricao?.trim() !== ""
+      && this.editHourForm.value.data_inicio && this.editHourForm.value.data_fim
     ) {
-      const data_inicio = this.formatHour(this.editHourForm.value.data_inicio as string);
-      const data_fim = this.formatHour(this.editHourForm.value.data_fim as string);
+      const data_inicio = typeof this.editHourForm.value.data_inicio === "string"
+      ? this.editHourForm.value.data_inicio
+      : this.formatHour(this.editHourForm.value.data_inicio as string);
+
+    const data_fim = typeof this.editHourForm.value.data_fim === "string"
+      ? this.editHourForm.value.data_fim
+      : this.formatHour(this.editHourForm.value.data_fim as string);
 
       if(!this.isHourValid(data_inicio, data_fim)) {
         this.messageService.add({
@@ -249,8 +255,10 @@ export class HourFormComponent implements OnInit, OnDestroy {
           (element) => element.nome === this.hourSelectedDatas.nomeAtividade
         );
 
-        this.editHourForm.patchValue({
+        this.editHourForm.setValue({
           descricao: this.hourSelectedDatas?.descricao,
+          data_inicio: this.hourSelectedDatas?.data_inicio,
+          data_fim: this.hourSelectedDatas?.data_fim,
           horaId: this.hourSelectedDatas?.id,
           atividadeId: activitySelected?.id || null,
         });
