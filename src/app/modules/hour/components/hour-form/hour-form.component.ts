@@ -22,7 +22,9 @@ export class HourFormComponent implements OnInit, OnDestroy {
   private destroy$: Subject<void> = new Subject();
   public activitiesDatas: Array<ActivityResponse> = [];
   public dropdownDatas: Array<{ id: number, nome: string }> = [];
-  private usuarioId!: number;
+  private userId!: number;
+  private userRole!: string[];
+
   public hourAction!: {
     event: EventAction;
     hoursDatas: Array<HourResponse>
@@ -57,14 +59,46 @@ export class HourFormComponent implements OnInit, OnDestroy {
   public editHourAction = HourEvent.EDIT_HOUR_EVENT;
 
   ngOnInit(): void {
-    this.usuarioId = Number(this.authService.getLoggedUserId());
+    this.userRole = this.authService.getUserRoles();
+    this.userId = Number(this.authService.getLoggedUserId());
     this.hourAction = this.ref.data;
 
-    this.getAllActivitiesByUser();
+    if (this.userRole.length == 0 && !this.userId && !isNaN(this.userId)) {
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Erro',
+        detail: 'Erro ao buscar dados do usuário logado',
+        life: 2500,
+      });
+      return;
+    }
+
+    this.userRole[0] === 'ADMIN' ? this.getAllActivities() : this.getAllActivitiesByUser();
+  }
+
+  getAllActivities(): void {
+    this.activityService.getAllActivities()
+    .pipe(takeUntil(this.destroy$))
+    .subscribe({
+      next: (response) => {
+        if(response.length > 0) {
+          this.activitiesDatas = response;
+
+          this.dropdownDatas = response.map(activity => ({
+            id: activity.id,
+            nome: `[${activity.nomeProjeto}] ${activity.nome}`
+          }));
+
+          if(this.hourAction?.event?.action === this.editHourAction && this.hourAction?.hoursDatas) {
+            this.getHourSelectedDatas(Number(this.hourAction?.event?.id))
+          }
+        }
+      },
+    });
   }
 
   getAllActivitiesByUser(): void {
-    this.activityService.getAllActivitiesByUser(this.usuarioId)
+    this.activityService.getAllActivitiesByUser(this.userId)
     .pipe(takeUntil(this.destroy$))
     .subscribe({
       next: (response) => {
@@ -106,7 +140,7 @@ export class HourFormComponent implements OnInit, OnDestroy {
         data_inicio: data_inicio,
         data_fim: data_fim,
         atividadeId: Number(this.addHourForm.value.atividadeId),
-        usuarioId: this.usuarioId,
+        usuarioId: this.userId,
       }
 
       this.hourService.createHour(hourRequest)

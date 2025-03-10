@@ -20,7 +20,9 @@ export class HourHomeComponent implements OnInit, OnDestroy{
   public hoursDatas: Array<HourResponse> = [];
   private ref!: DynamicDialogRef;
   public filteredDatas: Array<HourResponse> = [];
+  public selectedDropdownOption: string = 'Relacionados';
   public userId!: number;
+
 
   constructor(
     private authGuardService: AuthGuardService,
@@ -98,13 +100,15 @@ export class HourHomeComponent implements OnInit, OnDestroy{
         maximizable: true,
         data: {
           event: event,
-          hoursDatas: this.hoursDatas,
+          hoursDatas: this.filteredDatas,
         },
       });
       this.ref.onClose
         .pipe(takeUntil(this.destroy$))
         .subscribe({
-          next: () => this.getHourDatas(),
+          next: () => {
+            this.selectedDropdownOption === "Relacionados" ? this.getHoursByUser() : this.getHourDatas();
+          },
         });
     }
   }
@@ -126,6 +130,7 @@ export class HourHomeComponent implements OnInit, OnDestroy{
 
   handleTableDatas(event: string): void {
     if(event) {
+      this.selectedDropdownOption = event;
       if(event == "Todos") {
         this.getHourDatas();
       }
@@ -148,7 +153,7 @@ export class HourHomeComponent implements OnInit, OnDestroy{
             life: 2500,
           });
 
-          this.getHourDatas();
+          this.selectedDropdownOption === "Relacionados" ? this.getHoursByUser() : this.getHourDatas();
         },
         error: (err) => {
           this.messageService.add({
