@@ -123,7 +123,7 @@
             [plain]="true"
             [icon]="expanded ? 'bx bx-chevron-down' : 'bx bx-chevron-right'" />
         </td>
-        <td> {{ activity?.nome }} </td>
+        <td>[{{ activity?.nomeProjeto }}] {{ activity?.nome }} </td>
         <td [pTooltip]="activity?.descricao" tooltipPosition="left"> {{ activity?.descricao }} </td>
         <td> {{ activity?.data_inicio }} </td>
         <td> {{ activity?.data_fim }} </td>

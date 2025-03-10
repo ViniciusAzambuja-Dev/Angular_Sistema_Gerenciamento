@@ -200,6 +200,8 @@ export class ActivityFormComponent implements OnInit, OnDestroy {
       && this.editActivityForm.valid
       && this.activityAction.event.id
       && this.editActivityForm.value.nome?.trim() !== ""
+      && this.editActivityForm.value.data_inicio
+      && this.editActivityForm.value.data_fim
     ) {
 
       if(!this.isDateValid(
@@ -215,8 +217,13 @@ export class ActivityFormComponent implements OnInit, OnDestroy {
         return;
       }
 
-      const data_inicio = this.formatDate(this.editActivityForm.value.data_inicio as string);
-      const data_fim = this.formatDate(this.editActivityForm.value.data_fim as string);
+      const data_inicio = typeof this.editActivityForm.value.data_inicio === "string"
+      ? this.editActivityForm.value.data_inicio
+      : this.formatDate(this.editActivityForm.value.data_inicio as string);
+
+      const data_fim = typeof this.editActivityForm.value.data_fim === "string"
+      ? this.editActivityForm.value.data_fim
+      : this.formatDate(this.editActivityForm.value.data_fim as string);
 
       const requestEditActivity : ActivityUpdate = {
         nome: this.editActivityForm.value.nome as string,
@@ -286,10 +293,12 @@ export class ActivityFormComponent implements OnInit, OnDestroy {
                 (element) => element.nome === this.activitySelectedDatas.nomeUsuario
               );
 
-              this.editActivityForm.patchValue({
+              this.editActivityForm.setValue({
                 nome: this.activitySelectedDatas?.nome,
                 descricao: this.activitySelectedDatas?.descricao,
                 status: this.activitySelectedDatas?.status,
+                data_inicio: this.activitySelectedDatas?.data_inicio,
+                data_fim: this.activitySelectedDatas?.data_fim,
                 atividadeId: this.activitySelectedDatas?.id,
                 projetoId: projectSelected?.id || null,
                 usuarioId: userSelected?.id || null
