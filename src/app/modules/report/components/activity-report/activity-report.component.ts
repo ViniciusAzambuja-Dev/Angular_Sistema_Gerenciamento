@@ -33,24 +33,26 @@ export class ActivityReportComponent implements OnInit, OnDestroy {
   getAllActivities(): void {
     this.selectedActivityId = null;
     this.activitiesDatas = [];
+    if(this.selectedProjectId && !isNaN(this.selectedProjectId)) {
 
-    this.activityService.getActivityByProject(this.selectedProjectId)
-    .pipe(takeUntil(this.destroy$))
-    .subscribe({
-      next: (response) => {
-        if(response.length > 0) {
-          this.activitiesDatas = response;
+      this.activityService.getActivityByProject(this.selectedProjectId)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: (response) => {
+          if(response.length > 0) {
+            this.activitiesDatas = response;
+          }
+        },
+        error: (err) => {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Erro:',
+            detail: 'Erro ao buscar atividades',
+            life: 2500
+          })
         }
-      },
-      error: (err) => {
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Erro:',
-          detail: 'Erro ao buscar atividades',
-          life: 2500
-        })
-      }
-    });
+      });
+    }
   }
 
   getReportDatas(): void {
