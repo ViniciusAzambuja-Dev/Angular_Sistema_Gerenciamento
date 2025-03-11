@@ -38,14 +38,14 @@ export class UserFormComponent implements OnInit, OnDestroy{
 
   public signupForm = this.formBuilder.group({
     nome: ['', [Validators.required, Validators.maxLength(50)]],
-    email: ['', Validators.required],
+    email: ['', [Validators.required, Validators.pattern(/^[\w]+@workflow\.com$/)]],
     senha: ['', [Validators.required, Validators.maxLength(15)]],
     perfil: ['', Validators.required],
   });
 
   public editUserForm = this.formBuilder.group({
     nome: ['', [Validators.required, Validators.maxLength(50)]],
-    email: ['', Validators.required],
+    email: ['', [Validators.required, Validators.pattern(/^[\w]+@workflow\.com$/)]],
     senha: ['', [Validators.required, Validators.maxLength(15)]],
     perfil: ['', Validators.required],
     usuarioId: [0, Validators.required]
