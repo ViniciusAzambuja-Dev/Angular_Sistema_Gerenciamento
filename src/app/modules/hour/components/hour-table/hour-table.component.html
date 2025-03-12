@@ -1,17 +1,8 @@
-<div class="flex justify-content-between align-items-center title-container">
+<div class="title-container">
   <h1>Horas lançadas</h1>
-
-    <p-button
-    styleClass="button-add"
-    [text]="true"
-    icon="bx bx-plus"
-    pTooltip="Lançar hora"
-    tooltipPosition="top"
-    (onClick)="handleHourEvent(addHourEvent)"
-  ></p-button>
 </div>
 
-<div class="dropdown-container">
+<div class="flex justify-content-between align-items-center  dropdown-container">
   <p-dropdown
     styleClass="custom-dropdown"
     [options]="dropdownDatas"
@@ -19,6 +10,17 @@
     optionValue="type"
     *appHasRole="['ADMIN']"
     (onChange)="handleDropdownEvent($event)"/>
+
+  <p-button
+    styleClass="button-add"
+    [text]="true"
+    icon="bx bx-plus-circle"
+    label="Adicionar"
+    pTooltip="Lançar hora"
+    tooltipStyleClass="custom-tooltip"
+    tooltipPosition="left"
+    (onClick)="handleHourEvent(addHourEvent)"
+  ></p-button>
 </div>
 <div class="card-container">
   <p-card
@@ -166,7 +168,7 @@
 
     <ng-template pTemplate="body" let-hour>
       <tr>
-        <td class="description" [pTooltip]="hour?.descricao" tooltipPosition="right"> {{ hour?.descricao }} </td>
+        <td class="description" [pTooltip]="hour?.descricao" tooltipPosition="top" tooltipStyleClass="custom-tooltip"> {{ hour?.descricao }} </td>
         <td> {{ hour?.data_registro }} </td>
         <td> {{ hour?.data_inicio }} </td>
         <td> {{ hour?.data_fim }} </td>
@@ -182,6 +184,7 @@
               class="p-button-info"
               pTooltip="Editar hora lançada"
               tooltipPosition="top"
+              tooltipStyleClass="custom-tooltip"
               (click)="handleHourEvent(editHourEvent, hour?.id)"
               ></button>
               <button
@@ -192,6 +195,7 @@
               class="p-button-danger"
               pTooltip="Remover hora lançada"
               tooltipPosition="top"
+              tooltipStyleClass="custom-tooltip"
               *appHasRole="['ADMIN']"
               (click)="handleDeleteHour(hour?.id)"
             ></button>
