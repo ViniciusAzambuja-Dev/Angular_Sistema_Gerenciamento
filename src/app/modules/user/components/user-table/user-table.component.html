@@ -1,16 +1,18 @@
-<div class="flex justify-content-between align-items-center title-container">
+<div class="title-container">
   <h1>Usuários ativos</h1>
-
+</div>
+<div class="button-container">
   <p-button
     styleClass="button-add"
     [text]="true"
-    icon="bx bx-plus"
+    icon="bx bx-plus-circle"
+    label="Adicionar"
     pTooltip="Adicionar usuário"
-    tooltipPosition="top"
+    tooltipPosition="right"
+    tooltipStyleClass="custom-tooltip"
     (onClick)="handleUserEvent(addUserEvent)"
   ></p-button>
 </div>
-
 <div class="card-container">
   <p-card
   styleClass="shadow-3"
@@ -101,6 +103,7 @@
               class="p-button-info"
               pTooltip="Editar usuário"
               tooltipPosition="top"
+              tooltipStyleClass="custom-tooltip"
               (click)="handleUserEvent(editUserEvent, user?.id)"
               ></button>
               <button
@@ -111,6 +114,7 @@
               class="p-button-danger"
               pTooltip="Remover usuário"
               tooltipPosition="top"
+              tooltipStyleClass="custom-tooltip"
               (click)="handleDeleteUser(user?.id, user?.nome)"
             ></button>
           </div>
