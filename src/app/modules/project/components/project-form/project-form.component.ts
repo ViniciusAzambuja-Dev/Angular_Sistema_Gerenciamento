@@ -6,7 +6,6 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { UserResponse } from '../../../../models/interfaces/user/UserResponse';
 import { UserService } from '../../../../services/user/user.service';
 import { ProjectRequest } from '../../../../models/interfaces/project/ProjectRequest';
-import { AutoCompleteCompleteEvent } from 'primeng/autocomplete';
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
 import { EventAction } from '../../../../models/interfaces/events/EventAction';
 import { ProjectResponse } from '../../../../models/interfaces/project/ProjectResponse';
@@ -78,13 +77,6 @@ export class ProjectFormComponent implements OnInit, OnDestroy{
     this.projectAction = this.ref.data;
 
     this.getAllUsers();
-  }
-
-  searchUsers(event: AutoCompleteCompleteEvent):void {
-    const query = event.query.toLowerCase();
-    this.filterDatas = this.usersDatas.filter(user =>
-      user.nome.toLowerCase().includes(query)
-    );
   }
 
   getAllUsers(): void {

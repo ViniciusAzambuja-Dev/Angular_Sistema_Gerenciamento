@@ -1,74 +1,103 @@
 <div class="form-container" *ngIf="projectAction?.event?.action === addProjectAction">
     <form [formGroup]="addProjectForm" (ngSubmit)="submitProjectForm()">
       <div class="flex">
-        <div class="input-container custom-input">
-          <input pInputText pTooltip="máx: 50 caracteres" tooltipPosition="bottom" placeholder="Nome" formControlName="nome">
+        <div class="custom-input">
+          <label for="">Nome do projeto:</label>
+          <div class="input-container">
+            <input
+              pInputText
+              pTooltip="(max): 50 caracteres"
+              tooltipPosition="bottom"
+              tooltipStyleClass="custom-tooltip"
+              placeholder="Nome"
+              formControlName="nome">
+          </div>
         </div>
 
-        <div class="input-container custom-input">
-          <p-dropdown
-            styleClass="flex"
-            [options]="usersDatas"
-            optionLabel="nome"
-            optionValue="id"
-            placeholder="Responsável"
-            formControlName="usuarioId"/>
+        <div class="custom-input">
+          <label for="">Responsável:</label>
+          <div class="input-container">
+            <p-dropdown
+              styleClass="flex"
+              [options]="usersDatas"
+              optionLabel="nome"
+              optionValue="id"
+              [filter]="true"
+              filterBy="nome"
+              placeholder="Responsável"
+              formControlName="usuarioId"/>
+          </div>
         </div>
       </div>
       <div class="flex">
-        <div class="input-container custom-input">
-          <p-calendar
-            [showIcon]="true"
-            [showOnFocus]="false"
-            inputId="buttondisplay"
-            dateFormat="dd/mm/yy"
-            placeholder="DD/MM/YYYY"
-            formControlName="data_inicio" />
+        <div class="custom-input">
+          <label for="">Data de início:</label>
+          <div class="input-container">
+            <p-calendar
+              [showIcon]="true"
+              [showOnFocus]="false"
+              inputId="buttondisplay"
+              dateFormat="dd/mm/yy"
+              placeholder="dd/mm/yyyy"
+              formControlName="data_inicio" />
+          </div>
         </div>
-        <div class="input-container custom-input">
-          <p-calendar
-            [showIcon]="true"
-            [showOnFocus]="false"
-            inputId="buttondisplay"
-            dateFormat="dd/mm/yy"
-            placeholder="DD/MM/YYYY"
-            formControlName="data_fim" />
+        <div class="custom-input">
+          <label for="">Data final(prevista):</label>
+          <div class="input-container">
+            <p-calendar
+              [showIcon]="true"
+              [showOnFocus]="false"
+              inputId="buttondisplay"
+              dateFormat="dd/mm/yy"
+              placeholder="dd/mm/yyyy"
+              formControlName="data_fim" />
+          </div>
         </div>
-        <div class="input-container custom-input">
-          <p-dropdown
-            styleClass="flex"
-            [options]="priorities"
-            optionLabel="name"
-            optionValue="name"
-            placeholder="Prioridade"
-            formControlName="prioridade"/>
+        <div class="custom-input">
+          <label for="">Prioridade:</label>
+          <div class="input-container">
+            <p-dropdown
+              styleClass="flex"
+              [options]="priorities"
+              optionLabel="name"
+              optionValue="name"
+              placeholder="Prioridade"
+              formControlName="prioridade"/>
+          </div>
         </div>
-        <div class="input-container custom-input">
-          <p-dropdown
-            styleClass="flex"
-            [options]="status"
-            optionLabel="name"
-            optionValue="name"
-            placeholder="Status"
-            formControlName="status"/>
+        <div class="custom-input">
+          <label for="">Status:</label>
+          <div class="input-container">
+            <p-dropdown
+              styleClass="flex"
+              [options]="status"
+              optionLabel="name"
+              optionValue="name"
+              placeholder="Status"
+              formControlName="status"/>
+          </div>
         </div>
       </div>
       <div class="members">
-        <p-autoComplete
-          [suggestions]="filterDatas"
-          (completeMethod)="searchUsers($event)"
-          field="nome"
-          placeholder="Integrantes"
-          [multiple]="true"
-          formControlName="integrantesIds"/>
+        <label for="">Integrantes:</label>
+        <div class="input-container">
+          <p-multiSelect
+            styleClass="flex"
+            [options]="usersDatas"
+            optionLabel="nome"
+            placeholder="Integrantes"
+            formControlName="integrantesIds" />
+          </div>
       </div>
       <div>
         <textarea
           rows="5"
           cols="40"
           pInputTextarea
-          pTooltip="máx: 200 caracteres"
+          pTooltip="(max): 200 caracteres"
           tooltipPosition="top"
+          tooltipStyleClass="custom-tooltip"
           placeholder="Descrição"
           [autoResize]="true"
           formControlName="descricao">
@@ -84,55 +113,80 @@
 <div class="form-container" *ngIf="projectAction?.event?.action === editProjectAction">
   <form [formGroup]="editProjectForm" (ngSubmit)="submitEditProject()">
     <div class="flex">
-      <div class="input-container custom-input">
-        <input pInputText pTooltip="máx: 50 caracteres" tooltipPosition="bottom" placeholder="Nome" formControlName="nome">
+      <div class="custom-input">
+        <label for="">Nome do projeto:</label>
+        <div class="input-container">
+          <input
+          pInputText
+          pTooltip="(max): 50 caracteres"
+          tooltipPosition="bottom"
+          tooltipStyleClass="custom-tooltip"
+          placeholder="Nome" formControlName="nome">
+        </div>
       </div>
 
-      <div class="input-container custom-input">
-        <p-dropdown
-          styleClass="flex"
-          [options]="usersDatas"
-          optionLabel="nome"
-          optionValue="id"
-          formControlName="usuarioId"/>
+      <div class="custom-input">
+        <label for="">Responsável:</label>
+        <div class="input-container">
+          <p-dropdown
+            styleClass="flex"
+            [options]="usersDatas"
+            [filter]="true"
+            filterBy="nome"
+            optionLabel="nome"
+            optionValue="id"
+            formControlName="usuarioId"/>
+        </div>
       </div>
     </div>
     <div class="flex">
-      <div class="input-container custom-input">
-        <p-calendar
-          [showIcon]="true"
-          [showOnFocus]="false"
-          inputId="buttondisplay"
-          dateFormat="dd/mm/yy"
-          placeholder="DD/MM/YYYY"
-          formControlName="data_inicio" />
+      <div class="custom-input">
+        <label for="">Data de início:</label>
+        <div class="input-container">
+          <p-calendar
+            [showIcon]="true"
+            [showOnFocus]="false"
+            inputId="buttondisplay"
+            dateFormat="dd/mm/yy"
+            placeholder="dd/mm/yyyy"
+            formControlName="data_inicio" />
+        </div>
       </div>
-      <div class="input-container custom-input">
-        <p-calendar
-          [showIcon]="true"
-          [showOnFocus]="false"
-          inputId="buttondisplay"
-          dateFormat="dd/mm/yy"
-          placeholder="DD/MM/YYYY"
-          formControlName="data_fim" />
+      <div class="custom-input">
+        <label for="">Data final(prevista):</label>
+        <div class="input-container">
+          <p-calendar
+            [showIcon]="true"
+            [showOnFocus]="false"
+            inputId="buttondisplay"
+            dateFormat="dd/mm/yy"
+            placeholder="dd/mm/yyyy"
+            formControlName="data_fim" />
+        </div>
       </div>
-      <div class="input-container custom-input">
-        <p-dropdown
-          styleClass="flex"
-          [options]="priorities"
-          optionLabel="name"
-          optionValue="name"
-          placeholder="Prioridade"
-          formControlName="prioridade"/>
+      <div class="custom-input">
+        <label for="">Prioridade:</label>
+        <div class="input-container">
+          <p-dropdown
+            styleClass="flex"
+            [options]="priorities"
+            optionLabel="name"
+            optionValue="name"
+            placeholder="Prioridade"
+            formControlName="prioridade"/>
+        </div>
       </div>
-      <div class="input-container custom-input">
-        <p-dropdown
-          styleClass="flex"
-          [options]="status"
-          optionLabel="name"
-          optionValue="name"
-          placeholder="Status"
-          formControlName="status"/>
+      <div class="custom-input">
+        <label for="">Status:</label>
+        <div class="input-container">
+          <p-dropdown
+            styleClass="flex"
+            [options]="status"
+            optionLabel="name"
+            optionValue="name"
+            placeholder="Status"
+            formControlName="status"/>
+        </div>
       </div>
     </div>
     <div>
@@ -141,8 +195,9 @@
         rows="5"
         cols="40"
         pInputTextarea
-        pTooltip="máx: 200 caracteres"
+        pTooltip="(max): 200 caracteres"
         tooltipPosition="top"
+        tooltipStyleClass="custom-tooltip"
         placeholder="Descrição"
         [autoResize]="true"
         formControlName="descricao">

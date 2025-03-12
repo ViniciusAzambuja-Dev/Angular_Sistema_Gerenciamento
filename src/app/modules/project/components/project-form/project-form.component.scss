@@ -6,12 +6,17 @@
 form, input, textarea {
   width: 100%;
   height: 100%;
+  font-size: 14px
 }
 
 .flex {
   flex-wrap: wrap;
   gap: 10px;
-  margin-top: 12px;
+  margin-top: 5px;
+}
+
+label {
+  font-size: 12px;
 }
 
 input, textarea{
@@ -21,42 +26,53 @@ input, textarea{
 .input-container {
   height: 40px;
 }
-.input-container.custom-input {
+.custom-input {
   flex: 1 1 140px;
 }
 .members {
-  margin: 12px 0 12px 0;
+  margin: 5px 0 10px 0;
+}
+
+::ng-deep {
+  .p-dialog .p-dialog-header {
+    padding-bottom: 0;
+  }
 }
 
 :host ::ng-deep {
-  .p-autocomplete, .p-autocomplete-multiple-container, .p-calendar {
+  .p-calendar {
     width: 100%;
   }
-
-  .p-calendar, .p-dropdown{
+  .p-calendar, .p-multiselect, .p-dropdown{
     height: 100%;
   }
   .p-calendar .p-button {
     background-color: var(--home-image-background);
   }
-  .p-calendar .p-inputtext {
-    outline: none;
-    outline-offset: none;
-    box-shadow: none;
-    border-color: none;
-  }
 
-  .p-autocomplete-input-token {
-    padding: 0;
+ .p-multiselect, .p-dropdown, .p-inputtext {
+    box-shadow: none;
+    font-size: 14px;
   }
-  .p-autocomplete, .p-dropdown, .p-calendar {
+  .p-multiselect, .p-dropdown, .p-calendar, .p-dropdown-filter, .p-multiselect-filter  {
     border-radius: 6px;
     border: 1px solid var(--home-input-border);
   }
 
-  .p-dropdown-label {
+  .p-dropdown-label, .p-multiselect-label {
     display: flex;
     align-items: center;
+  }
+  .p-dropdown-item, .p-dropdown-filter, .p-multiselect-filter {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 14px;
+  }
+
+  .p-multiselect-item {
+    font-size: 14px;
+    padding-top: 5px;
+    padding-bottom: 5px;
   }
 
   .p-calendar .p-datepicker{
@@ -71,14 +87,23 @@ input, textarea{
     padding: 0;
   }
 
-  .p-autocomplete-token{
-    padding: 5px 10px;
-    gap: 10px;
-    background-color: var(--home-image-background);
-    color: var(--background-color);
+  .p-checkbox-box {
+    border: 1px solid var(--home-input-border);
   }
-  .p-autocomplete-token-icon {
-    color: var(--background-color);
+  .p-checkbox .p-checkbox-box.p-highlight {
+    background: var(--home-image-background);
+  }
+}
+
+::ng-deep .custom-tooltip {
+  .p-tooltip-text{
+    font-size: 13px;
+    padding: 5px;
+    border-radius: 12px;
+    background-color: var(--text-primary-color);
+    box-shadow: 0 4px 8px 0 var(--shadow-first-color),
+    0 6px 20px 0 var(--shadow-second-color);
+    color: var(--home-tooltip-color);
   }
 }
 
@@ -99,4 +124,17 @@ input, textarea{
 
 .textarea-edit {
   margin-top: 12px;
+}
+
+@media (max-width: 500px){
+  ::ng-deep {
+    .p-dialog .p-dialog-header .p-dialog-title {
+      font-size: 14px;
+    }
+  }
+
+  .button-container button {
+    padding: 5px 25px;
+    font-size: 14px;
+  }
 }
