@@ -24,7 +24,6 @@ export class ActivityFormComponent implements OnInit, OnDestroy {
   private destroy$: Subject<void> = new Subject();
   public usersDatas: Array<UserResponse> = [];
   public projectsDatas: Array<ProjectResponse> = [];
-  public filterDatas: Array<UserResponse> = [];
   public activityAction!: {
     event: EventAction;
     activitiesDatas: Array<ActivityResponse>
@@ -76,13 +75,6 @@ export class ActivityFormComponent implements OnInit, OnDestroy {
     this.activityAction = this.ref.data;
 
     this.getAllProjects();
-  }
-
-  searchUsers(event: AutoCompleteCompleteEvent):void {
-    const query = event.query.toLowerCase();
-    this.filterDatas = this.usersDatas.filter(user =>
-      user.nome.toLowerCase().includes(query)
-    );
   }
 
   onProjectChange(event: any) {

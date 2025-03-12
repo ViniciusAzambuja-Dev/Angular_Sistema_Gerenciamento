@@ -20,7 +20,6 @@ import { ProjectUpdate } from '../../../../models/interfaces/project/ProjectUpda
 export class ProjectFormComponent implements OnInit, OnDestroy{
   private destroy$: Subject<void> = new Subject();
   public usersDatas: Array<UserResponse> = [];
-  public filterDatas: Array<UserResponse> = [];
   public projectAction!: {
     event: EventAction;
     projectsDatas: Array<ProjectResponse>;
