@@ -73,7 +73,11 @@ export class HourFormComponent implements OnInit, OnDestroy {
       return;
     }
 
-    this.userRole[0] === 'ADMIN' ? this.getAllActivities() : this.getAllActivitiesByUser();
+    if (this.userRole[0] === 'ADMIN' && this.hourAction?.event?.action === this.editHourAction) {
+      this.getAllActivities();
+    } else {
+      this.getAllActivitiesByUser();
+    }
   }
 
   getAllActivities(): void {
