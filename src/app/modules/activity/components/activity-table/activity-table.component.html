@@ -1,23 +1,25 @@
-<div class="flex justify-content-between align-items-center title-container">
+<div class="title-container">
   <h1>Atividades ativas</h1>
-
-    <p-button
-    styleClass="button-add"
-    [text]="true"
-    icon="bx bx-plus"
-    pTooltip="Adicionar atividade"
-    tooltipPosition="top"
-    *appHasRole="['ADMIN']"
-    (onClick)="handleActivityEvent(addActivityEvent)"
-  ></p-button>
 </div>
-<div class="dropdown-container">
+<div class="flex justify-content-between align-items-center  dropdown-container">
   <p-dropdown
     styleClass="custom-dropdown"
     [options]="dropdownDatas"
     optionLabel="type"
     optionValue="type"
     (onChange)="handleDropdownEvent($event)"/>
+
+  <p-button
+    styleClass="button-add"
+    [text]="true"
+    icon="bx bx-plus-circle"
+    label="Adicionar"
+    pTooltip="Adicionar atividade"
+    tooltipStyleClass="custom-tooltip"
+    tooltipPosition="top"
+    *appHasRole="['ADMIN']"
+    (onClick)="handleActivityEvent(addActivityEvent)"
+  ></p-button>
 </div>
 <div class="card-container">
   <p-card
@@ -117,6 +119,7 @@
             type="button"
             pTooltip="Horas lançadas"
             tooltipPosition="right"
+            tooltipStyleClass="custom-tooltip"
             [pRowToggler]="activity"
             [text]="true"
             [rounded]="true"
@@ -124,7 +127,7 @@
             [icon]="expanded ? 'bx bx-chevron-down' : 'bx bx-chevron-right'" />
         </td>
         <td>[{{ activity?.nomeProjeto }}] {{ activity?.nome }} </td>
-        <td [pTooltip]="activity?.descricao" tooltipPosition="left"> {{ activity?.descricao }} </td>
+        <td [pTooltip]="activity?.descricao" tooltipPosition="top" tooltipStyleClass="custom-tooltip"> {{ activity?.descricao }} </td>
         <td> {{ activity?.data_inicio }} </td>
         <td> {{ activity?.data_fim }} </td>
         <td> {{ activity?.nomeUsuario }} </td>
@@ -139,6 +142,7 @@
               class="p-button-info"
               pTooltip="Editar Atividade"
               tooltipPosition="top"
+              tooltipStyleClass="custom-tooltip"
               (click)="handleActivityEvent(editActivityEvent, activity?.id)"
               ></button>
               <button
@@ -149,6 +153,7 @@
               class="p-button-danger"
               pTooltip="Remover Atividade"
               tooltipPosition="top"
+              tooltipStyleClass="custom-tooltip"
               (click)="handleDeleteActivity(activity?.id, activity?.nome)"
             ></button>
           </div>
@@ -197,7 +202,7 @@
             </ng-template>
             <ng-template pTemplate="body" let-hour>
                 <tr>
-                    <td [pTooltip]="hour?.descricao" tooltipPosition="right">{{ hour?.descricao }}</td>
+                    <td [pTooltip]="hour?.descricao" tooltipPosition="top" tooltipStyleClass="custom-tooltip">{{ hour?.descricao }}</td>
                     <td>{{ hour?.data_registro }}</td>
                     <td>{{ hour?.data_inicio }}</td>
                     <td>{{ hour?.data_fim }}</td>
