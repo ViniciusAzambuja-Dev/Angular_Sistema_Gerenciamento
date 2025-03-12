@@ -1,8 +1,14 @@
+th, td {
+  font-size: 13px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
 td, .title-container  {
   border-bottom: 1px solid var(--border-bottom-color);
 }
 .title-container {
-  margin: 0 50px;
+  margin-left: 50px;
+  margin-right: 50px;
 }
 .title-container h1 {
   font-size: 25px;
@@ -14,7 +20,6 @@ td, .title-container  {
 .card-container {
   padding: 20px 50px;
 }
-
 .table-header {
   background-color: var(--home-image-background);
 }
@@ -29,6 +34,7 @@ td, .title-container  {
 .dropdown-container{
   margin-top: 10px;
   margin-left: 50px;
+  margin-right: 50px;
 }
 
 :host ::ng-deep {
@@ -37,6 +43,10 @@ td, .title-container  {
     padding: 0;
   }
 
+  .p-icon-wrapper {
+    display: flex;
+    align-items: center;
+  }
   .pi-filter-icon, .p-sortable-column-icon {
     color: var(--background-color);
   }
@@ -52,12 +62,14 @@ td, .title-container  {
   }
 
   .button-add.p-button {
-    margin-right: 20px;
-    font-size: 33px;
-    padding: 0;
+    font-size: 14px;
+    padding: 5px 13px;
+    border-radius: 20px;
+    background-color: var(--home-image-background);
+    color: var(--background-color);
 
     &:hover{
-      background: none;
+      background-color: none;
     }
   }
 
@@ -67,13 +79,15 @@ td, .title-container  {
     border: 1px solid var(--home-input-border);
   }
   .custom-dropdown .p-dropdown-label {
+    font-size: 16px;
     padding: 0;
     padding-left: 5px;
   }
   .custom-dropdown .p-dropdown-trigger {
     width: 32px;
     padding: 0 10px;
-    background-color: var(--dropdown-icon-background);
+    color: var(--background-color);
+    background-color: var(--home-image-background);
     border-radius: 0;
   }
 
@@ -88,6 +102,22 @@ td, .title-container  {
   .custom-dropdown  .p-dropdown-panel {
     border-radius: 0;
   }
+
+  .p-tag-value {
+    font-size: 10px;
+  }
+}
+
+::ng-deep .custom-tooltip {
+  .p-tooltip-text{
+    font-size: 13px;
+    padding: 5px;
+    border-radius: 12px;
+    background-color: var(--background-color);
+    box-shadow: 0 4px 8px 0 var(--shadow-first-color),
+    0 6px 20px 0 var(--shadow-second-color);
+    color: var(--home-tooltip-color);
+  }
 }
 
 #table-expanded-column {
@@ -99,4 +129,28 @@ td, .title-container  {
 }
 .table-expanded-row:hover {
   background: none;
+}
+
+@media (max-width: 400px) {
+  .dropdown-container {
+    flex-direction: column;
+    align-items: center !important;
+  }
+  .title-container h1{
+    font-size: 20px;
+    text-align: center;
+  }
+
+  ::ng-deep {
+    .custom-dropdown {
+      width: 210px !important;
+    }
+    .button-add {
+      margin-top: 10px;
+    }
+    .button-add.p-button {
+      padding-left: 60px !important;
+      padding-right: 60px !important;
+    }
+  }
 }
