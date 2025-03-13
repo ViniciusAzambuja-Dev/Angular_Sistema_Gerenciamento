@@ -1,3 +1,7 @@
+.logo-container img {
+  height: 70px;
+  object-fit: contain;
+}
 .home-container {
   min-height: 100vh;
 }
@@ -24,7 +28,7 @@ h1 {
 }
 
 form {
-  margin-top: 50px;
+  margin-top: 20px;
 }
 form, .input-container input, .button-container button {
   width: 100%;

@@ -1,7 +1,7 @@
 <app-toolbar-navigation></app-toolbar-navigation>
 
 <div class="w-full mt-3 pb-1 pl-1 pr-1">
-  <p-tabView styleClass="shadow-3 h-full">
+  <p-tabView styleClass="shadow-3 h-full ml-2 mr-2">
     <p-tabPanel *ngFor="let tab of tabs" [header]="tab.title">
       <div [ngSwitch]="tab.content">
         <div
