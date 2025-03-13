@@ -44,7 +44,7 @@ npm install -g @angular/cli@17
 
 ng version
 ```
-- [Node: 18.20.5](https://github.com/coreybutler/nvm-windows/releases) - Procure por tópico **Assets** e clique em **nvm-setup.exe**, após a instalação execute o arquivo.
+- [NVM: 1.1.12. e Node: 18.20.5](https://github.com/coreybutler/nvm-windows/releases) - Procure por tópico **Assets** e clique em **nvm-setup.exe**, após a instalação execute o arquivo.
 
 - Após aceitar os termos e instalar a nvm, abra o prompt(cmd) como Administrador e execute os seguintes comandos: 
 ```
