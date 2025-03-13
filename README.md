@@ -34,6 +34,8 @@ Siga os passos abaixo para rodar o projeto localmente:
 
 Certifique-se de que você tem as seguintes ferramentas instaladas:
 
+- [Vscode 1.98.1](https://code.visualstudio.com/download)
+
 - [Angular CLI: 17.3.11](https://v17.angular.io/cli) - Execute o comando:
 ```
 npm install -g @angular/cli@17
@@ -42,8 +44,7 @@ npm install -g @angular/cli@17
 
 ng version
 ```
-- [Vscode 1.98.1](https://code.visualstudio.com/download)
-- [Node: 18.20.5]((https://github.com/coreybutler/nvm-windows/releases)) - Procure por tópico **Assets** e clique em **nvm-setup.exe**, após a instalação execute o arquivo.
+- [Node: 18.20.5](https://github.com/coreybutler/nvm-windows/releases) - Procure por tópico **Assets** e clique em **nvm-setup.exe**, após a instalação execute o arquivo.
 
 - Após aceitar os termos e instalar a nvm, abra o prompt(cmd) como Administrador e execute os seguintes comandos: 
 ```
@@ -71,9 +72,21 @@ cd Angular_Sistema_Gerenciamento
 
 #### 2. Rodar a aplicação
 
+Abra o terminal de sua IDE e execute os seguintes comandos:
+
+```
+npm install
+```
+
+Após instalar as dependências, rode o projeto com o seguinte comando:
+
+```
+npm run start //recomendável
+```
+
 #### **Importante**
 
-Pode haver erros ao executar **npm install**, caso isso ocorra, abra o terminal do VsCode e execute os comandos:
+Se ocorrer erros ao executar **npm install**:
 
 ```
 yarn install //recomendável
@@ -85,16 +98,4 @@ npm install --legacy-peer-deps
 ou 
 
 npm install --force
-```
-
-Caso não ocorra erros, abra o terminal de sua IDE e execute os seguintes comandos:
-
-```
-npm install
-```
-
-Após instalar as dependências, rode o projeto com o seguinte comando:
-
-```
-npm run start //recomendável
 ```
