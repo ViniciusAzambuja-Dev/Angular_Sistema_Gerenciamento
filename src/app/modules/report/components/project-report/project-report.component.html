@@ -1,0 +1,89 @@
+<div class="flex flex-column">
+  <div class="flex parent-container gap-2">
+    <div class="input-container mb-2">
+      <p-dropdown
+        styleClass="flex"
+        [options]="projectsDatas"
+        optionLabel="nome"
+        optionValue="id"
+        [(ngModel)]="selectedProjectId"
+        [filter]="true"
+        filterBy="nome"
+        placeholder="Selecione o projeto">
+      </p-dropdown>
+    </div>
+    <div class="button-container">
+      <button
+        class="custom-button"
+        pButton
+        pRipple
+        icon="bx bx-filter-alt"
+        label="Gerar"
+        (click)="getReportDatas()"></button>
+    </div>
+  </div>
+  <div *ngIf="reportDatas;">
+    <div class="flex general-metrics pl-3">
+      <div class="flex-1">
+        <span><h2>Nome: {{ reportDatas.detalhes.nome }}</h2></span>
+        <div>
+          <div class="flex align-items-center row-report">
+            <i class='bx bx-calendar'></i>
+            <h3>Data de inicio: {{ reportDatas.detalhes.data_inicio }}</h3>
+          </div>
+          <div class="flex align-items-center row-report">
+            <i class='bx bx-calendar'></i>
+            <h3>Data de término(Prevista): {{ reportDatas.detalhes.data_fim }}</h3>
+          </div>
+          <div class="flex align-items-center row-report">
+            <i class='bx bx-line-chart'></i>
+            <h3>Status: {{ reportDatas.detalhes.status }}</h3>
+          </div>
+          <div class="flex align-items-center row-report">
+            <i class='bx bxs-user-check'></i>
+            <h3>Quantidade de integrantes: {{ reportDatas.detalhes.quantidadeIntegrantes }}</h3>
+          </div>
+          <div class="flex align-items-center">
+            <i class='bx bxs-time-five' ></i>
+            <h3>Total de horas lançadas: {{ reportDatas.detalhes.totalHoras }}</h3>
+          </div>
+        </div>
+      </div>
+      <div class="flex-1 activity-container ml-3 pl-3">
+        <span><h2>Atividades</h2></span>
+        <div>
+          <div class="flex align-items-center row-report">
+            <h3>Total de atividades: {{ reportDatas.detalhes.totalAtividades }}</h3>
+          </div>
+          <div class="flex align-items-center row-report">
+            <i class='bx bxs-circle completed'></i>
+            <h3>Concluídas: {{ reportDatas.detalhes.atividadesConcluidas }}</h3>
+          </div>
+          <div class="flex align-items-center row-report">
+            <i class='bx bxs-circle pending'></i>
+            <h3>Em andamento: {{ reportDatas.detalhes.atividadesEmAndamento }}</h3>
+          </div>
+          <div class="flex align-items-center row-report">
+            <i class='bx bxs-circle open'></i>
+            <h3>Abertas: {{ reportDatas.detalhes.atividadesAbertas }}</h3>
+          </div>
+          <div class="flex align-items-center">
+            <i class='bx bxs-circle paused'></i>
+            <h3>Pausadas: {{ reportDatas.detalhes.atividadesPausadas }}</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mt-5">
+      <h2 class="titles pb-1">Tabela de atividades:</h2>
+      <app-activity-table-report [activities]="reportDatas.atividades"></app-activity-table-report>
+    </div>
+  </div>
+
+  <div class="mt-5" *ngIf="reportDatas && reportDatas.dadosGraficoBarras.length > 0">
+    <h2 class="titles pb-1">Horas por atividades:</h2>
+    <div class="w-full">
+      <p-chart type="bar" [data]="barChartDatas" [options]="barChartOptions" />
+    </div>
+  </div>
+</div>

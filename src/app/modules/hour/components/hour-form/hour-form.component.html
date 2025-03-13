@@ -1,0 +1,111 @@
+<div class="form-container" *ngIf="hourAction?.event?.action === addHourAction">
+  <form [formGroup]="addHourForm" (ngSubmit)="submitHourForm()">
+    <div>
+      <label for="">Atividade:</label>
+      <div class="input-container">
+        <p-dropdown
+          styleClass="flex"
+          [options]="dropdownDatas"
+          [filter]="true"
+          filterBy="nome"
+          optionLabel="nome"
+          optionValue="id"
+          placeholder="Atividade"
+          formControlName="atividadeId"/>
+      </div>
+    </div>
+    <div class="flex">
+      <div class="custom-input">
+        <label for="">Horário inicial:</label>
+        <div class="input-container">
+          <p-calendar
+            [timeOnly]="true"
+            placeholder="00:00"
+            formControlName="data_inicio"/>
+        </div>
+      </div>
+      <div class="custom-input">
+        <label for="">Horário final:</label>
+        <div class="input-container">
+          <p-calendar
+            [timeOnly]="true"
+            placeholder="00:00"
+            formControlName="data_fim"/>
+        </div>
+      </div>
+    </div>
+    <div>
+      <textarea
+        rows="5"
+        cols="40"
+        pInputTextarea
+        pTooltip="(max): 200 caracteres"
+        tooltipPosition="top"
+        tooltipStyleClass="custom-tooltip"
+        [autoResize]="true"
+        placeholder="Descrição"
+        formControlName="descricao">
+      </textarea>
+    </div>
+
+    <div class="button-container">
+      <button type="submit">Salvar</button>
+    </div>
+  </form>
+</div>
+
+<div class="form-container" *ngIf="hourAction?.event?.action === editHourAction">
+  <form [formGroup]="editHourForm" (ngSubmit)="submitEditHour()">
+    <div>
+      <label for="">Atividade:</label>
+      <div class="input-container">
+        <p-dropdown
+          styleClass="flex"
+          [options]="dropdownDatas"
+          [filter]="true"
+          filterBy="nome"
+          optionLabel="nome"
+          optionValue="id"
+          placeholder="Atividade"
+          formControlName="atividadeId"/>
+      </div>
+    </div>
+    <div class="flex">
+      <div class="custom-input">
+        <label for="">Horário inicial:</label>
+        <div class="input-container">
+          <p-calendar
+            [timeOnly]="true"
+            placeholder="HH:mm"
+            formControlName="data_inicio"/>
+        </div>
+      </div>
+      <div class="custom-input">
+        <label for="">Horário final:</label>
+        <div class="input-container">
+          <p-calendar
+            [timeOnly]="true"
+            placeholder="HH:mm"
+            formControlName="data_fim"/>
+        </div>
+      </div>
+    </div>
+    <div>
+      <textarea
+        rows="5"
+        cols="40"
+        pInputTextarea
+        pTooltip="(max): 200 caracteres"
+        tooltipPosition="top"
+        tooltipStyleClass="custom-tooltip"
+        [autoResize]="true"
+        placeholder="Descrição"
+        formControlName="descricao">
+      </textarea>
+    </div>
+
+    <div class="button-container">
+      <button type="submit">Salvar</button>
+    </div>
+  </form>
+</div>

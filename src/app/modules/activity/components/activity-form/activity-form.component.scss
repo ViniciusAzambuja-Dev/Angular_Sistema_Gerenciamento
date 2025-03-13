@@ -1,0 +1,139 @@
+.form-container {
+  height: 100%;
+  margin-top: 20px;
+}
+
+form, input, textarea {
+  width: 100%;
+  height: 100%;
+  font-size: 14px
+}
+
+.flex {
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 5px;
+}
+
+label {
+  font-size: 12px;
+}
+
+input, textarea{
+  border: 1px solid var(--home-input-border);
+  border-radius: 6px;
+}
+.input-container {
+  height: 40px;
+}
+.custom-input {
+  flex: 1 1 140px;
+}
+.status {
+  margin: 5px 0 10px 0;
+}
+.members {
+  margin: 5px 0 0 0;
+}
+
+::ng-deep {
+  .p-dialog .p-dialog-header {
+    padding-bottom: 0;
+  }
+}
+
+:host ::ng-deep {
+  .p-calendar {
+    width: 100%;
+  }
+  .p-calendar, .p-multiselect, .p-dropdown{
+    height: 100%;
+  }
+  .p-calendar .p-button {
+    background-color: var(--home-image-background);
+  }
+
+  .p-multiselect, .p-dropdown, .p-inputtext {
+    box-shadow: none;
+    font-size: 14px;
+  }
+  .p-multiselect, .p-dropdown, .p-calendar, .p-dropdown-filter, .p-multiselect-filter  {
+    border-radius: 6px;
+    border: 1px solid var(--home-input-border);
+  }
+
+  .p-dropdown-label, .p-multiselect-label {
+    display: flex;
+    align-items: center;
+  }
+  .p-dropdown-item, .p-dropdown-filter, .p-multiselect-filter {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 14px;
+  }
+
+  .p-multiselect-item {
+    font-size: 14px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+  .p-calendar .p-datepicker{
+    top: 0 !important;
+  }
+  .p-datepicker td span {
+    width: 2.2rem;
+    height: 2.2rem;
+  }
+  .p-datepicker table td{
+    margin: 0;
+    padding: 0;
+  }
+
+  .p-checkbox-box {
+    border: 1px solid var(--home-input-border);
+  }
+  .p-checkbox .p-checkbox-box.p-highlight {
+    background: var(--home-image-background);
+  }
+}
+
+::ng-deep .custom-tooltip {
+  .p-tooltip-text{
+    font-size: 13px;
+    padding: 5px;
+    border-radius: 12px;
+    background-color: var(--background-color);
+    box-shadow: 0 4px 8px 0 var(--shadow-first-color),
+    0 6px 20px 0 var(--shadow-second-color);
+    color: var(--home-tooltip-color);
+  }
+}
+
+.button-container {
+  text-align: center;
+}
+.button-container button {
+  padding: 5px 40px;
+  border-radius: 8px;
+  border: none;
+  background-color: var(--home-image-background);
+  color: var(--background-color);
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+@media (max-width: 500px){
+  ::ng-deep {
+    .p-dialog .p-dialog-header .p-dialog-title {
+      font-size: 14px;
+    }
+  }
+
+  .button-container button {
+    padding: 5px 25px;
+    font-size: 14px;
+  }
+}

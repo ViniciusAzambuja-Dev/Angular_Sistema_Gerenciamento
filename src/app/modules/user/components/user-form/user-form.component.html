@@ -1,0 +1,123 @@
+<div class="form-container" *ngIf="userAction?.event?.action === addUserAction">
+  <form [formGroup]="signupForm" (ngSubmit)="submitSignUpForm()">
+    <div>
+      <label for="">Nome do usuário:</label>
+      <div class="input-container">
+        <input
+          type="text"
+          pInputText
+          placeholder="Nome"
+          pTooltip="Nome - max(50)"
+          tooltipStyleClass="custom-tooltip"
+          tooltipPosition="top"
+          formControlName="nome">
+      </div>
+    </div>
+
+    <div>
+      <label for="">Email:</label>
+      <div class="input-container">
+        <input
+          type="text"
+          pInputText
+          placeholder="Email"
+          pTooltip="nome@workflow.com"
+          tooltipStyleClass="custom-tooltip"
+          tooltipPosition="top"
+          formControlName="email">
+      </div>
+    </div>
+
+    <div>
+      <label for="">Senha:</label>
+      <div class="input-container">
+        <input
+          type="password"
+          pInputText pTooltip="Senha - max(15)"
+          tooltipStyleClass="custom-tooltip"
+          tooltipPosition="top"
+          placeholder="Senha"
+          formControlName="senha">
+      </div>
+    </div>
+
+    <div>
+      <label for="">Perfil:</label>
+      <div class="input-container">
+        <p-dropdown
+          styleClass="flex"
+          [options]="profiles"
+          optionLabel="name"
+          optionValue="name"
+          placeholder="Perfil"
+          formControlName="perfil"/>
+      </div>
+    </div>
+
+    <div class="button-container">
+      <button type="submit" >Salvar</button>
+    </div>
+  </form>
+</div>
+
+<div class="form-container" *ngIf="userAction?.event?.action === editUserAction">
+  <form [formGroup]="editUserForm" (ngSubmit)="submitEditUser()">
+    <div>
+      <label for="">Nome do usuário:</label>
+      <div class="input-container">
+        <input
+          type="text"
+          pInputText
+          placeholder="Nome"
+          pTooltip="Nome - max(50)"
+          tooltipPosition="top"
+          tooltipStyleClass="custom-tooltip"
+          formControlName="nome">
+      </div>
+    </div>
+
+    <div>
+      <label for="">Email:</label>
+      <div class="input-container">
+        <input
+          type="text"
+          pInputText
+          placeholder="Email"
+          pTooltip="nome@workflow.com"
+          tooltipStyleClass="custom-tooltip"
+          tooltipPosition="top"
+          formControlName="email">
+      </div>
+    </div>
+
+    <div>
+      <label for="">Senha:</label>
+      <div class="input-container">
+        <input
+          type="password"
+          pInputText pTooltip="Senha - max(15)"
+          tooltipStyleClass="custom-tooltip"
+          placeholder="Senha"
+          tooltipPosition="top"
+          formControlName="senha">
+      </div>
+    </div>
+
+    <div>
+      <label for="">Perfil:</label>
+      <div class="input-container">
+        <p-dropdown
+          styleClass="flex"
+          [options]="profiles"
+          optionLabel="name"
+          optionValue="name"
+          placeholder="Perfil"
+          formControlName="perfil"/>
+      </div>
+    </div>
+
+    <div class="button-container">
+      <button type="submit" >Salvar</button>
+    </div>
+  </form>
+</div>

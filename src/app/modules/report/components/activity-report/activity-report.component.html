@@ -1,0 +1,71 @@
+<div class="flex flex-column">
+  <div class="flex parent-container gap-2">
+    <div class="input-container mb-2">
+      <p-dropdown
+        styleClass="flex"
+        [options]="projectsDatas"
+        optionLabel="nome"
+        optionValue="id"
+        [(ngModel)]="selectedProjectId"
+        [filter]="true"
+        filterBy="nome"
+        (onChange)="getAllActivities()"
+        placeholder="Selecione o projeto">
+      </p-dropdown>
+    </div>
+    <div class="input-container mb-2">
+      <p-dropdown
+        styleClass="flex"
+        [options]="activitiesDatas"
+        optionLabel="nome"
+        optionValue="id"
+        [(ngModel)]="selectedActivityId"
+        [filter]="true"
+        filterBy="nome"
+        placeholder="Selecione a atividade">
+      </p-dropdown>
+    </div>
+    <div class="button-container">
+      <button
+        class="custom-button"
+        pButton
+        pRipple
+        icon="bx bx-filter-alt"
+        label="Gerar"
+        (click)="getReportDatas()"></button>
+    </div>
+  </div>
+  <div *ngIf="reportDatas;">
+    <div class="general-metrics pl-3">
+      <div>
+        <span><h2>Nome: {{ reportDatas.detalhes.nome }}</h2></span>
+        <div>
+          <div class="flex align-items-center row-report">
+            <i class='bx bx-calendar'></i>
+            <h3>Data de inicio: {{ reportDatas.detalhes.data_inicio }}</h3>
+          </div>
+          <div class="flex align-items-center row-report">
+            <i class='bx bx-calendar'></i>
+            <h3>Data de término(Prevista): {{ reportDatas.detalhes.data_fim }}</h3>
+          </div>
+          <div class="flex align-items-center row-report">
+            <i class='bx bx-line-chart'></i>
+            <h3>Status: {{ reportDatas.detalhes.status }}</h3>
+          </div>
+          <div class="flex align-items-center row-report">
+            <i class='bx bxs-user-check'></i>
+            <h3>Quantidade de integrantes: {{ reportDatas.detalhes.quantidadeIntegrantes }}</h3>
+          </div>
+          <div class="flex align-items-center">
+            <i class='bx bxs-time-five' ></i>
+            <h3>Total de horas lançadas: {{ reportDatas.detalhes.totalHoras }}</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mt-5">
+      <h2 class="title pb-1">Tabela de horas:</h2>
+      <app-hour-table-report [hours]="reportDatas.horasLancadas"></app-hour-table-report>
+    </div>
+  </div>
+</div>

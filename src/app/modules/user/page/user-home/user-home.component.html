@@ -1,0 +1,8 @@
+<app-toolbar-navigation></app-toolbar-navigation>
+
+<app-user-table
+  [users]="usersDatas"
+  (userEvent)="handleUserAction($event)"
+  (deleteUserEvent)="handleDeleteUserAction($event)"
+></app-user-table>
+<p-confirmDialog [style]="{ width: '50vw' }"></p-confirmDialog>

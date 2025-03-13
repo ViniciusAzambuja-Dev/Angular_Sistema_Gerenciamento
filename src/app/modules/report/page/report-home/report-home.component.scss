@@ -1,0 +1,8 @@
+:host ::ng-deep {
+  .p-tabview-title {
+    font-size: 14px;
+  }
+  .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
+    color: var(--home-image-background);
+  }
+}

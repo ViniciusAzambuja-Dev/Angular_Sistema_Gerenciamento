@@ -1,0 +1,277 @@
+<app-toolbar-navigation></app-toolbar-navigation>
+
+<div class="flex dashboard-container mb-5 mt-5 mr-5 ml-5 gap-5">
+
+  <div class="container-metrics">
+    <div class="card-container mb-3">
+      <p-card
+        styleClass="h-full shadow-3"
+      >
+        <ng-template pTemplate="header">
+          <div class="flex justify-content-center align-items-center">
+            <i class='bx bx-timer'></i>
+            <h2>Minhas horas lançadas</h2>
+          </div>
+        </ng-template>
+
+        <div *ngIf="dashboardGeneralData; else loading">
+          <div class="hour-container">
+            <span class="quantity">{{ dashboardGeneralData.totalHorasPorMes }}</span>
+            <span>h</span>
+          </div>
+          <p class="m-0">Total de Horas lançadas no mês</p>
+        </div>
+        <div>
+          <a routerLink="/hour"><button class="custom-button" pButton icon="bx bxs-hand-right">Veja mais</button></a>
+        </div>
+      </p-card>
+      </div>
+      <div class="card-container mb-3">
+        <p-card
+          styleClass="h-full shadow-3 p-0"
+        >
+        <ng-template pTemplate="header">
+          <div class="flex justify-content-center align-items-center">
+            <i class='bx bx-folder' ></i>
+            <h2>Meus projetos em andamento</h2>
+          </div>
+        </ng-template>
+
+        <div *ngIf="dashboardGeneralData; else loading">
+          <div class="project-container">
+            <span class="quantity">{{ dashboardGeneralData.projetosPendentes }}</span>
+          </div>
+          <p class="m-0">Total de projetos em andamento</p>
+        </div>
+        <div>
+          <a routerLink="/project"><button class="custom-button" pButton icon="bx bxs-hand-right">Veja mais</button></a>
+        </div>
+      </p-card>
+      </div>
+      <div class="card-container mb-3">
+        <p-card
+          styleClass="h-full shadow-3 p-0"
+        >
+        <ng-template pTemplate="header">
+          <div class="flex justify-content-center align-items-center">
+            <i class='bx bx-calendar-exclamation'></i>
+            <h2>Minhas atividades pendentes</h2>
+          </div>
+        </ng-template>
+
+        <div *ngIf="dashboardGeneralData; else loading">
+          <div class="activity-container">
+            <span class="quantity">{{ dashboardGeneralData.atividadesPendentes }}</span>
+          </div>
+          <p class="m-0">Total de atividades pendentes</p>
+        </div>
+        <div>
+          <a routerLink="/activity"><button class="custom-button" pButton icon="bx bxs-hand-right">Veja mais</button></a>
+        </div>
+      </p-card>
+    </div>
+  </div>
+
+  <div class="w-full">
+    <div>
+      <p-card
+        header="Dados gerais"
+        styleClass="shadow-3 custom-card mb-3"
+        *appHasRole="['ADMIN']"
+      >
+        <div class="datas-container mr-4 ml-4" *ngIf="dashboardAdminDatas; else loading">
+          <div>
+            <div class="title-container"><h2>Projetos em geral</h2></div>
+            <div class="grid-container">
+              <div class="flex align-items-center">
+                <i class='bx bxs-circle completed'></i>
+                <h3>Concluídos: {{ dashboardAdminDatas.projetosConcluidos }}</h3>
+              </div>
+              <div class="flex align-items-center">
+                <i class='bx bxs-circle pending'></i>
+                <h3>Em andamento: {{ dashboardAdminDatas.projetosPendentes }}</h3>
+              </div>
+              <div class="flex align-items-center">
+                <i class='bx bxs-circle open-planned'></i>
+              <h3>Planejados:  {{ dashboardAdminDatas.projetosPlanejados }}</h3>
+              </div>
+              <div class="flex align-items-center">
+                <i class='bx bxs-circle canceled-paused'></i>
+                <h3>Cancelados:  {{ dashboardAdminDatas.projetosCancelados }}</h3>
+              </div>
+            </div>
+          </div>
+          <div class="mb-2">
+            <div class="title-container"><h2>Atividades no mês</h2></div>
+            <div class="grid-container">
+              <div class="flex align-items-center">
+                <i class='bx bxs-circle completed'></i>
+                <h3>Concluídas: {{ dashboardAdminDatas.atividadesConcluidas }}</h3>
+              </div>
+              <div class="flex align-items-center">
+                <i class='bx bxs-circle pending'></i>
+                <h3>Em andamento: {{ dashboardAdminDatas.atividadesPendentes }}</h3>
+              </div>
+              <div class="flex align-items-center">
+                <i class='bx bxs-circle open-planned'></i>
+                <h3>Abertas: {{ dashboardAdminDatas.atividadesAbertas }}</h3>
+              </div>
+              <div class="flex align-items-center">
+                <i class='bx bxs-circle canceled-paused'></i>
+                <h3>Pausadas: {{ dashboardAdminDatas.atividadesPausadas }}</h3>
+              </div>
+            </div>
+          </div>
+          <div class="flex align-items-center bottom-container">
+            <i class='bx bxs-user-check'></i>
+            <h3>Usuários ativos:  {{ dashboardAdminDatas.usuariosAtivos }}</h3>
+          </div>
+          <div class="flex align-items-center bottom-container">
+            <i class='bx bxs-time-five' ></i>
+            <h3> Horas lançadas no mês: {{ dashboardAdminDatas.totalHorasPorMes }}h</h3>
+          </div>
+        </div>
+      </p-card>
+
+      <p-card
+        header="Minhas horas lançadas no mês"
+        styleClass="shadow-3"
+      >
+        <p-table
+          [value]="hoursDatas"
+          [rows]="4"
+          scrollHeight="275px"
+          [scrollable]="true"
+          [rowHover]="true"
+          [tableStyle]="{'min-width': '100%'}"
+          dataKey="id"
+        >
+        <ng-template pTemplate="header">
+          <tr>
+            <th pSortableColumn="atividade">
+              <div>
+                 Atividade
+               </div>
+            </th>
+            <th pSortableColumn="descricao">
+             <div>
+                Descrição
+              </div>
+            </th>
+
+            <th pSortableColumn="data_registro">
+              <div>
+                Registro
+              </div>
+            </th>
+
+            <th pSortableColumn="data_inicio">
+              <div>
+                De
+              </div>
+            </th>
+
+            <th pSortableColumn="data_fim">
+              <div>
+                Até
+              </div>
+            </th>
+
+            <th pSortableColumn="nomeUsuario">
+              <div>
+                Responsável
+              </div>
+            </th>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-hour>
+          <tr>
+            <td>{{ hour?.nomeAtividade }}</td>
+            <td class="description" [pTooltip]="hour?.descricao" tooltipPosition="top" tooltipStyleClass="custom-tooltip">{{ hour?.descricao }} </td>
+            <td> {{ hour?.data_registro }} </td>
+            <td> {{ hour?.data_inicio }} </td>
+            <td> {{ hour?.data_fim }} </td>
+            <td> {{ hour?.nomeUsuario }} </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <tr>
+              <td colspan="8">Nenhuma hora lançada encontrada</td>
+          </tr>
+      </ng-template>
+        </p-table>
+      </p-card>
+    </div>
+
+    <div class="flex custom-doughnut-container mt-3 gap-3" *appHasRole="['USUARIO']">
+      <div class="flex-1">
+        <p-card
+          header="Quantidade de projetos por prioridade"
+          styleClass="h-full shadow-3 custom-doughnut-card">
+
+          <p-chart type="doughnut" [data]="dataFirstDoughnut" [options]="doughnutOptions" />
+        </p-card>
+      </div>
+      <div class="flex-1">
+        <p-card
+          header="Quantidade de projetos por status"
+          styleClass="h-full shadow-3 custom-doughnut-card">
+
+          <p-chart type="doughnut" [data]="dataSecondDoughnut" [options]="doughnutOptions" />
+        </p-card>
+      </div>
+      <div class="flex-1">
+        <p-card
+          header="Quantidade de atividades por status"
+          styleClass="h-full shadow-3 custom-doughnut-card">
+
+          <p-chart type="doughnut" [data]="dataThirdDoughnut" [options]="doughnutOptions" />
+        </p-card>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="flex custom-doughnut-container pr-5 pl-5 mb-5 gap-3" *appHasRole="['ADMIN']">
+  <div class="flex-1">
+    <p-card
+      header="Quantidade de projetos por prioridade"
+      styleClass="shadow-3 custom-doughnut-card">
+
+      <p-chart *ngIf="dashboardGeneralData; else loading" type="doughnut" [data]="dataFirstDoughnut" [options]="doughnutOptions" />
+    </p-card>
+  </div>
+  <div class="flex-1">
+    <p-card
+      header="Quantidade de projetos por status"
+      styleClass="h-full shadow-3  custom-doughnut-card">
+
+      <p-chart *ngIf="dashboardGeneralData; else loading" type="doughnut" [data]="dataSecondDoughnut" [options]="doughnutOptions" />
+    </p-card>
+  </div>
+  <div class="flex-1">
+    <p-card
+      header="Quantidade de atividades por status"
+      styleClass="h-full shadow-3 custom-doughnut-card">
+
+      <p-chart *ngIf="dashboardGeneralData; else loading" type="doughnut" [data]="dataThirdDoughnut" [options]="doughnutOptions" />
+    </p-card>
+  </div>
+</div>
+
+<div class="bar-chart-container pr-5 pl-5" *appHasRole="['ADMIN']">
+  <p-card
+    header="Horas por projeto(Geral)"
+    styleClass="h-full shadow-3 w-full pr-8 pl-8 pb-3 pt-3"
+    *ngIf="dashboardAdminDatas && dashboardAdminDatas.dadosGraficoBarras.length > 0;">
+
+    <p-chart type="bar" [data]="barChartDatas" [options]="barChartOptions" />
+  </p-card>
+</div>
+
+<ng-template #loading>
+  <div class="spinner-container">
+    <p-progressSpinner styleClass="h-4rem" ariaLabel="loading" />
+  </div>
+</ng-template>

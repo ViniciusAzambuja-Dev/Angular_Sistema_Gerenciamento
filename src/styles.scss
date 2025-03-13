@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+:root {
+  --background-color: #ffffff;
+  --text-primary-color: #000000;
+  --home-image-background: rgb(99 102 238);
+  --home-input-border: rgb(156 163 175);
+  --home-dropdown-color: rgb(29, 78, 216);
+  --home-dropdown-background: rgba(59, 130, 246, 0.24);
+  --home-dropdown-hover: rgb(194, 209, 255);
+  --shadow-first-color: rgba(0,0,0,0.2);
+  --shadow-second-color: rgba(0,0,0,0.19);
+  --home-tooltip-color: rgb(105, 139, 231);
+  --toolbar-button-color: #64748b;
+  --toolbar-button-hover: #f1f5f9;
+  --active-route-background: #eff6ff;
+  --active-route-hover:  #dbeafe;
+  --logout-background: #fee2e2;
+  --logout-color: red;
+  --logout-hover: #fecaca;
+  --border-bottom-color:rgb(190, 190, 190);
+  --button-table-color: #55B3FE;
+  --filter-icon-hover: rgb(131, 133, 241);
+  --accept-button-background: rgb(40, 194, 40);
+  --dropdown-icon-background: rgb(223, 223, 223);
+  --severity-first-color: rgb(12, 203, 12);
+  --severity-second-color: rgb(35, 164, 245);
+  --severity-third-color: rgb(243, 243, 43);
+  --severity-fourth-color: rgb(255, 0, 0);
+  --chart-hover-color: rgb(131, 133, 252);
+}
+
+*{
+  box-sizing: border-box;
+  font-family: 'Poppins';
+  border: none;
+}
+
+body {
+  margin: 0;
+  background-color: var(--background-color);
+  color: var(--text-primary-color);
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+.p-toast-message{
+  padding: 15px;
+}
+.p-toast-message-icon{
+  margin-right: 10px;
+}
+
+.custom-reject-button {
+  background-color: var(--home-image-background) !important;
+  padding: 5px 20px;
+}
+.custom-accept-button {
+  background-color: var(--home-image-background) !important;
+  padding: 5px 20px;
+}
+.bx.bxs-error-circle {
+  color: var(--logout-color);
+}

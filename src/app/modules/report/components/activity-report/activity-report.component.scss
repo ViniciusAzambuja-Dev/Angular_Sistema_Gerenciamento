@@ -1,0 +1,99 @@
+.input-container, .button-container {
+  height: 30px;
+}
+.input-container {
+  width: 260px;
+}
+.button-container {
+  width: 110px;
+}
+
+h2 {
+  font-size: 15px;
+}
+h3, i {
+  font-size: 11px;
+}
+i {
+  margin-right: 5px;
+}
+.title {
+  border-bottom: 1px solid var(--home-input-border);
+  width: 180px;
+}
+
+.general-metrics {
+  border: 1px solid var(--home-input-border);
+  border-radius: 8px;
+}
+
+.row-report {
+  border-bottom: 1px solid var(--home-input-border);
+}
+
+.bxs-user-check, .bxs-time-five {
+  color: var(--severity-second-color)
+}
+
+:host ::ng-deep {
+
+  .p-dropdown, .custom-button {
+    width: 100%;
+    height: 100%;
+  }
+  .p-dropdown, .p-dropdown-label, .p-dropdown-item, .custom-button {
+    font-size: 14px;
+  }
+  .p-dropdown, .p-dropdown-filter {
+    box-shadow: none;
+    border-radius: 6px;
+    border: 1px solid var(--home-input-border);
+  }
+   .p-dropdown-filter {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 14px;
+  }
+  .p-dropdown-label {
+    display: flex;
+    align-items: center;
+  }
+
+  .custom-button {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: var(--home-image-background);
+  }
+  .custom-button .p-button-icon {
+    margin-right: 5px;
+  }
+}
+
+@media (max-width: 700px) {
+  .parent-container {
+    flex-direction: column;
+  }
+
+  .input-container {
+    width: 100%;
+  }
+
+  .button-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+  }
+
+  ::ng-deep {
+    .custom-button {
+      width: 110px !important;
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .general-metrics h2 {
+    font-size: 13px;
+  }
+}

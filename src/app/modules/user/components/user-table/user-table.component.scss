@@ -1,0 +1,111 @@
+th, td {
+  font-size: 13px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+td, .title-container  {
+  border-bottom: 1px solid var(--border-bottom-color);
+}
+.title-container {
+  margin-left: 50px;
+  margin-right: 50px;
+}
+.title-container h1 {
+  font-size: 25px;
+  color: var(--toolbar-button-color);
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.card-container {
+  padding: 20px 50px;
+}
+.table-header {
+  background-color: var(--home-image-background);
+}
+.header-column {
+  background-color: transparent;
+  color: var(--background-color);
+}
+.name {
+  padding-left: 50px;
+}
+
+.button-container{
+  margin-top: 10px;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+:host ::ng-deep {
+  .p-card-body,
+  .p-card-content {
+    padding: 0;
+  }
+
+  .p-icon-wrapper {
+    display: flex;
+    align-items: center;
+  }
+  .pi-filter-icon, .p-sortable-column-icon {
+    color: var(--background-color);
+  }
+  .p-column-filter-menu-button.p-column-filter-menu-button-open,
+  .p-column-filter-menu-button.p-column-filter-menu-button-open:hover {
+    background: none;
+    color: none;
+  }
+  .p-column-filter-menu-button:hover {
+    color: none;
+    border-color: none;
+    background:var(--filter-icon-hover);
+  }
+
+  .button-add.p-button {
+    font-size: 14px;
+    padding: 5px 13px;
+    border-radius: 20px;
+    background-color: var(--home-image-background);
+    color: var(--background-color);
+
+    &:hover{
+      background-color: none;
+    }
+  }
+
+  .p-tag-value {
+    font-size: 10px;
+  }
+}
+
+::ng-deep .custom-tooltip {
+  .p-tooltip-text{
+    font-size: 13px;
+    padding: 5px;
+    border-radius: 12px;
+    background-color: var(--background-color);
+    box-shadow: 0 4px 8px 0 var(--shadow-first-color),
+    0 6px 20px 0 var(--shadow-second-color);
+    color: var(--home-tooltip-color);
+  }
+}
+
+@media (max-width: 480px) {
+  .button-container {
+    text-align: center;
+  }
+  .title-container h1{
+    font-size: 20px;
+    text-align: center;
+  }
+
+  ::ng-deep {
+    .button-add {
+      margin-top: 10px;
+    }
+    .button-add.p-button {
+      padding-left: 50px !important;
+      padding-right: 50px !important;
+    }
+  }
+}

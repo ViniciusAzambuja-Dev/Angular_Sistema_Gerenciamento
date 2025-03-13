@@ -1,0 +1,65 @@
+<div class="flex flex-column">
+  <div class="flex parent-container gap-2">
+    <div class="input-container mb-2">
+      <p-dropdown
+        styleClass="flex"
+        [options]="entities"
+        optionLabel="name"
+        optionValue="name"
+        [(ngModel)]="selectedEntity"
+        placeholder="Filtrar por:">
+      </p-dropdown>
+    </div>
+    <div class="input-container mb-2">
+      <p-calendar
+        [showIcon]="true"
+        [showOnFocus]="false"
+        dateFormat="dd/mm/yy"
+        [(ngModel)]="startDate"
+        placeholder="Período inicial" />
+    </div>
+    <div class="input-container mb-2">
+      <p-calendar
+        [showIcon]="true"
+        [showOnFocus]="false"
+        dateFormat="dd/mm/yy"
+        [(ngModel)]="endDate"
+        placeholder="Período final" />
+    </div>
+    <div class="input-container mb-2"
+      *ngIf="selectedEntity === 'Horas lançadas'
+      && usersDatas.length > 0">
+      <p-dropdown
+        styleClass="flex"
+        [options]="usersDatas"
+        optionLabel="nome"
+        optionValue="id"
+        [showClear]="true"
+        [editable]="true"
+        [(ngModel)]="selectedUserId"
+        placeholder="Usuário(Opcional):">
+      </p-dropdown>
+    </div>
+    <div class="button-container">
+      <button
+        class="custom-button"
+        pButton
+        pRipple
+        icon="bx bx-filter-alt"
+        label="Filtrar"
+        (click)="handleFilter()"
+        ></button>
+    </div>
+  </div>
+  <div [ngSwitch]="selectedEntity">
+    <div class="mt-2" *ngSwitchCase="'Projetos'">
+      <app-project-table-report [projects]="projectsDatas"></app-project-table-report>
+    </div>
+    <div class="mt-2" *ngSwitchCase="'Atividades'">
+      <app-activity-table-report [activities]="activitiesDatas"></app-activity-table-report>
+    </div>
+    <div class="mt-2" *ngSwitchCase="'Horas lançadas'">
+      <app-hour-table-report [hours]="hoursDatas"></app-hour-table-report>
+    </div>
+  </div>
+</div>

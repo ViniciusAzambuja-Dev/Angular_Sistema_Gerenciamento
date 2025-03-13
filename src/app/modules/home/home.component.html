@@ -1,0 +1,34 @@
+<div class="home-container">
+
+  <div class="form-container">
+    <div class="logo-container">
+      <img src="../../../assets/img/logo.png" alt="">
+    </div>
+
+    <span class="title-container"><h1>Faça seu Login</h1></span>
+
+    <form [formGroup]="loginForm" (ngSubmit)="submitLoginForm()">
+      <div class="input-container">
+        <span class="input-title">E-mail</span>
+        <i class='bx bx-envelope'></i>
+        <input type="text" pInputText placeholder="nome@workflow.com" formControlName="email">
+      </div>
+
+      <div class="input-container">
+        <span class="input-title">Senha</span>
+        <i class='bx bxs-lock-alt'></i>
+        <input type="password" pInputText placeholder="Digite sua senha" formControlName="senha">
+      </div>
+
+      <div class="button-container">
+        <button type="submit" >Entrar</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="image-container">
+    <div class="image">
+      <img src="../../../assets/img/Sign in-rafiki.png" alt="login">
+    </div>
+  </div>
+</div>
