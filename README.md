@@ -26,6 +26,15 @@ Este projeto utiliza as seguintes tecnologias:
 - **Backend:** Java Spring Boot
 - **Banco de Dados:** MySQL
 
+## Dependências
+
+- **RxJs**
+- **Chart.js**  
+- **Jwt-Decode**  
+- **Ngx-Cookie-Service**  
+- **PrimeFlex**  
+- **PrimeNg**  
+
 ## Instalação
 
 Siga os passos abaixo para rodar o projeto localmente:
@@ -83,6 +92,7 @@ Após instalar as dependências, rode o projeto com o seguinte comando:
 ```
 npm run start //recomendável
 ```
+  - Acesse a aplicação em seu navegador: http://localhost:4200
 
 #### **Importante**
 
