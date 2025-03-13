@@ -7,7 +7,8 @@
         optionLabel="nome"
         optionValue="id"
         [(ngModel)]="selectedProjectId"
-        [editable]="true"
+        [filter]="true"
+        filterBy="nome"
         placeholder="Selecione o projeto">
       </p-dropdown>
     </div>

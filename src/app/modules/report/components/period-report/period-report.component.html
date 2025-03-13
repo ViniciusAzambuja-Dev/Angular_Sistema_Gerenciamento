@@ -1,5 +1,5 @@
 <div class="flex flex-column">
-  <div class="flex gap-2">
+  <div class="flex parent-container gap-2">
     <div class="input-container mb-2">
       <p-dropdown
         styleClass="flex"
@@ -52,13 +52,13 @@
     </div>
   </div>
   <div [ngSwitch]="selectedEntity">
-    <div class="mt-5" *ngSwitchCase="'Projetos'">
+    <div class="mt-2" *ngSwitchCase="'Projetos'">
       <app-project-table-report [projects]="projectsDatas"></app-project-table-report>
     </div>
-    <div class="mt-5" *ngSwitchCase="'Atividades'">
+    <div class="mt-2" *ngSwitchCase="'Atividades'">
       <app-activity-table-report [activities]="activitiesDatas"></app-activity-table-report>
     </div>
-    <div class="mt-5" *ngSwitchCase="'Horas lançadas'">
+    <div class="mt-2" *ngSwitchCase="'Horas lançadas'">
       <app-hour-table-report [hours]="hoursDatas"></app-hour-table-report>
     </div>
   </div>

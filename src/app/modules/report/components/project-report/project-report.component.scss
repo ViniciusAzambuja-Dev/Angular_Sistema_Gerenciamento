@@ -61,10 +61,15 @@ i {
   .p-dropdown, .p-dropdown-label, .p-dropdown-item, .custom-button {
     font-size: 14px;
   }
-  .p-dropdown {
+  .p-dropdown, .p-dropdown-filter {
     box-shadow: none;
     border-radius: 6px;
     border: 1px solid var(--home-input-border);
+  }
+  .p-dropdown-filter {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 14px;
   }
   .p-dropdown-label {
     display: flex;
@@ -78,5 +83,12 @@ i {
   }
   .custom-button .p-button-icon {
     margin-right: 5px;
+  }
+}
+
+
+@media (max-width: 500px) {
+  .general-metrics h2 {
+    font-size: 13px;
   }
 }

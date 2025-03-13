@@ -52,3 +52,27 @@
   }
 
 }
+
+
+@media (max-width: 700px) {
+  .parent-container {
+    flex-direction: column;
+  }
+
+  .input-container {
+    width: 100%;
+  }
+
+  .button-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+  }
+
+  ::ng-deep {
+    .custom-button {
+      width: 110px !important;
+    }
+  }
+}

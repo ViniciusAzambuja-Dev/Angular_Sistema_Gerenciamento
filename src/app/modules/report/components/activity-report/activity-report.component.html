@@ -1,5 +1,5 @@
 <div class="flex flex-column">
-  <div class="flex gap-2">
+  <div class="flex parent-container gap-2">
     <div class="input-container mb-2">
       <p-dropdown
         styleClass="flex"
@@ -7,7 +7,8 @@
         optionLabel="nome"
         optionValue="id"
         [(ngModel)]="selectedProjectId"
-        [editable]="true"
+        [filter]="true"
+        filterBy="nome"
         (onChange)="getAllActivities()"
         placeholder="Selecione o projeto">
       </p-dropdown>
@@ -19,7 +20,8 @@
         optionLabel="nome"
         optionValue="id"
         [(ngModel)]="selectedActivityId"
-        [editable]="true"
+        [filter]="true"
+        filterBy="nome"
         placeholder="Selecione a atividade">
       </p-dropdown>
     </div>
