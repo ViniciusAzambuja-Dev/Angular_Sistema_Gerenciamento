@@ -1,4 +1,4 @@
-<p-toolbar>
+<p-toolbar styleClass="custom-toolbar">
   <div class="logo-container">
     <a routerLink="/dashboard">
       <img src="../../../../../assets/img/logo.png" alt="Logo">
@@ -7,33 +7,78 @@
 
   <div class="buttons-container">
     <p-button icon="bx bx-home" label="Dashboard" routerLink="/dashboard" routerLinkActive="active-route"
-      styleClass="button">
+      styleClass="button toolbar">
     </p-button>
 
     <p-button icon="bx bx-folder" label="Projetos" routerLink="/project" routerLinkActive="active-route"
-      styleClass="button">
+      styleClass="button toolbar">
     </p-button>
 
     <p-button icon="bx bx-task" label="Atividades" routerLink="/activity" routerLinkActive="active-route"
-    styleClass="button">
+    styleClass="button toolbar">
     </p-button>
 
     <p-button icon="bx bx-time-five" label="Lançamento de Horas" routerLink="/hour" routerLinkActive="active-route"
-    styleClass="button">
+    styleClass="button toolbar">
     </p-button>
 
     <p-button icon="bx bxs-user-detail" label="Usuários" routerLink="/users" routerLinkActive="active-route"
-      styleClass="button" *appHasRole="['ADMIN']">
+      styleClass="button toolbar" *appHasRole="['ADMIN']">
     </p-button>
 
 
     <p-button icon="bx bxs-report" label="Relatórios" routerLink="/report" routerLinkActive="active-route"
-      styleClass="button" *appHasRole="['ADMIN']">
+      styleClass="button toolbar" *appHasRole="['ADMIN']">
     </p-button>
   </div>
 
-  <div>
+  <div class="container-log-out">
     <p-button label="Sair" icon="bx bx-log-out" styleClass="log-out" (onClick)="handleLogOut()">
     </p-button>
   </div>
+
+  <div class="container-hamburguer">
+    <p-button icon="bx bx-menu" styleClass="button hamburguer"(onClick)="toggleSidebar()">
+    </p-button>
+  </div>
 </p-toolbar>
+
+<p-sidebar [(visible)]="isSidebarVisible" styleClass="flex flex-column" position="right">
+    <div class="logo-container sidebar">
+      <a routerLink="/dashboard">
+        <img src="../../../../../assets/img/logo.png" alt="Logo">
+      </a>
+    </div>
+
+    <div class="buttons-container sidebar">
+      <p-button icon="bx bx-home" label="Dashboard" routerLink="/dashboard" routerLinkActive="active-route"
+        styleClass="button sidebar">
+      </p-button>
+
+      <p-button icon="bx bx-folder" label="Projetos" routerLink="/project" routerLinkActive="active-route"
+        styleClass="button sidebar">
+      </p-button>
+
+      <p-button icon="bx bx-task" label="Atividades" routerLink="/activity" routerLinkActive="active-route"
+      styleClass="button sidebar">
+      </p-button>
+
+      <p-button icon="bx bx-time-five" label="Lançamento de Horas" routerLink="/hour" routerLinkActive="active-route"
+      styleClass="button sidebar">
+      </p-button>
+
+      <p-button icon="bx bxs-user-detail" label="Usuários" routerLink="/users" routerLinkActive="active-route"
+        styleClass="button sidebar" *appHasRole="['ADMIN']">
+      </p-button>
+
+
+      <p-button icon="bx bxs-report" label="Relatórios" routerLink="/report" routerLinkActive="active-route"
+        styleClass="button sidebar" *appHasRole="['ADMIN']">
+      </p-button>
+    </div>
+
+    <div class="container-log-out sidebar">
+      <p-button label="Sair" icon="bx bx-log-out" styleClass="log-out" (onClick)="handleLogOut()">
+      </p-button>
+    </div>
+</p-sidebar>

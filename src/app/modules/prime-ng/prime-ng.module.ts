@@ -19,6 +19,7 @@ import { ChartModule } from 'primeng/chart';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { TabViewModule } from 'primeng/tabview';
 import { MultiSelectModule } from 'primeng/multiselect';
+import { SidebarModule } from 'primeng/sidebar';
 
 @NgModule({
   declarations: [],
@@ -41,7 +42,8 @@ import { MultiSelectModule } from 'primeng/multiselect';
     ChartModule,
     ProgressSpinnerModule,
     TabViewModule,
-    MultiSelectModule
+    MultiSelectModule,
+    SidebarModule
   ],
   exports: [
     CommonModule,
@@ -63,7 +65,8 @@ import { MultiSelectModule } from 'primeng/multiselect';
     ChartModule,
     ProgressSpinnerModule,
     TabViewModule,
-    MultiSelectModule
+    MultiSelectModule,
+    SidebarModule
   ],
   providers: []
 })

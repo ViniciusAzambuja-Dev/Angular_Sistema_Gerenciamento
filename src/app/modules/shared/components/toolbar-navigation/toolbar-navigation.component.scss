@@ -8,8 +8,12 @@ img {
   flex-wrap: wrap;
   gap: 10px;
 }
+.container-hamburguer{
+  display: none;
+}
 
-::ng-deep {
+
+:host ::ng-deep {
 
   .button {
     &.p-button {
@@ -49,5 +53,63 @@ img {
     &:hover {
       background-color: var(--logout-hover);
     }
+  }
+
+  .logo-container.sidebar {
+    text-align: center;
+  }
+  .logo-container.sidebar img {
+    height: 70px;
+  }
+  .buttons-container.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 30px;
+  }
+  .container-log-out.sidebar {
+    display: block;
+    position: absolute;
+    bottom: 30px;
+  }
+
+  .p-button-icon.bx.bx-menu {
+    font-size: 23px;
+  }
+  .button.p-button {
+    width: 100%;
+  }
+  .container-log-out.sidebar .log-out {
+    background-color: transparent;
+  }
+}
+
+@media (max-width: 1230px) {
+  .buttons-container {
+    gap: 0px;
+  }
+
+  :host ::ng-deep {
+    .button.toolbar .p-button-label {
+      font-size: 12px;
+    }
+  }
+}
+
+@media (max-width: 1020px) {
+  .logo-container.sidebar {
+    text-align: center;
+  }
+  .logo-container.sidebar img {
+    height: 70px;
+  }
+  .container-hamburguer{
+    display: block;
+  }
+  .container-log-out {
+    display: none;
+  }
+  .buttons-container{
+    display: none;
   }
 }

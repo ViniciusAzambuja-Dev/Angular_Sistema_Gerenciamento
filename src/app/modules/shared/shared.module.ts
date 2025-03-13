@@ -12,7 +12,7 @@ import { HasRoleDirective } from './directives/HasRole.directive';
 @NgModule({
   declarations: [
     ToolbarNavigationComponent,
-    HasRoleDirective
+    HasRoleDirective,
   ],
   imports: [
     CommonModule,
