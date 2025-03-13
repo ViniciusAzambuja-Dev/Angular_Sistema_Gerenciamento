@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserService } from '../services/user/user.service';
-import { CookieService } from 'ngx-cookie-service';
 import { jwtDecode } from 'jwt-decode';
+import { CookieService } from 'ngx-cookie-service';
+
+import { UserService } from '../services/user/user.service';
 
 @Injectable({
   providedIn: 'root'
