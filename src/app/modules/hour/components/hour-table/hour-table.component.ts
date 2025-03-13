@@ -1,8 +1,9 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { HourResponse } from '../../../../models/interfaces/hour/HourResponse';
-import { EventAction } from '../../../../models/interfaces/events/EventAction';
+
 import { HourEvent } from '../../../../models/enums/hour/HourEvent';
 import { DeleteAction } from '../../../../models/interfaces/events/DeleteAction';
+import { EventAction } from '../../../../models/interfaces/events/EventAction';
+import { HourResponse } from '../../../../models/interfaces/hour/HourResponse';
 
 @Component({
   selector: 'app-hour-table',

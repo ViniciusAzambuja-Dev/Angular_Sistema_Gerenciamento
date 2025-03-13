@@ -1,14 +1,15 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Subject, takeUntil } from 'rxjs';
+
+import { AuthGuardService } from '../../../../guards/auth-guard.service';
+import { DeleteAction } from '../../../../models/interfaces/events/DeleteAction';
+import { EventAction } from '../../../../models/interfaces/events/EventAction';
 import { HourResponse } from '../../../../models/interfaces/hour/HourResponse';
 import { HourService } from '../../../../services/hour/hour.service';
-import { ConfirmationService, MessageService } from 'primeng/api';
-import { Router } from '@angular/router';
-import { EventAction } from '../../../../models/interfaces/events/EventAction';
-import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { HourFormComponent } from '../../components/hour-form/hour-form.component';
-import { DeleteAction } from '../../../../models/interfaces/events/DeleteAction';
-import { AuthGuardService } from '../../../../guards/auth-guard.service';
 
 @Component({
   selector: 'app-hour-home',

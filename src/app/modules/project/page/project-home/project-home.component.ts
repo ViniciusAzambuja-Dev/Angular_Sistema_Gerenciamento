@@ -1,15 +1,16 @@
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { Subject, takeUntil } from 'rxjs';
+
+import { DeleteAction } from '../../../../models/interfaces/events/DeleteAction';
+import { ProjectResponse } from '../../../../models/interfaces/project/ProjectResponse';
+import { ActivityService } from '../../../../services/activity/activity.service';
+import { ProjectService } from '../../../../services/project/project.service';
+import { ProjectFormComponent } from '../../components/project-form/project-form.component';
 import { AuthGuardService } from './../../../../guards/auth-guard.service';
 import { EventAction } from './../../../../models/interfaces/events/EventAction';
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subject, takeUntil } from 'rxjs';
-import { ProjectService } from '../../../../services/project/project.service';
-import { ConfirmationService, MessageService } from 'primeng/api';
-import { ProjectResponse } from '../../../../models/interfaces/project/ProjectResponse';
-import { Router } from '@angular/router';
-import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { ProjectFormComponent } from '../../components/project-form/project-form.component';
-import { DeleteAction } from '../../../../models/interfaces/events/DeleteAction';
-import { ActivityService } from '../../../../services/activity/activity.service';
 
 @Component({
   selector: 'app-project-home',

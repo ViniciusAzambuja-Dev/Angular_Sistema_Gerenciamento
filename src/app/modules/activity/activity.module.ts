@@ -1,13 +1,14 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivityHomeComponent } from './page/activity-home/activity-home.component';
+import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { ConfirmationService } from 'primeng/api';
+import { DialogService } from 'primeng/dynamicdialog';
+
 import { SharedModule } from '../shared/shared.module';
 import { ACTIVITIES_ROUTES } from './activity.routing';
-import { ActivityTableComponent } from './components/activity-table/activity-table.component';
 import { ActivityFormComponent } from './components/activity-form/activity-form.component';
-import { DialogService } from 'primeng/dynamicdialog';
-import { ConfirmationService } from 'primeng/api';
+import { ActivityTableComponent } from './components/activity-table/activity-table.component';
+import { ActivityHomeComponent } from './page/activity-home/activity-home.component';
 
 
 @NgModule({

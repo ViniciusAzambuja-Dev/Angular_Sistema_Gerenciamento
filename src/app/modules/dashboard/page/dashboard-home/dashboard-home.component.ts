@@ -1,13 +1,14 @@
-import { AuthGuardService } from './../../../../guards/auth-guard.service';
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Subject, takeUntil } from 'rxjs';
-import { HourService } from '../../../../services/hour/hour.service';
-import { HourResponse } from '../../../../models/interfaces/hour/HourResponse';
-import { MessageService } from 'primeng/api';
-import { DashboardService } from '../../../../services/dashboard/dashboard.service';
-import { DashboardAdmin } from '../../../../models/interfaces/dashboard/DashboardAdmin';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ChartData, ChartOptions } from 'chart.js';
+import { MessageService } from 'primeng/api';
+import { Subject, takeUntil } from 'rxjs';
+
+import { DashboardAdmin } from '../../../../models/interfaces/dashboard/DashboardAdmin';
 import { DashboardGeneral } from '../../../../models/interfaces/dashboard/DashboardGeneral';
+import { HourResponse } from '../../../../models/interfaces/hour/HourResponse';
+import { DashboardService } from '../../../../services/dashboard/dashboard.service';
+import { HourService } from '../../../../services/hour/hour.service';
+import { AuthGuardService } from './../../../../guards/auth-guard.service';
 
 @Component({
   selector: 'app-dashboard-home',

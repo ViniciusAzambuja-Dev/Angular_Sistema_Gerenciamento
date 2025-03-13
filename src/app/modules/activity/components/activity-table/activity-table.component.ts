@@ -1,8 +1,9 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { ActivityResponse } from '../../../../models/interfaces/activity/ActivityResponse';
-import { EventAction } from '../../../../models/interfaces/events/EventAction';
+
 import { ActivityEvent } from '../../../../models/enums/activity/ActivityEvent';
+import { ActivityResponse } from '../../../../models/interfaces/activity/ActivityResponse';
 import { DeleteAction } from '../../../../models/interfaces/events/DeleteAction';
+import { EventAction } from '../../../../models/interfaces/events/EventAction';
 
 @Component({
   selector: 'app-activity-table',

@@ -1,14 +1,15 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Subject, takeUntil } from 'rxjs';
-import { UserService } from '../../../../services/user/user.service';
 import { MessageService } from 'primeng/api';
-import { SignUpRequest } from '../../../../models/interfaces/user/signUp/SignUpRequest';
-import { EventAction } from '../../../../models/interfaces/events/EventAction';
-import { UserResponse } from '../../../../models/interfaces/user/UserResponse';
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
+import { Subject, takeUntil } from 'rxjs';
+
 import { UserEvent } from '../../../../models/enums/user/UserEvent';
+import { EventAction } from '../../../../models/interfaces/events/EventAction';
+import { SignUpRequest } from '../../../../models/interfaces/user/signUp/SignUpRequest';
+import { UserResponse } from '../../../../models/interfaces/user/UserResponse';
 import { UserUpdate } from '../../../../models/interfaces/user/UserUpdate';
+import { UserService } from '../../../../services/user/user.service';
 
 @Component({
   selector: 'app-user-form',

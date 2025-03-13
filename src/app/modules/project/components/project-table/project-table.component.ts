@@ -1,8 +1,9 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { ProjectResponse } from '../../../../models/interfaces/project/ProjectResponse';
+
 import { ProjectEvent } from '../../../../models/enums/project/ProjectEvent';
-import { EventAction } from '../../../../models/interfaces/events/EventAction';
 import { DeleteAction } from '../../../../models/interfaces/events/DeleteAction';
+import { EventAction } from '../../../../models/interfaces/events/EventAction';
+import { ProjectResponse } from '../../../../models/interfaces/project/ProjectResponse';
 
 @Component({
   selector: 'app-project-table',

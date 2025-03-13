@@ -1,13 +1,14 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Subject, takeUntil } from 'rxjs';
+
+import { DeleteAction } from '../../../../models/interfaces/events/DeleteAction';
+import { EventAction } from '../../../../models/interfaces/events/EventAction';
 import { UserResponse } from '../../../../models/interfaces/user/UserResponse';
 import { UserService } from '../../../../services/user/user.service';
-import { ConfirmationService, MessageService } from 'primeng/api';
-import { Router } from '@angular/router';
-import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { EventAction } from '../../../../models/interfaces/events/EventAction';
 import { UserFormComponent } from '../../components/user-form/user-form.component';
-import { DeleteAction } from '../../../../models/interfaces/events/DeleteAction';
 
 @Component({
   selector: 'app-user-home',

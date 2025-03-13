@@ -1,8 +1,9 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { UserResponse } from '../../../../models/interfaces/user/UserResponse';
-import { EventAction } from '../../../../models/interfaces/events/EventAction';
+
 import { UserEvent } from '../../../../models/enums/user/UserEvent';
 import { DeleteAction } from '../../../../models/interfaces/events/DeleteAction';
+import { EventAction } from '../../../../models/interfaces/events/EventAction';
+import { UserResponse } from '../../../../models/interfaces/user/UserResponse';
 
 @Component({
   selector: 'app-user-table',

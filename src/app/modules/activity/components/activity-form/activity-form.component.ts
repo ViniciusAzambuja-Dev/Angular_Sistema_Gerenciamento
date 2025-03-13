@@ -1,19 +1,19 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { MessageService } from 'primeng/api';
-import { Observable, Subject, takeUntil, tap } from 'rxjs';
-import { ProjectService } from '../../../../services/project/project.service';
-import { UserService } from '../../../../services/user/user.service';
 import { FormBuilder, Validators } from '@angular/forms';
-import { UserResponse } from '../../../../models/interfaces/user/UserResponse';
-import { ProjectResponse } from '../../../../models/interfaces/project/ProjectResponse';
-import { ActivityRequest } from '../../../../models/interfaces/activity/ActivityRequest';
-import { ActivityService } from '../../../../services/activity/activity.service';
-import { AutoCompleteCompleteEvent } from 'primeng/autocomplete';
+import { MessageService } from 'primeng/api';
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
-import { EventAction } from '../../../../models/interfaces/events/EventAction';
+import { Observable, Subject, takeUntil } from 'rxjs';
+
+import { ActivityEvent } from '../../../../models/enums/activity/ActivityEvent';
+import { ActivityRequest } from '../../../../models/interfaces/activity/ActivityRequest';
 import { ActivityResponse } from '../../../../models/interfaces/activity/ActivityResponse';
 import { ActivityUpdate } from '../../../../models/interfaces/activity/ActivityUpdate';
-import { ActivityEvent } from '../../../../models/enums/activity/ActivityEvent';
+import { EventAction } from '../../../../models/interfaces/events/EventAction';
+import { ProjectResponse } from '../../../../models/interfaces/project/ProjectResponse';
+import { UserResponse } from '../../../../models/interfaces/user/UserResponse';
+import { ActivityService } from '../../../../services/activity/activity.service';
+import { ProjectService } from '../../../../services/project/project.service';
+import { UserService } from '../../../../services/user/user.service';
 
 @Component({
   selector: 'app-activity-form',

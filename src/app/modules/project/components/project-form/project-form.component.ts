@@ -1,16 +1,17 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { MessageService } from 'primeng/api';
-import { Subject, takeUntil } from 'rxjs';
-import { ProjectService } from '../../../../services/project/project.service';
 import { FormBuilder, Validators } from '@angular/forms';
-import { UserResponse } from '../../../../models/interfaces/user/UserResponse';
-import { UserService } from '../../../../services/user/user.service';
-import { ProjectRequest } from '../../../../models/interfaces/project/ProjectRequest';
+import { MessageService } from 'primeng/api';
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
-import { EventAction } from '../../../../models/interfaces/events/EventAction';
-import { ProjectResponse } from '../../../../models/interfaces/project/ProjectResponse';
+import { Subject, takeUntil } from 'rxjs';
+
 import { ProjectEvent } from '../../../../models/enums/project/ProjectEvent';
+import { EventAction } from '../../../../models/interfaces/events/EventAction';
+import { ProjectRequest } from '../../../../models/interfaces/project/ProjectRequest';
+import { ProjectResponse } from '../../../../models/interfaces/project/ProjectResponse';
 import { ProjectUpdate } from '../../../../models/interfaces/project/ProjectUpdate';
+import { UserResponse } from '../../../../models/interfaces/user/UserResponse';
+import { ProjectService } from '../../../../services/project/project.service';
+import { UserService } from '../../../../services/user/user.service';
 
 @Component({
   selector: 'app-project-form',

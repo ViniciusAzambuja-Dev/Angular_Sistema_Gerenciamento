@@ -1,15 +1,16 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subject, takeUntil } from 'rxjs';
-import { ActivityResponse } from '../../../../models/interfaces/activity/ActivityResponse';
-import { ActivityService } from '../../../../services/activity/activity.service';
-import { ConfirmationService, MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { EventAction } from '../../../../models/interfaces/events/EventAction';
-import { ActivityFormComponent } from '../../components/activity-form/activity-form.component';
-import { DeleteAction } from '../../../../models/interfaces/events/DeleteAction';
-import { HourService } from '../../../../services/hour/hour.service';
+import { Subject, takeUntil } from 'rxjs';
+
 import { AuthGuardService } from '../../../../guards/auth-guard.service';
+import { ActivityResponse } from '../../../../models/interfaces/activity/ActivityResponse';
+import { DeleteAction } from '../../../../models/interfaces/events/DeleteAction';
+import { EventAction } from '../../../../models/interfaces/events/EventAction';
+import { ActivityService } from '../../../../services/activity/activity.service';
+import { HourService } from '../../../../services/hour/hour.service';
+import { ActivityFormComponent } from '../../components/activity-form/activity-form.component';
 
 @Component({
   selector: 'app-activity-home',

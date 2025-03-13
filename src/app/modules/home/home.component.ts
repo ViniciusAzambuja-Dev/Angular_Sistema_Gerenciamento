@@ -1,12 +1,12 @@
 import { Component, OnDestroy } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { MessageService } from 'primeng/api';
 import { Subject, takeUntil } from 'rxjs';
 
 import { LoginRequest } from '../../models/interfaces/user/auth/LoginRequest';
 import { UserService } from '../../services/user/user.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',

@@ -1,9 +1,10 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DashboardHomeComponent } from './page/dashboard-home/dashboard-home.component';
+import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { DASHBOARD_ROUTES } from './dashboard.routing';
+
 import { SharedModule } from '../shared/shared.module';
+import { DASHBOARD_ROUTES } from './dashboard.routing';
+import { DashboardHomeComponent } from './page/dashboard-home/dashboard-home.component';
 
 
 @NgModule({
