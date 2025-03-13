@@ -65,7 +65,7 @@ node -v
 Clone o repositório do **Front** para o seu ambiente local.
 
 ```bash
-git clone https://github.com/ViniciusAzambuja-Dev/Angular_Sistema_Gerenciamento.git~
+git clone https://github.com/ViniciusAzambuja-Dev/Angular_Sistema_Gerenciamento.git
 
 cd Angular_Sistema_Gerenciamento
 ```
