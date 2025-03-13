@@ -1,7 +1,8 @@
 <app-toolbar-navigation></app-toolbar-navigation>
 
-<div class="flex mb-5 mt-5 mr-5 ml-5 gap-5">
-  <div>
+<div class="flex dashboard-container mb-5 mt-5 mr-5 ml-5 gap-5">
+
+  <div class="container-metrics">
     <div class="card-container mb-3">
       <p-card
         styleClass="h-full shadow-3"
@@ -21,7 +22,7 @@
           <p class="m-0">Total de Horas lançadas no mês</p>
         </div>
         <div>
-          <a routerLink="/hour"><i class="bx bx-chevrons-right hour"></i></a>
+          <a routerLink="/hour"><button class="custom-button" pButton icon="bx bxs-hand-right">Veja mais</button></a>
         </div>
       </p-card>
       </div>
@@ -43,7 +44,7 @@
           <p class="m-0">Total de projetos em andamento</p>
         </div>
         <div>
-          <a routerLink="/project"><i class="bx bx-chevrons-right project"></i></a>
+          <a routerLink="/project"><button class="custom-button" pButton icon="bx bxs-hand-right">Veja mais</button></a>
         </div>
       </p-card>
       </div>
@@ -65,7 +66,7 @@
           <p class="m-0">Total de atividades pendentes</p>
         </div>
         <div>
-          <a routerLink="/activity"><i class="bx bx-chevrons-right activity"></i></a>
+          <a routerLink="/activity"><button class="custom-button" pButton icon="bx bxs-hand-right">Veja mais</button></a>
         </div>
       </p-card>
     </div>
@@ -139,7 +140,7 @@
         <p-table
           [value]="hoursDatas"
           [rows]="4"
-          scrollHeight="160px"
+          scrollHeight="275px"
           [scrollable]="true"
           [rowHover]="true"
           [tableStyle]="{'min-width': '100%'}"
@@ -187,7 +188,7 @@
         <ng-template pTemplate="body" let-hour>
           <tr>
             <td>{{ hour?.nomeAtividade }}</td>
-            <td class="description" [pTooltip]="hour?.descricao" tooltipPosition="top">{{ hour?.descricao }} </td>
+            <td class="description" [pTooltip]="hour?.descricao" tooltipPosition="top" tooltipStyleClass="custom-tooltip">{{ hour?.descricao }} </td>
             <td> {{ hour?.data_registro }} </td>
             <td> {{ hour?.data_inicio }} </td>
             <td> {{ hour?.data_fim }} </td>
@@ -202,11 +203,12 @@
         </p-table>
       </p-card>
     </div>
-    <div class="flex mt-3 gap-3" *appHasRole="['USUARIO']">
+
+    <div class="flex custom-doughnut-container mt-3 gap-3" *appHasRole="['USUARIO']">
       <div class="flex-1">
         <p-card
           header="Quantidade de projetos por prioridade"
-          styleClass="shadow-3 custom-doughnut-card">
+          styleClass="h-full shadow-3 custom-doughnut-card">
 
           <p-chart type="doughnut" [data]="dataFirstDoughnut" [options]="doughnutOptions" />
         </p-card>
@@ -214,7 +216,7 @@
       <div class="flex-1">
         <p-card
           header="Quantidade de projetos por status"
-          styleClass="shadow-3 custom-doughnut-card">
+          styleClass="h-full shadow-3 custom-doughnut-card">
 
           <p-chart type="doughnut" [data]="dataSecondDoughnut" [options]="doughnutOptions" />
         </p-card>
@@ -222,7 +224,7 @@
       <div class="flex-1">
         <p-card
           header="Quantidade de atividades por status"
-          styleClass="shadow-3 custom-doughnut-card">
+          styleClass="h-full shadow-3 custom-doughnut-card">
 
           <p-chart type="doughnut" [data]="dataThirdDoughnut" [options]="doughnutOptions" />
         </p-card>
@@ -231,11 +233,11 @@
   </div>
 </div>
 
-<div class="flex pr-5 pl-5 mb-5 w-full gap-5" *appHasRole="['ADMIN']">
+<div class="flex custom-doughnut-container pr-5 pl-5 mb-5 gap-3" *appHasRole="['ADMIN']">
   <div class="flex-1">
     <p-card
       header="Quantidade de projetos por prioridade"
-      styleClass="shadow-3">
+      styleClass="shadow-3 custom-doughnut-card">
 
       <p-chart *ngIf="dashboardGeneralData; else loading" type="doughnut" [data]="dataFirstDoughnut" [options]="doughnutOptions" />
     </p-card>
@@ -243,7 +245,7 @@
   <div class="flex-1">
     <p-card
       header="Quantidade de projetos por status"
-      styleClass="shadow-3">
+      styleClass="h-full shadow-3  custom-doughnut-card">
 
       <p-chart *ngIf="dashboardGeneralData; else loading" type="doughnut" [data]="dataSecondDoughnut" [options]="doughnutOptions" />
     </p-card>
@@ -251,17 +253,17 @@
   <div class="flex-1">
     <p-card
       header="Quantidade de atividades por status"
-      styleClass="shadow-3">
+      styleClass="h-full shadow-3 custom-doughnut-card">
 
       <p-chart *ngIf="dashboardGeneralData; else loading" type="doughnut" [data]="dataThirdDoughnut" [options]="doughnutOptions" />
     </p-card>
   </div>
 </div>
 
-<div class="pr-5 pl-5 w-full" *appHasRole="['ADMIN']">
+<div class="bar-chart-container pr-5 pl-5" *appHasRole="['ADMIN']">
   <p-card
     header="Horas por projeto(Geral)"
-    styleClass="shadow-3 pr-8 pl-8 pb-3 pt-3"
+    styleClass="h-full shadow-3 w-full pr-8 pl-8 pb-3 pt-3"
     *ngIf="dashboardAdminDatas && dashboardAdminDatas.dadosGraficoBarras.length > 0;">
 
     <p-chart type="bar" [data]="barChartDatas" [options]="barChartOptions" />

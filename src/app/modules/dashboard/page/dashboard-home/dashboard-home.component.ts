@@ -200,7 +200,11 @@ export class DashboardHomeComponent implements OnInit, OnDestroy {
       plugins: {
         legend: {
           labels: {
-            color: textColor
+            color: textColor,
+            font: {
+              size: 9,
+              weight: 'normal'
+            }
           }
         }
       }
