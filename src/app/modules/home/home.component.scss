@@ -91,3 +91,26 @@ form, .input-container input, .button-container button {
   height: 100%;
   object-fit: cover;
 }
+
+
+@media (max-width: 920px) {
+  .form-container {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+@media (max-width: 770px) {
+  .image-container {
+    display: none;
+  }
+
+  .home-container {
+    justify-content: start;
+  }
+
+  .form-container {
+    width: 100%;
+  }
+}
+
