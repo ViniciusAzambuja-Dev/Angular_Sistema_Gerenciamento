@@ -197,8 +197,8 @@ export class ActivityFormComponent implements OnInit, OnDestroy {
     ) {
 
       if(!this.isDateValid(
-        this.editActivityForm.value.data_inicio as string,
-        this.editActivityForm.value.data_fim as string
+        this.editActivityForm.value.data_inicio,
+        this.editActivityForm.value.data_fim
       )) {
         this.messageService.add({
           severity: 'error',
@@ -322,14 +322,12 @@ export class ActivityFormComponent implements OnInit, OnDestroy {
     return `${day}/${month}/${year}`;
   }
 
-  isDateValid(startDate: string, endDate: string) : boolean {
-    const start = new Date(startDate);
-    const end = new Date(endDate);
+  isDateValid(startDate: string | Date, endDate: string | Date): boolean {
+    const start = typeof startDate === 'string' ? new Date(startDate.split('/').reverse().join('-')) : new Date(startDate);
 
-    if(start > end) {
-      return false;
-    }
-    return true;
+    const end = typeof endDate === 'string' ? new Date(endDate.split('/').reverse().join('-')) : new Date(endDate);
+
+    return start <= end;
   }
 
   ngOnDestroy(): void {
